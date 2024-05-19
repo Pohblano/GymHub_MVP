@@ -12,7 +12,6 @@ import { HorizontalPaddedView } from '../../../components/Views/PaddedView'
 import { BoldText } from '../../../components/Text/StyledText';
 import { IconPressable } from '../../../components/Buttons/CustomPressable';
 import CustomLink from '../../../components/Buttons/CustomLink';
-import LoginForm from '../../../components/Forms/LoginForm';
 import SignupForm from '../../../components/Forms/SignupForm';
 
 export default function SignupScreen() {
@@ -29,7 +28,7 @@ export default function SignupScreen() {
 
 				{/* Header */}
 				<View style={container.header}>
-					<BoldText style={[text.large, text.black]}>{'Create\nAccount'}</BoldText>
+					<BoldText style={[text.large, text.black]}>{'Create\nAccount.'}</BoldText>
 				</View>
 
 				{/* Form */}

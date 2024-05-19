@@ -14,6 +14,10 @@ export const text = StyleSheet.create({
 	light_grey: {
 		color: '#BDBDBD'
 	},
+	error:{
+		color: 'red',
+		fontSize: 12,
+	},
 	// Size
 
 	small: {

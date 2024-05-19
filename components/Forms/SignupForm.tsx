@@ -1,67 +1,120 @@
 // Node Modules
-import React, { useState } from 'react';
-import { SafeAreaView, View, TextInput, Pressable } from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, Pressable } from 'react-native'
+import { useFormik } from 'formik';
+
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
 import { StyleSheet } from 'react-native'
 import { text } from '../../styles/text.styles'
 import { container } from '../../styles/containers.styles'
+import { form } from '../../styles/form.styles'
 // Components
 import { Text } from '../Themed';
 import { Seperator_Text } from '../Views/PaddedView';
 import { IconGoogleRound, IconFacebookRound, IconShowPassword, IconHidePassword } from '../../constants/Icons';
 import CustomButton from '../Buttons/CustomButton';
+// Firebase
+import {app} from '../../firebase.config'
+import {getAuth,createUserWithEmailAndPassword } from '@firebase/auth'
 
+// Schema
+import { SignupSchema } from '@/utils/validation';
 
 
 export default function SignupForm() {
 	const router = useRouter();
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-	const [confirmPassword, setConfirmPassword] = useState('')
 	const [isPassVisible, setPassVisible] = useState(false)
 	const [isConfirmPassVisible, setConfirmPassVisible] = useState(false)
-	const [error, setError] = useState({})
+	const [loading, setLoading] = useState(false)
 
-	const handleSignUp = () => {
-		if (password !== confirmPassword) {
-			setError({ message: 'Passwords do not match.' })
-			console.log('Passwords do not match')
+	useEffect(() => {
+		let timer: string | number | NodeJS.Timeout | undefined;
+		if (isConfirmPassVisible) {
+			timer = setTimeout(() => {
+				setConfirmPassVisible(false);
+			}, 1000); // Hide confirm password after 1 second
+		} else if (isPassVisible) {
+			timer = setTimeout(() => {
+				setPassVisible(false);
+			}, 1000); // Hide confirm password after 1 second
 		}
-	}
+
+		return () => clearTimeout(timer);
+	}, [isConfirmPassVisible, isPassVisible]);
+
+
+	const formik = useFormik({
+		initialValues: { email: '', password: '', confirmPassword: '' },
+		validationSchema: SignupSchema,
+		onSubmit: async (values, { setSubmitting, setErrors }) => {
+			try {
+				const auth = getAuth(app);
+				const response = await createUserWithEmailAndPassword(auth, values.email, values.password);
+				console.log(response)
+
+				// router.push('/welcome'); // Navigate to a welcome screen after successful signup
+			} catch (error) {
+				console.log(error)
+				setErrors({ email: error.message });
+			} finally {
+				setSubmitting(false);
+			}
+		},
+	});
+
+
 
 	return (
 		<>
 			{/* START OF FORM */}
 			<View style={container.form}>
 				<TextInput
-					style={[container.input_text, text.black]}
+					style={[
+						container.input_text, text.black,
+						formik.touched.email && formik.errors.email ? form.error_input : null]}
 					placeholderTextColor={'#BDBDBD'}
 					placeholder='Email'
-					value={email}
-					onChangeText={setEmail}
+					value={formik.values.email}
+					onChangeText={formik.handleChange('email')}
+					onBlur={formik.handleBlur('email')}
 				/>
+				{formik.touched.email && formik.errors.email ? (
+					<Text style={text.error} >{formik.errors.email}</Text>
+				) : null}
 				<PasswordInput
-					value={password}
-					setValue={setPassword}
+					value={formik.values.password}
+					setValue={formik.handleChange('password')}
 					visible={isPassVisible}
 					setVisible={setPassVisible}
 					placeholder={'Password'}
 					containerStyle={{}}
-					inputStyle={[container.input_text, text.black]}
+					inputStyle={[
+						container.input_text, text.black,
+						formik.touched.password && formik.errors.password ? form.error_input : null]}
 					iconStyle={{}}
 				/>
+				{formik.touched.password && formik.errors.password ? (
+					<Text style={text.error}>{formik.errors.password}</Text>
+				) : null}
+
 				<PasswordInput
-					value={confirmPassword}
-					setValue={setConfirmPassword}
+					value={formik.values.confirmPassword}
+					setValue={formik.handleChange('confirmPassword')}
 					visible={isConfirmPassVisible}
 					setVisible={setConfirmPassVisible}
 					placeholder={'Confirm Password'}
 					containerStyle={{}}
-					inputStyle={[container.input_text, text.black]}
+					inputStyle={[
+						container.input_text, text.black,
+						formik.touched.confirmPassword && formik.errors.confirmPassword ? form.error_input : null]}
 					iconStyle={{}}
 				/>
+				{formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+					<Text style={text.error}>{formik.errors.confirmPassword}</Text>
+				) : null}
+
 
 				<Seperator_Text style={{ marginVertical: 10 }}>{'Or Sign Up With'}</Seperator_Text>
 
@@ -71,7 +124,7 @@ export default function SignupForm() {
 						onPress={() => { }}
 						onLongPress={() => { }}
 						title="Google"
-						iconLeft={<IconGoogleRound style={styles.brand_icon} height={'18'} width={'18'} />}
+						iconLeft={<IconGoogleRound style={form.brand_icon} height={'18'} width={'18'} />}
 						iconRight={''}
 						activeOpacity={0.8}
 						width={'48%'}
@@ -84,7 +137,7 @@ export default function SignupForm() {
 						onPress={() => { }}
 						onLongPress={() => { }}
 						title="Facebook"
-						iconLeft={<IconFacebookRound style={styles.brand_icon} height={'18'} width={'18'} />}
+						iconLeft={<IconFacebookRound style={form.brand_icon} height={'18'} width={'18'} />}
 						iconRight={''}
 						activeOpacity={0.8}
 						width={'48%'}
@@ -98,8 +151,8 @@ export default function SignupForm() {
 			{/* Bottom Buttons */}
 			<View style={[container.bottom, { gap: 10 }]}>
 				<CustomButton
-					loading={false}
-					onPress={() => { }}
+					loading={formik.isSubmitting}
+					onPress={formik.handleSubmit}
 					onLongPress={() => { }}
 					title="Sign Up"
 					iconLeft={''}
@@ -108,36 +161,12 @@ export default function SignupForm() {
 					width={'100%'}
 					style={container.bg_yellow}
 					textStyle={[text.primary_button, text.white]}
-					disabled={false}
+					disabled={formik.isSubmitting}
 				/>
 			</View>
 		</>
 	)
 }
-
-const styles = StyleSheet.create({
-	side_buttons: {
-		justifyContent: 'space-between'
-	},
-	side_button: {
-		backgroundColor: 'rgba(231, 190, 96, .12)',
-		borderStyle: 'solid',
-		borderColor: '#e7be60',
-		borderWidth: 1,
-	},
-	brand_icon: {
-		paddingRight: 4,
-		paddingTop: 3,
-		backgroundColor: 'transparent'
-	},
-	container_password: {
-		flex: 0,
-		alignSelf: 'center',
-		position: 'relative',
-		right: 48
-	}
-
-})
 
 
 function PasswordInput({ value, setValue, visible, setVisible, placeholder, containerStyle, inputStyle, iconStyle }) {
@@ -151,14 +180,29 @@ function PasswordInput({ value, setValue, visible, setVisible, placeholder, cont
 				onChangeText={setValue}
 				secureTextEntry={!visible}
 			/>
-			<Pressable onPress={() => setVisible(!visible)} style={[styles.container_password]}>
-				{visible ? 
-				<IconShowPassword height={'32'} width={'32'} iconStyle={{fill: '#898989'}} containerStyle={{}}/> 
-				: 
-				<IconHidePassword height={'32'} width={'32'} containerStyle={{}} iconStyle={{fill: '#898989'}} />
+			<Pressable onPress={() => setVisible(!visible)} style={[form.icon_right]}>
+				{visible ?
+					<IconShowPassword height={'32'} width={'32'} iconStyle={{ fill: '#898989' }} containerStyle={{}} />
+					:
+					<IconHidePassword height={'32'} width={'32'} containerStyle={{}} iconStyle={{ fill: '#898989' }} />
 				}
 
 			</Pressable>
 		</View>
 	)
 }
+
+const styles = StyleSheet.create({
+	side_buttons: {
+		justifyContent: 'space-between'
+	},
+	side_button: {
+		backgroundColor: 'rgba(231, 190, 96, .12)',
+		borderStyle: 'solid',
+		borderColor: '#e7be60',
+		borderWidth: 1,
+	},
+
+})
+
+
