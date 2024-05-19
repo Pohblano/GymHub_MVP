@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "gym",
-    "slug": "gym",
+    "slug": "gym-hub",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/HUB.png",
@@ -31,6 +31,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "da109601-5d2a-4244-b09d-8268a875bad6"
+      }
+    },
+    "owner": "pohblano"
   }
 }

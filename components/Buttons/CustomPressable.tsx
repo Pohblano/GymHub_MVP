@@ -22,15 +22,32 @@ export function ButtonPressable({ children, style, activeOpacity, ...otherProps 
   );
 }
 
-// Animation icon button
-export function IconPressable({ style, icon, size, activeOpacity, onPress, ...otherProps }) {
-
+export function LinkPressable({ children, style,  ...otherProps }) {
   const _style = useCallback(
     ({ pressed }) => [
       {
-        opacity: (pressed ? activeOpacity : 1),
-        transform: (pressed ? [{ scale: 0.99 }] : ''),
+        opacity: (pressed ? 0.5 : 1),
+        transform: (pressed ? [{ scale: 0.98 }] : ''),
       }, style && style],
+    [style]
+  );
+
+  return (
+    <RNPressable style={_style} {...otherProps}>
+      {children}
+    </RNPressable>
+    
+  );
+}
+
+// Animation icon button
+export function IconPressable({ style, icon, onPress, ...otherProps }) {
+  const _style = useCallback(
+    ({ pressed }) => [
+      {
+        activeOpacity: 1,
+        transform: (pressed ? [{ scale: 0.80 }] : ''),
+      } && {alignSelf: 'baseline'}],
     [style]
   );
 
@@ -38,12 +55,10 @@ export function IconPressable({ style, icon, size, activeOpacity, onPress, ...ot
     <RNPressable style={_style} {...otherProps}>
       <FontAwesome 
         name={icon}
-        size={size}
-        style={style}
+        style={[style]}
         onPress={onPress}
         />
     </RNPressable>
   );
 }
-
 

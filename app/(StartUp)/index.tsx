@@ -5,7 +5,8 @@ import { SafeAreaView, View } from 'react-native'
 import { useRouter } from 'expo-router';
 // *Styling
 import { StyleSheet } from 'react-native'
-
+import {text} from '../../styles/text.styles'
+import {container} from '../../styles/containers.styles'
 
 // Components
 import CustomButton from '../../components/Buttons/CustomButton'
@@ -16,21 +17,21 @@ import { BoldText, MediumText, SemiBoldText } from '../../components/Text/Styled
 export default function StartUpScreen() {
 	const router = useRouter()
 	return (
-		<SafeAreaView style={styles.container}>
+		<SafeAreaView style={[container.bg_yellow, container.wrapper]}>
 			<HorizontalPaddedView>
 
 				{/* Logo */}
-				<View style={styles.logo}>
-					<BoldText style={[styles.whiteText, styles.largestText]}>
-						GYM/<SemiBoldText style={styles.displayText}>HUB</SemiBoldText>
+				<View style={container.logo}>
+					<BoldText style={[text.white, text.largest]}>
+						GYM/<SemiBoldText style={text.black}>HUB</SemiBoldText>
 					</BoldText>
 				</View>
 
 				{/* Bottom Text */}
-				<View style={styles.bottom_container}>
-					<MediumText style={[styles.whiteText, styles.smallText]}>
+				<View style={container.bottom}>
+					<MediumText style={[text.white, text.small]}>
 						{'Join the \n'}
-						<MediumText style={[styles.whiteText, styles.largeText]}>{'Online Gym Community'}</MediumText>
+						<MediumText style={[text.white, text.large]}>{'Online Gym Community'}</MediumText>
 					</MediumText>
 					<CustomButton
 						loading={false}
@@ -40,8 +41,9 @@ export default function StartUpScreen() {
 						iconLeft={''}
 						iconRight={''}
 						activeOpacity={0.8}
-						style={styles.customButton}
-						textStyle={styles.customButtonText}
+						width={'100%'}
+						style={container.bg_white}
+						textStyle={[text.black, text.primary_button] }
 						disabled={false}
 					/>
 				</View>
@@ -51,48 +53,7 @@ export default function StartUpScreen() {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		height: '100%',
-		display: 'flex',
-		backgroundColor: '#E7BE60',
-	},
-	bottom_container: {
-		flex: 1,
-		display: 'flex',
-		gap: 20,
-		justifyContent: 'flex-end',
-		marginBottom: 10
-	},
-	logo: {
-		flex:1,
-		alignSelf: 'center',
-		textAlign: 'center',
-		justifyContent: 'flex-end',
-		paddingBottom: 60,
-	},
-	customButton: {
-		alignSelf: 'center',
-		backgroundColor: '#FFFFFF',
-	},
-	customButtonText: {
-		color: '#454545',
-		fontWeight: 'bold',
-		fontSize: 16,
-	},
-	whiteText: {
-		color: 'white'
-	},
-	displayText:{
-		color: '#454545',
-	},
-	smallText: {
-		fontSize: 23
-	},
-	largeText: {
-		fontSize: 38
-	},
-	largestText:{
-		fontSize: 50
-	},
+	
+	
+	
 })

@@ -1,3 +1,10 @@
 {
-	"git.ignoreLimitWarning": true
+	"git.ignoreLimitWarning": true,
+	"vscode-color-picker.languages": [
+		"python",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+		]
 }

@@ -16,6 +16,7 @@ const CustomButton = ({
   disabled,
   activeOpacity,
   loading,
+  width
 }) => {
   return (
     <ButtonPressable
@@ -23,13 +24,13 @@ const CustomButton = ({
       onLongPress={onLongPress}
       disabled={disabled}
       activeOpacity={activeOpacity}
-      style={[disabled ? styles.disabledButton : styles.button, style]}
+      style={[disabled ? styles.disabledButton : {width: width}, styles.button, style]}
     >
       <Text>{iconLeft}</Text> 
       {loading ? (
-        <ActivityIndicator color="white" />
+        <ActivityIndicator color='#454545' />
       ) : (
-        <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+        <Text style={[textStyle]}>{title}</Text>
       )}
 	  {/* <Text style={[styles.buttonText, textStyle]}>{title}</Text> */}
 
@@ -47,7 +48,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
     height: 50,
   },
   disabledButton: {
@@ -59,12 +59,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-	fontFamily: 'Montserrat_Bold'
- 
   },
 });
 
