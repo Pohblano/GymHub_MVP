@@ -1,5 +1,5 @@
 // Node Modules
-import React from 'react';
+import React,{useState} from 'react';
 import { SafeAreaView, View, TextInput } from 'react-native'
 // * Routing
 import { useRouter } from 'expo-router';
@@ -16,6 +16,7 @@ import SignupForm from '../../../components/Forms/SignupForm';
 
 export default function SignupScreen() {
 	const router = useRouter();
+	const [screenLoading, setScreenLoading] = useState(false)
 	return (
 		<SafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
@@ -32,7 +33,7 @@ export default function SignupScreen() {
 				</View>
 
 				{/* Form */}
-				<SignupForm/>
+				<SignupForm setScreenLoading={setScreenLoading}/>
 
 				{/* Recover Password */}
 				<CustomLink

@@ -2,32 +2,56 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Pressable } from 'react-native'
 import { useFormik } from 'formik';
-
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
 import { StyleSheet } from 'react-native'
-import { text } from '../../styles/text.styles'
-import { container } from '../../styles/containers.styles'
-import { form } from '../../styles/form.styles'
+// import {text, container, form} from '@/styles'
+// import container from '@/styles';
+// import form from '@/styles';
+import{ text} from '../../styles/text.styles'
+import {container} from '../../styles/containers.styles'
+import {form} from '../../styles/form.styles'
 // Components
 import { Text } from '../Themed';
 import { Seperator_Text } from '../Views/PaddedView';
 import { IconGoogleRound, IconFacebookRound, IconShowPassword, IconHidePassword } from '../../constants/Icons';
 import CustomButton from '../Buttons/CustomButton';
-// Firebase
-import {app} from '../../firebase.config'
-import {getAuth,createUserWithEmailAndPassword } from '@firebase/auth'
+// Api
+import AuthApi from '../../api/Auth.api'
+// // Firebase
+// import {auth, db} from '../../firebase.config'
+// import {createUserWithEmailAndPassword } from '@firebase/auth'
+// // import {getFirestore, collection, getDocs} from'@firebase/firestore'
+
+// const create_user = async (response) =>{
+// 	const newUser = response.user
+// 	db.collection('users').add({
+// 		email: newUser.email,
+// 		password: newUser.passWord,
+// 		created_on: ',',
+
+// 	})
+// 	.then((docRef) => {
+// 		console.log("Document written with ID: ", docRef.id);
+// 	})
+// 	.catch((error) => {
+// 		console.error("Error adding document: ", error);
+// 	}); 
+// }
 
 // Schema
 import { SignupSchema } from '@/utils/validation';
+import { useAuth } from '@/context/Auth.context';
 
 
-export default function SignupForm() {
+export default function SignupForm({setScreenLoading}) {
 	const router = useRouter();
 	const [isPassVisible, setPassVisible] = useState(false)
 	const [isConfirmPassVisible, setConfirmPassVisible] = useState(false)
 	const [loading, setLoading] = useState(false)
+
+	const {register} = useAuth()
 
 	useEffect(() => {
 		let timer: string | number | NodeJS.Timeout | undefined;
@@ -49,18 +73,12 @@ export default function SignupForm() {
 		initialValues: { email: '', password: '', confirmPassword: '' },
 		validationSchema: SignupSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
-			try {
-				const auth = getAuth(app);
-				const response = await createUserWithEmailAndPassword(auth, values.email, values.password);
-				console.log(response)
 
-				// router.push('/welcome'); // Navigate to a welcome screen after successful signup
-			} catch (error) {
-				console.log(error)
-				setErrors({ email: error.message });
-			} finally {
-				setSubmitting(false);
-			}
+			let response = await register(values.email, values.password, setErrors, setSubmitting)
+			
+			// AuthApi.RegisterUserWithEmailAndPassword(values.email, values.password, setErrors, setSubmitting)
+
+			
 		},
 	});
 

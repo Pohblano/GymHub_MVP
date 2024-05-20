@@ -13,13 +13,18 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.alberto.gymhub",
       "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
+      "bundleIdentifier": "com.alberto.gymhub",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/HUB.png",
         "backgroundColor": "#E7BE60"
-      }
+      },
+      "package": "com.alberto.gymhub"
     },
     "web": {
       "bundler": "metro",
@@ -27,7 +32,15 @@
       "favicon": "./assets/images/HUB.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

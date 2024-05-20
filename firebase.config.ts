@@ -1,11 +1,17 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import {getFirestore, collection} from'firebase/firestore'
+import {getAuth, GoogleAuthProvider, FacebookAuthProvider, initializeAuth} from 'firebase/auth'
+// @ts-expect-error Some error with types in this import because of the versions
+import { getReactNativePersistence } from '@firebase/auth/dist/rn/index.js';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+// import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
   apiKey: "AIzaSyAlunRq54MzhLTNicJByLJmrEnKyMk7bz8",
   authDomain: "gym24-7.firebaseapp.com",
@@ -18,4 +24,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+export const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage)
+})
+export const googleProvider = new GoogleAuthProvider();
+export const facebookProvide = new FacebookAuthProvider()
+
+// Keeps user data so on refresh we don't lose user data
+export const db = getFirestore(app);
+export const Users = collection(db, 'Users')

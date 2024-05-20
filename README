@@ -1,0 +1,2 @@
+** When installing native libraries for either iOS or Android,  be sure to include node_module route to "plugins" in 'app.json'
+	example:  "./node_modules/expo-sample-pedometer-plugins.js"

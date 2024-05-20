@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "685057894539",
+    "project_id": "gym24-7",
+    "storage_bucket": "gym24-7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685057894539:android:d489957f2a753a92dd8c8e",
+        "android_client_info": {
+          "package_name": "com.alberto.gymhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685057894539-4mtfobdrnpjmpgmlth2siqdhrivl6ihu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH-1aPSjA-EVVF6QgcBq1XouDNaDicK20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685057894539-4mtfobdrnpjmpgmlth2siqdhrivl6ihu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "685057894539-uufq3dc17u6soe0fg6iisbe80ef8qtnp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alberto.gymhub"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
