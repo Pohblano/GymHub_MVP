@@ -33,8 +33,6 @@ yarn-error.*
 .env
 .firebase_admin_key.json
 
-20-7/
-
 # typescript
 *.tsbuildinfo
 

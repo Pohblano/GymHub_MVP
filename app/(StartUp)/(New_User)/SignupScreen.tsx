@@ -1,12 +1,12 @@
 // Node Modules
 import React,{useState} from 'react';
-import { SafeAreaView, View, TextInput } from 'react-native'
+import { SafeAreaView, View } from 'react-native'
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
 import { StyleSheet } from 'react-native'
-import { text } from '../../../styles/text.styles'
-import { container } from '../../../styles/containers.styles'
+import { text } from '@/styles/text.styles';
+import { container } from '@/styles/containers.styles';
 // Components
 import { HorizontalPaddedView } from '../../../components/Views/PaddedView'
 import { BoldText } from '../../../components/Text/StyledText';
@@ -16,7 +16,7 @@ import SignupForm from '../../../components/Forms/SignupForm';
 
 export default function SignupScreen() {
 	const router = useRouter();
-	const [screenLoading, setScreenLoading] = useState(false)
+
 	return (
 		<SafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
@@ -33,7 +33,7 @@ export default function SignupScreen() {
 				</View>
 
 				{/* Form */}
-				<SignupForm setScreenLoading={setScreenLoading}/>
+				<SignupForm />
 
 				{/* Recover Password */}
 				<CustomLink
