@@ -9,7 +9,7 @@ export const unstable_settings = {
 export default function ActiveUserLayout() {
   // Route start 
   return (
-    <Stack screenOptions={{ animation: 'ios', }}>
+    <Stack screenOptions={{ animation: 'simple_push', }}>
       <Stack.Screen name='SignupScreen' options={{ title: 'Sign Up', headerShown: false }} />
     </Stack>
   );

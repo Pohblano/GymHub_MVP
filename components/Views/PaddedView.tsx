@@ -7,7 +7,7 @@ import { ViewProps } from '../Themed'
 export function HorizontalPaddedView(props: ViewProps) {
 	const { style, lightColor, darkColor, ...otherProps } = props;
 
-	return <DefaultView style={[{ maxWidth: 500, paddingHorizontal: 20, flex: 1, display: 'flex'}, style]} {...otherProps} />;
+	return <DefaultView style={[{ maxWidth: 500, paddingHorizontal: 20, flex: 1, display: 'flex' }, style]} {...otherProps} />;
 }
 
 export function Seperator_Text({children, style}) {
