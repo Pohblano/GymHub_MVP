@@ -31,7 +31,8 @@ yarn-error.*
 # local env files
 .env*.local
 .env
-.firebase_admin_key.json
+
+.gym24-7-firebase-admin.json
 
 # typescript
 *.tsbuildinfo

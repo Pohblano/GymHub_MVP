@@ -71,6 +71,7 @@ export const AuthContextProvider = ({ children }) => {
 				const newUser = {
 					email,
 					password,
+					created_at: new Date()
 				}
 
 				await await addDoc(collection(db, "Users"), newUser)
@@ -133,7 +134,3 @@ export const useAuth = () => {
 	}
 	return value
 }
-
-// const handleLogout = async () => {
-// 	await logout()
-// }
