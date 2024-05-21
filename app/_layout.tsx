@@ -1,13 +1,11 @@
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider, } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack, Slot, useSegments, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-native-reanimated';
-import { useColorScheme } from '@/components/useColorScheme';
-
+// import PageLoading from '@/components/Loading/PageLoading'
 import { AuthContextProvider, useAuth } from '../context/Auth.context'
 
 export {
@@ -15,12 +13,10 @@ export {
   ErrorBoundary,
 } from 'expo-router';
 
-
 // Prevent native splash screen from autohiding before App component declaration
 SplashScreen.preventAutoHideAsync()
   .then((result) => console.log(`SplashScreen.preventAutoHideAsync() succeeded: ${result}`))
-  .catch(console.warn); // it's good to explicitly catch and inspect any error
-
+  .catch(console.warn); 
 
 // Pretty much handles when and how app splash screen renders
 export default function RootLayout() {
@@ -40,33 +36,16 @@ export default function RootLayout() {
     if (error) throw error;
   }, [error]);
 
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
+    if (loaded) SplashScreen.hideAsync();
   }, [loaded]);
 
-  if (!loaded) {
-    return null
-  }
-
-  return (
-    <MainLayout />
-  )
+  if (!loaded) return null
+  
+  return <MainLayout />
 }
-
-
-// function LayoutNav() {
-//   const colorScheme = useColorScheme();
-
-//   return (
-//     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-
-//     </ThemeProvider>
-//   );
-// }
-
-
 
 function MainLayout() {
   return (
@@ -76,31 +55,29 @@ function MainLayout() {
   )
 }
 
-
 function Layout() {
   const { isAuthenticated } = useAuth()
   const segments = useSegments()
   const router = useRouter()
 
   useEffect(() => {
+    const inApp = segments[2]=='DashboardScreen'
     if (typeof isAuthenticated == 'undefined') return
-    // check how segments work, might now be right
-    // const inApp = segments[0]=='(Home)'
-    // if(isAuthenticated && !inApp){
-    // redirect user to home
-    // replace method does not allow user to head back to said page
-    // router.replace()
-    // }
-    if (isAuthenticated) console.log('USER IS LOGGED IN')
-    else if (!isAuthenticated) {
-      console.log('NO USER IS LOGGED IN')
-      // redirect to first page
-      // router.replace()
+
+    if(isAuthenticated && !inApp){
+      console.log('USER LOGGED IN AND NOT IN APP', segments)
+      // Redirect to Dashboard
+      router.replace('(Active_User)/DashboardScreen')
+    }else if (!isAuthenticated) {
+      console.log('NO USER IS LOGGED IN', segments)
+      // Redirect to starting page
+      router.replace('/')
     }
   }, [isAuthenticated])
 
+  // Written like this because if not then it will redirect to  (tabs) folder
   return (
-    <Stack screenOptions={{ animation: 'ios' }}>
+    <Stack screenOptions={{ animation: 'fade' }}>
       <Stack.Screen name='(StartUp)' options={{ title: 'New User Process', headerShown: false }} />
     </Stack>
   )

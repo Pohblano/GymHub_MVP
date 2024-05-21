@@ -6,51 +6,27 @@ import { useFormik } from 'formik';
 import { useRouter } from 'expo-router';
 // *Styling
 import { StyleSheet } from 'react-native'
-// import {text, container, form} from '@/styles'
-// import container from '@/styles';
-// import form from '@/styles';
-import{ text} from '../../styles/text.styles'
-import {container} from '../../styles/containers.styles'
-import {form} from '../../styles/form.styles'
+import { text } from '@/styles/text.styles'
+import { container } from '@/styles/containers.styles'
+import { form } from '@/styles/form.styles'
 // Components
 import { Text } from '../Themed';
 import { Seperator_Text } from '../Views/PaddedView';
-import { IconGoogleRound, IconFacebookRound, IconShowPassword, IconHidePassword } from '../../constants/Icons';
+import { IconGoogleRound, IconFacebookRound, IconShowPassword, IconHidePassword } from '@/constants/Icons';
 import CustomButton from '../Buttons/CustomButton';
-// Api
-import AuthApi from '../../api/Auth.api'
-// // Firebase
-// import {auth, db} from '../../firebase.config'
-// import {createUserWithEmailAndPassword } from '@firebase/auth'
-// // import {getFirestore, collection, getDocs} from'@firebase/firestore'
-
-// const create_user = async (response) =>{
-// 	const newUser = response.user
-// 	db.collection('users').add({
-// 		email: newUser.email,
-// 		password: newUser.passWord,
-// 		created_on: ',',
-
-// 	})
-// 	.then((docRef) => {
-// 		console.log("Document written with ID: ", docRef.id);
-// 	})
-// 	.catch((error) => {
-// 		console.error("Error adding document: ", error);
-// 	}); 
-// }
-
+import PasswordInput from './Utils/PasswordInput';
+// Context
+import { useAuth } from '@/context/Auth.context';
 // Schema
 import { SignupSchema } from '@/utils/validation';
-import { useAuth } from '@/context/Auth.context';
 
 
-export default function SignupForm({setScreenLoading}) {
+
+export default function SignupForm() {
 	const router = useRouter();
 	const [isPassVisible, setPassVisible] = useState(false)
 	const [isConfirmPassVisible, setConfirmPassVisible] = useState(false)
 	const [loading, setLoading] = useState(false)
-
 	const {register} = useAuth()
 
 	useEffect(() => {
@@ -73,12 +49,7 @@ export default function SignupForm({setScreenLoading}) {
 		initialValues: { email: '', password: '', confirmPassword: '' },
 		validationSchema: SignupSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
-
-			let response = await register(values.email, values.password, setErrors, setSubmitting)
-			
-			// AuthApi.RegisterUserWithEmailAndPassword(values.email, values.password, setErrors, setSubmitting)
-
-			
+			await register(values.email, values.password, setErrors, setSubmitting)
 		},
 	});
 
@@ -183,30 +154,6 @@ export default function SignupForm({setScreenLoading}) {
 				/>
 			</View>
 		</>
-	)
-}
-
-
-function PasswordInput({ value, setValue, visible, setVisible, placeholder, containerStyle, inputStyle, iconStyle }) {
-	return (
-		<View style={[containerStyle, container.flex_x, text.light_grey]}>
-			<TextInput
-				style={inputStyle}
-				placeholderTextColor={'#BDBDBD'}
-				placeholder={placeholder}
-				value={value}
-				onChangeText={setValue}
-				secureTextEntry={!visible}
-			/>
-			<Pressable onPress={() => setVisible(!visible)} style={[form.icon_right]}>
-				{visible ?
-					<IconShowPassword height={'32'} width={'32'} iconStyle={{ fill: '#898989' }} containerStyle={{}} />
-					:
-					<IconHidePassword height={'32'} width={'32'} containerStyle={{}} iconStyle={{ fill: '#898989' }} />
-				}
-
-			</Pressable>
-		</View>
 	)
 }
 

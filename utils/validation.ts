@@ -1,12 +1,23 @@
 import * as Yup from 'yup'
 
-export const logInSchema = Yup.object().shape({
+export const LoginSchema = Yup.object().shape({
 	email: Yup.string().email('Not a valid email').required('Email is missing'),
-	password: Yup.string().required('Password is missing')
+	password: Yup.string().required('Password is missing').min(6, 'Password must be atleast 8 characters long')
 })
 
 export const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Not a valid email').required('Email is required'),
+  password: Yup.string().required('Password is missing').min(6, 'Password must be atleast 8 characters long'),
+  confirmPassword: Yup.string()
+    .required('Please re-enter your password')
+    .oneOf([Yup.ref('password')], 'Passwords do not match')
+})
+
+export const RecoverPasswordSchema = Yup.object().shape({
+  email: Yup.string().email('Not a valid email').required('Email is missing')
+})
+
+export const ChangePasswordSchema = Yup.object().shape({
   password: Yup.string().required('Password is missing').min(6, 'Password must be atleast 8 characters long'),
   confirmPassword: Yup.string()
     .required('Please re-enter your password')
