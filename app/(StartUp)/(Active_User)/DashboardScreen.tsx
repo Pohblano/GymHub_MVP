@@ -17,6 +17,7 @@ import { useAuth } from '@/context/Auth.context'
 import PageLoading from '@/components/Loading/PageLoading'
 
 import SetupProfileScreen from '../(New_User)/SetupProfileScreen'
+import CompletedScreen from '../(New_User)/CompletedScreen'
 
 export default function DashboardScreen() {
 	const router = useRouter();
@@ -25,11 +26,11 @@ export default function DashboardScreen() {
 	const [loading, setLoading] = useState(true)
 	
 	useEffect(() => {
-		// setTimeout(() => {
-		// 	setLoading(false)
-		// 	// if User is new should route autmatically to setup profile
-		// 	router.push('SetupProfileModalScreen')
-		// }, 2000)
+		setTimeout(() => {
+			setLoading(false)
+			// if User is new should route autmatically to setup profile
+
+		}, 2000)
 		
 		//set conditions that finds if user isnew user
 		//then render a function that uses route to the
@@ -44,7 +45,7 @@ export default function DashboardScreen() {
 	return (
 		<>
 			{loading ?
-				<SetupProfileScreen />
+				<PageLoading />
 				:
 				<SafeAreaView style={[container.wrapper, container.bg_white]}>
 					<HorizontalPaddedView>

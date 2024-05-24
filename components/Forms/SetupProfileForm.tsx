@@ -32,6 +32,9 @@ export default function SetupProfileForm() {
 	const [selectedGym, setSelectedGym] = useState('');
 	const { user, update} = useAuth()
 
+	useEffect(()=>{
+	})
+
 
 	const handleImagePreview = async () => {
 		let result = await ImagePicker.requestMediaLibraryPermissionsAsync();

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 // import {onAuthStateChanged, signOut} from 'firebase/auth'
 import { auth, db } from "@/firebase.config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from '@firebase/auth'
-import { doc, addDoc, collection, getDoc } from 'firebase/firestore'
+import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc } from 'firebase/firestore'
 
 import { router } from "expo-router";
 
@@ -27,40 +27,47 @@ export const AuthContextProvider = ({ children }) => {
 		})
 	}, [])
 
-	const updateUserData = async (id) => {
-		const docRef = doc(db, 'Users', id)
+	// Updates auth context
+	const updateUserData = async (uid) => {
+		const docRef = doc(db, 'Users', uid)
 		const docSnap = await getDoc(docRef)
 
 		if (docSnap.exists()) {
 			let data = docSnap.data()
 			setUser({
 				...user,
+				uid: uid
 			})
 		}
 	}
 
-	const update = async (id, props, setErrors, setSubmitting) => {
+	const update = async (uid, props, setErrors, setSubmitting) => {
 		try {
-			const docRef = doc(db, 'Users', id)
-			const docSnap = await getDoc(docRef)
-			console.log(props)
-			console.log(docSnap)
-			if (docSnap.exists()) {
-				console.log('user is found')
-0
+			const docData = {
+				name: props?.name,
+				profile_img: props?.profile_img,
+				location: props?.location
 			}
-
-			// router.replace('CompletedScreen')
+			const userRef = doc(db, 'Users', uid)
+			await updateDoc(userRef, docData)
+				.then(doc => {
+					setUser({
+						...user,
+						name: props?.name,
+						profile_img: props?.profile_img,
+						location: props?.location
+					})
+					router.replace('CompletedScreen')
+				})
+		
 		} catch (error) {
 			console.log(error)
-			let msg = error.message	
-			setErrors({ email: msg });
+			let msg = error.message
+			setErrors({ location: msg });
 		} finally {
 			setSubmitting(false)
 		}
 	}
-
-
 
 	const login = async (email, password, setErrors, setSubmitting) => {
 		try {
@@ -94,24 +101,20 @@ export const AuthContextProvider = ({ children }) => {
 
 			if (response.user) {
 				const newUser = {
+					uid: response?.user?.uid,
 					email,
 					password,
-					created_at: new Date()
+					created_at: Timestamp.fromDate(new Date())
 				}
 
-				await await addDoc(collection(db, "Users"), newUser)
-					.then((doc) => {
-						console.log('Firebase data', doc)
-						console.log("Document written with ID: ", doc.id);
-						// Change this to route to profile update form
-						// router.replace('./SetupProfileScreen')
+				await setDoc(doc(db, 'Users', response?.user?.uid), newUser)
+					.then(doc => {
 						router.replace('SetupProfileScreen')
-						// 
-						return { success: true, data: response?.user }
+					}).catch(error => {
+						console.log('Error adding document: ')
+						console.log(error)
 					})
-					.catch((error) => {
-						console.error("Error adding document: ", error);
-					});
+
 			}
 
 		} catch (error) {

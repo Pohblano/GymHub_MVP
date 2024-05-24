@@ -8,8 +8,8 @@ import { useRouter } from 'expo-router';
 import { StyleSheet } from 'react-native'
 import { text } from '@/styles/text.styles';
 import { container } from '@/styles/containers.styles';
-import confetti from '@/assets/lottie/confetti.json'
-import checkmark from '@/assets/lottie/confetti.json'
+import confetti from '@/assets/lottie/confetti_2.json'
+import checkmark from '@/assets/lottie/checkmark.json'
 // Components
 import { HorizontalPaddedView } from '../../../components/Views/PaddedView'
 import { BoldText } from '../../../components/Text/StyledText';
@@ -37,16 +37,15 @@ export default function SignupScreen() {
 				</View>
 
 				{/* Form */}
-				<View style={[container.form, {}]}>
-				<LottieView style={{ }} source={confetti} autoPlay />
-				<LottieView style={{ }} source={checkmark} autoPlay />
+				<View style={[ { flex: 2, position: 'relative'}]}>
+				<LottieView style={{height: 250}} source={checkmark} resizeMode='contain' autoPlay />
 
 				</View>
 				{/* Bottom Buttons */}
 				<View style={[container.bottom, { gap: 10 }]}>
 					<CustomButton
-						loading={{}}
-						onPress={()=>router.replace('../(Active_user)/DashboardScreen')}
+						loading={false}
+						onPress={()=>router.replace('DashboardScreen')}
 						onLongPress={() => { }}
 						title="Get Started"
 						iconLeft={''}
@@ -65,18 +64,11 @@ export default function SignupScreen() {
 }
 
 const styles = StyleSheet.create({
-	side_buttons: {
-		justifyContent: 'space-between'
-	},
-	side_button: {
-		backgroundColor: 'rgba(231, 190, 96, .12)',
-		borderStyle: 'solid',
-		borderColor: '#e7be60',
-		borderWidth: 1,
-	},
-	brand_icon: {
-		paddingRight: 4,
-		paddingTop: 3,
-		backgroundColor: 'transparent'
+	lottie_check: {
+		height: 200, 
+		position: 'relative', 
+		bottom: 250,
+		// top: 100
+
 	}
 })
