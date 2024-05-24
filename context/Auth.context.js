@@ -1,16 +1,17 @@
 import { createContext, useContext, useEffect, useState } from "react";
 // import {onAuthStateChanged, signOut} from 'firebase/auth'
 import { auth, db } from "@/firebase.config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from '@firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from '@firebase/auth'
 import { doc, addDoc, collection, getDoc } from 'firebase/firestore'
 
 import { router } from "expo-router";
 
-
 export const AuthContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [isAuthenticated, setIsAuthenticated] = useState(undefined)
+	const [completedSetup, setCompletedSetup] = useState(undefined)
 
+	/// add condition to check if user completed setup if not then reroute them to finish setup page.
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
 			console.log('got user:', user)
@@ -38,6 +39,29 @@ export const AuthContextProvider = ({ children }) => {
 		}
 	}
 
+	const update = async (id, props, setErrors, setSubmitting) => {
+		try {
+			const docRef = doc(db, 'Users', id)
+			const docSnap = await getDoc(docRef)
+			console.log(props)
+			console.log(docSnap)
+			if (docSnap.exists()) {
+				console.log('user is found')
+0
+			}
+
+			// router.replace('CompletedScreen')
+		} catch (error) {
+			console.log(error)
+			let msg = error.message	
+			setErrors({ email: msg });
+		} finally {
+			setSubmitting(false)
+		}
+	}
+
+
+
 	const login = async (email, password, setErrors, setSubmitting) => {
 		try {
 			const response = await signInWithEmailAndPassword(auth, email, password)
@@ -47,7 +71,7 @@ export const AuthContextProvider = ({ children }) => {
 			console.log(error)
 			let msg = error.message
 			console.log(msg)
-			if (msg.includes('(auth/invalid-credential)')) msg = 'Invalid credentials'
+			if (msg.includes('(auth/invalid-credential)')) msg = 'Invalid Credentials'
 			setErrors({ email: msg });
 		} finally {
 			setSubmitting(false)
@@ -65,6 +89,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	const register = async (email, password, setErrors, setSubmitting) => {
 		try {
+			// router.replace('./(Active_User)/DashboardScreen')
 			const response = await createUserWithEmailAndPassword(auth, email, password)
 
 			if (response.user) {
@@ -79,7 +104,8 @@ export const AuthContextProvider = ({ children }) => {
 						console.log('Firebase data', doc)
 						console.log("Document written with ID: ", doc.id);
 						// Change this to route to profile update form
-						router.replace('../(Active_User)/DashboardScreen')
+						// router.replace('./SetupProfileScreen')
+						router.replace('SetupProfileScreen')
 						// 
 						return { success: true, data: response?.user }
 					})
@@ -92,7 +118,7 @@ export const AuthContextProvider = ({ children }) => {
 			console.log(error)
 			let msg = error.message
 			if (msg.includes('(auth/invalid-email)')) msg = 'That email is invalid'
-			if (msg.includes('Firebase: Error (auth/email-already-in-use)')) msg = 'That email is already in use'
+			if (msg.includes('(auth/email-already-in-use)')) msg = 'That email is already in use'
 
 			setErrors({ email: msg });
 		} finally {
@@ -100,25 +126,26 @@ export const AuthContextProvider = ({ children }) => {
 		}
 	}
 
-	const reset_password = async (email, setErrors, setSubmitting) =>{
-		try{
-			const response = sendPasswordResetEmail(auth, email)
-			// if(response){
-			// 	// on completion 
-			// }
-		}catch(error){
+	const reset_password = async (email, setErrors, setSubmitting, setEmailSent) => {
+		try {
+			await sendPasswordResetEmail(auth, email)
+				.then(response => setEmailSent(true))
+
+		} catch (error) {
 			console.log(error)
 			let msg = error.message
-			if (msg.includes('(auth/invalid-email)')) msg = 'That email is invalid'
-
+			if (msg.includes('(auth/invalid-email)')) {
+				console.log(msg)
+				msg = 'That email is invalid'
+			}
 			setErrors({ email: msg });
-		}finally{
+		} finally {
 			setSubmitting(false)
 		}
 	}
 
 	return (
-		<AuthContext.Provider value={{ user, isAuthenticated, login, logout, register }}>
+		<AuthContext.Provider value={{ user, isAuthenticated, login, logout, register, update, reset_password }}>
 			{children}
 		</AuthContext.Provider>
 	)

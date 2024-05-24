@@ -13,17 +13,11 @@ import { BoldText } from '@/components/Text/StyledText';
 import { IconPressable } from '@/components/Buttons/CustomPressable';
 import CustomLink from '@/components/Buttons/CustomLink';
 import LoginForm from '@/components/Forms/LoginForm';
-// import ResetPasswordModal from '@/components/Modals/RestPasswordModal'
 
 
 
 export default function LoginScreen() {
 	const router = useRouter();
-	// const [showModal, setShowModal] = useState(false)
-
-	// const onModalClose = () => {
-	// 	setShowModal(false);
-	// };
 
 	return (
 		<>

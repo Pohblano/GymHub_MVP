@@ -87,7 +87,7 @@ export default function LoginForm() {
 				<View style={[container.flex_x, styles.side_buttons]}>
 					<CustomButton
 						loading={false}
-						onPress={() => { }}
+						onPress={() => {}}
 						onLongPress={() => { }}
 						title="Google"
 						iconLeft={<IconGoogleRound style={styles.brand_icon} height={'18'} width={'18'} />}

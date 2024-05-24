@@ -17,11 +17,10 @@ export const RecoverPasswordSchema = Yup.object().shape({
   email: Yup.string().email('Not a valid email').required('Email is missing')
 })
 
-export const ChangePasswordSchema = Yup.object().shape({
-  password: Yup.string().required('Password is missing').min(6, 'Password must be atleast 8 characters long'),
-  confirmPassword: Yup.string()
-    .required('Please re-enter your password')
-    .oneOf([Yup.ref('password')], 'Passwords do not match'),
+export const SetupProfileSchema = Yup.object().shape({
+  name: Yup.string().required('A display name is required'),
+  location: Yup.string().optional(),
+  profile_img: Yup.string().optional(),
 })
 
 // export const categorySchema = Yup.object().shape({

@@ -19,7 +19,6 @@ export const text = StyleSheet.create({
 		fontSize: 12,
 	},
 	// Size
-
 	small: {
 		fontSize: 23
 	},

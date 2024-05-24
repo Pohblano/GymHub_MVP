@@ -47,7 +47,7 @@ export default function SignupForm() {
 
 	const formik = useFormik({
 		initialValues: { email: '', password: '', confirmPassword: '' },
-		validationSchema: SignupSchema,
+		// validationSchema: SignupSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
 			await register(values.email, values.password, setErrors, setSubmitting)
 		},

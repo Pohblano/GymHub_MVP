@@ -1,8 +1,8 @@
 // Modules
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 // * Routing
 import { SafeAreaView } from 'react-native'
-import { useRouter, useSegments } from 'expo-router'
+import { useRouter, useSegments, Redirect, useFocusEffect } from 'expo-router'
 // Styling
 import { StyleSheet } from 'react-native'
 import { container } from '@/styles/containers.styles'
@@ -16,23 +16,35 @@ import CustomButton from '@/components/Buttons/CustomButton'
 import { useAuth } from '@/context/Auth.context'
 import PageLoading from '@/components/Loading/PageLoading'
 
+import SetupProfileScreen from '../(New_User)/SetupProfileScreen'
 
 export default function DashboardScreen() {
 	const router = useRouter();
+	const [showModal, setShowModal] = useState(false)
 	const { logout, user } = useAuth();
-	console.log(user)
 	const [loading, setLoading] = useState(true)
 	
 	useEffect(() => {
-		setTimeout(() => {
-			setLoading(false)
-		}, 3000)
+		// setTimeout(() => {
+		// 	setLoading(false)
+		// 	// if User is new should route autmatically to setup profile
+		// 	router.push('SetupProfileModalScreen')
+		// }, 2000)
+		
+		//set conditions that finds if user isnew user
+		//then render a function that uses route to the
+		//modal stack screen
+
 	}, []);
+
+	const onModalClose = () => {
+		setShowModal(false);
+	};
 
 	return (
 		<>
 			{loading ?
-				<PageLoading />
+				<SetupProfileScreen />
 				:
 				<SafeAreaView style={[container.wrapper, container.bg_white]}>
 					<HorizontalPaddedView>

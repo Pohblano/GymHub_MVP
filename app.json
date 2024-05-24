@@ -13,12 +13,12 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "googleServicesFile": "./GoogleService-Info.plist",
+      "googleServicesFile": "",
       "bundleIdentifier": "com.alberto.gymhub",
       "supportsTablet": true
     },
     "android": {
-      "googleServicesFile": "./google-services.json",
+      "googleServicesFile": "",
       "bundleIdentifier": "com.alberto.gymhub",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/HUB.png",
@@ -29,7 +29,12 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/HUB.png"
+      "favicon": "./assets/images/HUB.png",
+      "splash": {
+        "image": "./assets/images/GYMHUB.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#ffffff"
+      }
     },
     "plugins": [
       "expo-router",
@@ -39,6 +44,18 @@
           "ios": {
             "useFrameworks": "static"
           }
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with others.."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
         }
       ]
     ],

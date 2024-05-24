@@ -16,6 +16,12 @@ export const form = StyleSheet.create({
 		position: 'relative',
 		right: 48
 	},
+	icon_left:{
+		alignSelf: 'center',
+		position: 'absolute',
+		left: 15
+		
+	},
 	brand_icon: {
 		paddingRight: 4,
 		paddingTop: 3,

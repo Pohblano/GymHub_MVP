@@ -63,11 +63,12 @@ function Layout() {
   useEffect(() => {
     const inApp = segments[2]=='DashboardScreen'
     if (typeof isAuthenticated == 'undefined') return
+    console.log(segments)
 
     if(isAuthenticated && !inApp){
       console.log('USER LOGGED IN AND NOT IN APP', segments)
       // Redirect to Dashboard
-      router.replace('(Active_User)/DashboardScreen')
+      router.replace('/(Active_User)/DashboardScreen')
     }else if (!isAuthenticated) {
       console.log('NO USER IS LOGGED IN', segments)
       // Redirect to starting page

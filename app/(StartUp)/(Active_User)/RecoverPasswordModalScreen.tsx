@@ -1,5 +1,4 @@
-
-// Node Modules
+// Modules
 import React from 'react';
 import { SafeAreaView, View, TextInput, Modal, KeyboardAvoidingView } from 'react-native'
 // * Routing

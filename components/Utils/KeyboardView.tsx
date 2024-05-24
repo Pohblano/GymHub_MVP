@@ -2,13 +2,16 @@ import React from 'react'
 import { View, Text, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 
 const ios = Platform.OS == 'ios'
-export default function KeyBoardView({ children }) {
+export default function KeyBoardView({ children,containerStyle, scrollStyle, contentContainerStyle }) {
 	return (
 		<KeyboardAvoidingView
-			behavior={ios ? 'padding' : 'height'}
-			style={{ flex: 1}}>
+			behavior={ios ? 'padding' : undefined}
+			style={[containerStyle]}
+			keyboardVerticalOffset={50}
+			>
 			<ScrollView
-				style={{ flex: 1}}
+				style={scrollStyle}
+				contentContainerStyle={contentContainerStyle}
 				bounces={false}
 				showsVerticalScrollIndicator={false}>
 				{children}
