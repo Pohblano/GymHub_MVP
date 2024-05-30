@@ -27,7 +27,7 @@ export function LinkPressable({ children, style,  ...otherProps }) {
     ({ pressed }) => [
       {
         opacity: (pressed ? 0.5 : 1),
-        transform: (pressed ? [{ scale: 0.98 }] : ''),
+        transform: (pressed ? [{ scale: 0.99 }] : ''),
       }, style && style],
     [style]
   );

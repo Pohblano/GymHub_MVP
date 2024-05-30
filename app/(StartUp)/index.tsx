@@ -1,6 +1,7 @@
 // Node Modules
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View } from 'react-native'
+import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -32,16 +33,16 @@ export default function StartUpScreen() {
 				:
 				<SafeAreaView style={[container.bg_yellow, container.wrapper]}>
 					<HorizontalPaddedView>
-
+						
 						{/* Logo */}
-						<View style={container.logo}>
+						<Animated.View entering={FadeInUp} style={container.logo}>
 							<BoldText style={[text.white, text.largest]}>
 								GYM/<SemiBoldText style={text.black}>HUB</SemiBoldText>
 							</BoldText>
-						</View>
+						</Animated.View>
 
 						{/* Bottom Text */}
-						<View style={container.bottom}>
+						<Animated.View entering={FadeInDown} style={container.bottom}>
 							<MediumText style={[text.white, text.small]}>
 								{'Join the \n'}
 								<MediumText style={[text.white, text.large]}>{'Online Gym Community'}</MediumText>
@@ -59,7 +60,7 @@ export default function StartUpScreen() {
 								textStyle={[text.black, text.primary_button]}
 								disabled={false}
 							/>
-						</View>
+						</Animated.View>
 					</HorizontalPaddedView>
 				</SafeAreaView>
 			}

@@ -22,10 +22,10 @@ export function Seperator_Text({children, style}) {
 	)
 }
 
-export function Seperator(){
+export function Seperator({style}){
 	return(
-		<DefaultView style={{ flexDirection: 'row', alignItems: 'center' }}>
-			<DefaultView style={{ flex: 1, height: 1, backgroundColor: '#454545' }} />
+		<DefaultView style={[{ flexDirection: 'row', alignItems: 'center' }, style]}>
+			<DefaultView style={{ flex: 1, height: 1, backgroundColor: '#d6d6d6' }} />
 		</DefaultView>
 	)
 }

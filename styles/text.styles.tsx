@@ -14,11 +14,20 @@ export const text = StyleSheet.create({
 	light_grey: {
 		color: '#BDBDBD'
 	},
+	gym207:{
+		color:'#62D767'
+	},
 	error:{
 		color: 'red',
 		fontSize: 12,
 	},
 	// Size
+	regular: {
+		fontSize: 16
+	},
+	sub_heading: {
+		fontSize: 18,
+	},
 	small: {
 		fontSize: 23
 	},

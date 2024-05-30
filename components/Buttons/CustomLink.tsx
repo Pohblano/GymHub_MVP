@@ -12,6 +12,7 @@ const CustomLink = ({
   title,
   iconLeft,
   iconRight,
+  iconRightStyle,
   style,
   textStyle,
   disabled,
@@ -28,9 +29,9 @@ const CustomLink = ({
       {loading ? (
         <ActivityIndicator color='#454545' />
       ) : (
-        <Text style={[styles.linkText, textStyle]}>{title}</Text>
+        <Text style={[styles.linkText, textStyle, {marginRight: 6}]}>{title}</Text>
       )}
-      <Text>{iconRight}</Text>
+      <Text style={[iconRightStyle, {alignSelf: 'center'}]}>{iconRight}</Text>
     </LinkPressable>
   );
 };

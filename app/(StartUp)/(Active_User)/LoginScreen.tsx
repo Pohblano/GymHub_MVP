@@ -46,6 +46,7 @@ export default function LoginScreen() {
 						title="Forgot your password?"
 						iconLeft={''}
 						iconRight={''}
+						iconRightStyle={{}}
 						style={{ alignSelf: 'center', marginBottom: 0 }}
 						textStyle={text.option_link}
 						disabled={false}

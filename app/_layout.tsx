@@ -5,6 +5,8 @@ import { Stack, Slot, useSegments, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect, useState } from 'react';
 import 'react-native-reanimated';
+import '../global.css'
+import 'react-native-gesture-handler'
 // import PageLoading from '@/components/Loading/PageLoading'
 import { AuthContextProvider, useAuth } from '../context/Auth.context'
 
