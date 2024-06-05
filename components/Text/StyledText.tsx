@@ -7,6 +7,10 @@ export function MonoText(props: TextProps) {
   return <Text {...props} style={[props.style, { fontFamily: 'SpaceMono' }]} />;
 }
 
+export function LightText(props: TextProps) {
+  return <Text {...props} style={[props.style, { fontFamily: 'Montserrat_Light' }]} />;
+}
+
 export function RegularText(props: TextProps) {
   return <Text {...props} style={[props.style, { fontFamily: 'Montserrat_Regular' }]} />;
 }

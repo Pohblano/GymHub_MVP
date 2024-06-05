@@ -8,6 +8,6 @@ export const images_gym207 = {
 		'https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FLargeAboutSlider%2Fequipment_cables.webp?alt=media&token=3d3438c2-e634-4af5-a12f-c7942d0adc6d'
 	],
 	gym_display_image: 'https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2Fgym_display_image.png?alt=media&token=5988c186-0d0f-424d-8d95-1f76b6bfac21',
-
+	trainer_spotlight: ''
 
 }

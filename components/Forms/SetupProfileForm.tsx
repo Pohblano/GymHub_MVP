@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { Picker } from '@react-native-picker/picker';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
+import Animated from 'react-native-reanimated';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -11,6 +12,7 @@ import { StyleSheet } from 'react-native'
 import { text } from '@/styles/text.styles'
 import { container } from '@/styles/containers.styles'
 import { form } from '@/styles/form.styles'
+import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
 import { Text, View } from '../Themed';
 import CustomButton from '../Buttons/CustomButton';
@@ -22,19 +24,14 @@ import { useAuth } from '@/context/Auth.context';
 // Schema
 import { SetupProfileSchema } from '@/utils/validation';
 
-
 export default function SetupProfileForm() {
 	const router = useRouter();
 	const [location, setLocation] = useState<Boolean>(false);
 	const [imageUri, setImageUri] = useState<String>('');
-
+	const { slideUpStyle, fadeInStyle, slideLeftStyle } = useFadeInStyles(50, 50, 800)
 	const [gyms, setGyms] = useState([])
 	const [selectedGym, setSelectedGym] = useState('');
 	const { user, update} = useAuth()
-
-	useEffect(()=>{
-	})
-
 
 	const handleImagePreview = async () => {
 		let result = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -91,7 +88,7 @@ export default function SetupProfileForm() {
 	return (
 		<>
 
-			<View style={[{ flex: 2, gap: 15 }]}>
+			<Animated.View style={[{ flex: 2, gap: 15 }, fadeInStyle]}>
 
 				{/* START OF FORM */}
 				<ImagePreviewInput
@@ -151,11 +148,11 @@ export default function SetupProfileForm() {
 					<Text style={text.error}>{formik.errors.home_gym}</Text>
 				) : null} */}
 
-			</View>
+			</Animated.View>
 
 
 			{/* Bottom Buttons */}
-			<View style={[container.bottom, { gap: 10 }]}>
+			<Animated.View style={[container.bottom, { gap: 10 }, slideUpStyle]}>
 				<CustomButton
 					loading={formik.isSubmitting}
 					onPress={formik.handleSubmit}
@@ -169,7 +166,7 @@ export default function SetupProfileForm() {
 					textStyle={[text.primary_button, text.white]}
 					disabled={formik.isSubmitting}
 				/>
-			</View>
+			</Animated.View>
 
 		</>
 	)

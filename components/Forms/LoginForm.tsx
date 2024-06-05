@@ -19,12 +19,15 @@ import PasswordInput from './Utils/PasswordInput';
 import { useAuth } from '@/context/Auth.context';
 // Schema
 import { LoginSchema } from '@/utils/validation';
+import Animated from 'react-native-reanimated';
+import { useFadeInStyles } from '@/hooks/animationStyle';
 
 
 
 
 export default function LoginForm() {
 	const router = useRouter();
+	const {slideUpStyle, fadeInStyle, slideLeftStyle} = useFadeInStyles(50, 50, 800)
 	const [isPassVisible, setPassVisible] = useState(false)
 	const {login} = useAuth()
 
@@ -52,7 +55,7 @@ export default function LoginForm() {
 	return (
 		<>
 			{/* START OF FORM */}
-			<View style={container.form}>
+			<Animated.View style={[container.form, fadeInStyle]}>
 				<TextInput
 					style={[
 						container.input_text, text.black,
@@ -112,10 +115,10 @@ export default function LoginForm() {
 						disabled={false}
 					/>
 				</View>
-			</View>
+			</Animated.View>
 
 			{/* Bottom Buttons */}
-			<View style={[container.bottom, { gap: 10 }]}>
+			<Animated.View style={[container.bottom, { gap: 10 }, slideUpStyle]}>
 				<CustomButton
 					loading={formik.isSubmitting}
 					onPress={formik.handleSubmit}
@@ -129,7 +132,7 @@ export default function LoginForm() {
 					textStyle={[text.primary_button, text.white]}
 					disabled={formik.isSubmitting}
 				/>
-			</View>
+			</Animated.View>
 		</>
 	)
 }

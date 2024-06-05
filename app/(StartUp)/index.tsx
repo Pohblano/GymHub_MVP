@@ -1,7 +1,7 @@
 // Node Modules
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View } from 'react-native'
-import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeInUp, FadeOutDown, FadeOutUp } from 'react-native-reanimated';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -11,7 +11,7 @@ import { container } from '../../styles/containers.styles'
 
 // Components
 import CustomButton from '../../components/Buttons/CustomButton'
-import { HorizontalPaddedView } from '../../components/Views/PaddedView'
+import { CustomSafeAreaView, HorizontalPaddedView } from '../../components/Views/PaddedView'
 import { BoldText, MediumText, SemiBoldText } from '../../components/Text/StyledText';
 import PageLoading from '@/components/Loading/PageLoading';
 
@@ -31,18 +31,18 @@ export default function StartUpScreen() {
 			{loading ?
 				<PageLoading />
 				:
-				<SafeAreaView style={[container.bg_yellow, container.wrapper]}>
+				<CustomSafeAreaView style={[container.bg_yellow, container.wrapper]}>
 					<HorizontalPaddedView>
-						
+
 						{/* Logo */}
-						<Animated.View entering={FadeInUp} style={container.logo}>
+						<Animated.View entering={FadeInUp.duration(1000)} exiting={FadeOutDown.duration(1000)} style={container.logo}>
 							<BoldText style={[text.white, text.largest]}>
 								GYM/<SemiBoldText style={text.black}>HUB</SemiBoldText>
 							</BoldText>
 						</Animated.View>
 
 						{/* Bottom Text */}
-						<Animated.View entering={FadeInDown} style={container.bottom}>
+						<Animated.View entering={FadeInDown.duration(1000)} exiting={FadeOutUp.duration(1000)} style={container.bottom}>
 							<MediumText style={[text.white, text.small]}>
 								{'Join the \n'}
 								<MediumText style={[text.white, text.large]}>{'Online Gym Community'}</MediumText>
@@ -62,7 +62,7 @@ export default function StartUpScreen() {
 							/>
 						</Animated.View>
 					</HorizontalPaddedView>
-				</SafeAreaView>
+				</CustomSafeAreaView>
 			}
 		</>
 	)

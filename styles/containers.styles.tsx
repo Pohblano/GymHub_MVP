@@ -36,7 +36,7 @@ export const container = StyleSheet.create({
 		display: 'flex',
 		gap: 20,
 		justifyContent: 'flex-end',
-		marginBottom: 10
+		// marginBottom: 10
 	},
 	logo: {
 		flex:1,

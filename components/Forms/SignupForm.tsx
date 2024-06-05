@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Pressable } from 'react-native'
 import { useFormik } from 'formik';
+import Animated from 'react-native-reanimated';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -9,6 +10,7 @@ import { StyleSheet } from 'react-native'
 import { text } from '@/styles/text.styles'
 import { container } from '@/styles/containers.styles'
 import { form } from '@/styles/form.styles'
+import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
 import { Text } from '../Themed';
 import { Seperator_Text } from '../Views/PaddedView';
@@ -22,8 +24,10 @@ import { SignupSchema } from '@/utils/validation';
 
 
 
+
 export default function SignupForm() {
 	const router = useRouter();
+	const { slideUpStyle, fadeInStyle, slideLeftStyle } = useFadeInStyles(50, 50, 800)
 	const [isPassVisible, setPassVisible] = useState(false)
 	const [isConfirmPassVisible, setConfirmPassVisible] = useState(false)
 	const [loading, setLoading] = useState(false)
@@ -53,12 +57,10 @@ export default function SignupForm() {
 		},
 	});
 
-
-
 	return (
 		<>
 			{/* START OF FORM */}
-			<View style={container.form}>
+			<Animated.View style={[container.form, fadeInStyle]}>
 				<TextInput
 					style={[
 						container.input_text, text.black,
@@ -135,10 +137,10 @@ export default function SignupForm() {
 						disabled={false}
 					/>
 				</View>
-			</View>
+			</Animated.View>
 
 			{/* Bottom Buttons */}
-			<View style={[container.bottom, { gap: 10 }]}>
+			<Animated.View style={[container.bottom, { gap: 10 }, slideUpStyle]}>
 				<CustomButton
 					loading={formik.isSubmitting}
 					onPress={formik.handleSubmit}
@@ -152,7 +154,7 @@ export default function SignupForm() {
 					textStyle={[text.primary_button, text.white]}
 					disabled={formik.isSubmitting}
 				/>
-			</View>
+			</Animated.View>
 		</>
 	)
 }

@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { initializeApp as initializeAdminApp, credential } from "firebase-admin";
 import {getFirestore, collection} from'firebase/firestore'
 import {getAuth, GoogleAuthProvider, FacebookAuthProvider, initializeAuth} from 'firebase/auth'
 // @ts-expect-error Some error with types in this import because of the versions
@@ -28,9 +27,6 @@ export const app = initializeApp(firebaseConfig);
 export const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(AsyncStorage)
 })
-// export const admin = initializeAdminApp({
-//   credential: credential.cert('./gym24-7-firebase-admin.json')
-// })
 export const googleProvider = new GoogleAuthProvider();
 export const facebookProvide = new FacebookAuthProvider()
 

@@ -4,18 +4,18 @@ import { View, Text, Image, Dimensions, StyleSheet } from 'react-native'
 import { useSharedValue } from "react-native-reanimated";
 import Carousel from 'react-native-reanimated-carousel'
 
-import { images_gym207 } from '@/constants/Gym207.images'
 
-export default function LargeImageSlider() {
-	const images = images_gym207.large_slider
+
+export default function LargeImageSlider({images}) {
+	const sliderImages = images.large_slider
 
 	return (
-		<View style={{  height: 350, alignContent: 'flex-start', display: 'flex' }}>
+		<View style={{  height: 350, alignContent: 'flex-start', display: 'flex', alignItems: 'center' }}>
 			<Carousel
 				loop
 				width={wp(100) - 38}
 				height={350}
-				data={images}
+				data={sliderImages}
 				scrollAnimationDuration={250}
 				mode="parallax"
 				style={{}}

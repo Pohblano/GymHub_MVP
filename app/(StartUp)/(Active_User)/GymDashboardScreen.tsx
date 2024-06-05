@@ -15,36 +15,62 @@ import PageLoading from '@/components/Loading/PageLoading'
 import MainGymHeader from '@/components/GymDashboard/MainGymHeader'
 import Home from '@/components/GymDashboard/Home/Home'
 import About from '@/components/GymDashboard/About/About'
+import Trainers from '@/components/GymDashboard/Trainers/Trainers'
 // Context
 import { useAuth } from '@/context/Auth.context'
+import { useGym, GymContextProvider } from '@/context/Gym.context'
 
-import { images_gym207 } from '@/constants/Gym207.images'
 
-export default function DashboardScreen() {
+
+import PagerView from 'react-native-pager-view';
+import CuratorIOFeed from '@/components/GymDashboard/Socials/CuratorFeed'
+
+
+interface ComponentMap {
+	Home: React.JSX.Element;
+	Trainers: React.JSX.Element;
+	About: React.JSX.Element;
+	Socials: React.JSX.Element;
+	Reviews: React.JSX.Element;
+}
+
+// Wrap context to access Gym context
+export default function GymDashboardWrapper() {
+	return (
+		<GymContextProvider>
+			<GymDashboardScreen />
+		</GymContextProvider>
+	)
+}
+
+function GymDashboardScreen() {
 	const router = useRouter();
 	const items = ['Home', 'Trainers', 'Socials', 'Reviews', 'About'];
 	const [activeItem, setActiveItem] = useState(items[0]);
 	const [loading, setLoading] = useState(true);
 	const { logout, user } = useAuth();
+	const { gym, gymsList } = useGym();
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setLoading(false)
 		}, 2000)
 		return () => clearTimeout(timer);
+
 	}, []);
 
 	const handleActiveItem = () => {
 
 	}
 
-	const componentMapping = {
-		Home: <Home logout={logout} images={images_gym207} />,
-		Trainers: <Text>Trainers</Text>,
+	const componentMapping: ComponentMap = {
+		Home: <Home logout={logout} />,
+		Trainers: <Trainers />,
+		Socials: <CuratorIOFeed/>,
 		About: <About />,
-		Socials: <Text>Socials</Text>,
 		Reviews: <Text>Reviews</Text>,
 	}
+	type Active = keyof typeof componentMapping;
 
 	return (
 		<>
@@ -52,17 +78,23 @@ export default function DashboardScreen() {
 				<PageLoading />
 				:
 				<SafeAreaView style={[container.wrapper, container.bg_white]}>
-					<HorizontalPaddedView className=' h-fit'>
-						<ScrollView showsVerticalScrollIndicator={false}>
+					<HorizontalPaddedView>
+						{/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
 							<MainGymHeader
 								activeItem={activeItem}
 								setActiveItem={setActiveItem}
-								gym_title={'20/7 Gym'}
+								gym_title={gym.name}
 							/>
 
-							{componentMapping[activeItem]}
-						</ScrollView>
+							 {/* <PagerView initialPage={0} style={{flex: 1}} scrollEnabled={true}>
+								<Home logout={logout} key={'1'}/>
+								<Trainers key={'2'}/>
+								<About key={'3'}/>
+								<CuratorIOFeed key={'4'}/>
+							</PagerView>  */}
+							{componentMapping[activeItem as Active]}
+						{/* </ScrollView> */}
 
 					</HorizontalPaddedView>
 				</ SafeAreaView>}

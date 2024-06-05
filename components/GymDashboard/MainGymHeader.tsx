@@ -25,7 +25,7 @@ function MainGymHeader({activeItem, setActiveItem, gym_title}) {
 			</View>
 
 			<ScrollableNavBar
-				items={['Home', 'Trainers', 'About', 'Socials', 'Store']}
+				items={['Home', 'Trainers', 'Socials', 'About']}
 				activeItem={activeItem}
 				setActiveItem={setActiveItem} />
 		</Animated.View >

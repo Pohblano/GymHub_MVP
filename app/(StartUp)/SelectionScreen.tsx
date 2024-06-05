@@ -1,43 +1,47 @@
 // Node Modules
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView, View } from 'react-native'
 // * Routing
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 // *Styling
 import { StyleSheet } from 'react-native'
-import {text} from '../../styles/text.styles'
-import {container} from '../../styles/containers.styles'
-
+import { text } from '../../styles/text.styles'
+import { container } from '../../styles/containers.styles'
+import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
 import CustomButton from '../../components/Buttons/CustomButton'
-import { HorizontalPaddedView } from '../../components/Views/PaddedView'
+import { CustomSafeAreaView, HorizontalPaddedView } from '../../components/Views/PaddedView'
 import { BoldText, SemiBoldText } from '../../components/Text/StyledText';
 import { IconPressable } from '../../components/Buttons/CustomPressable';
+import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+
 
 
 export default function SelectionScreen() {
 	const router = useRouter();
+	const { fadeInStyle, slideUpStyle } = useFadeInStyles(50, 50, 800)
+
 	return (
-		<SafeAreaView style={[container.wrapper, container.bg_white]}>
+		<CustomSafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
 				<IconPressable
-					style={[container.back_button,text.black, text.icon]}
+					style={[container.back_button, text.black, text.icon]}
 					icon={'chevron-left'}
 					onPress={() => router.back()}
-					></IconPressable>
+				></IconPressable>
 
 				{/* Logo */}
-				<View style={container.logo}>
+				<Animated.View style={[container.logo, fadeInStyle]}>
 					<BoldText style={[text.black, text.largest]}>
 						GYM/<SemiBoldText style={text.yellow}>HUB</SemiBoldText>
 					</BoldText>
-				</View>
+				</Animated.View>
 
 				{/* Bottom Buttons */}
-				<View style={container.bottom}>
+				<Animated.View style={[container.bottom, slideUpStyle]}>
 					<CustomButton
 						loading={false}
-						onPress={() => {router.push('(Active_User)/LoginScreen')}}
+						onPress={() => { router.push('(Active_User)/LoginScreen') }}
 						onLongPress={() => { }}
 						title="Log In"
 						iconLeft={''}
@@ -50,7 +54,7 @@ export default function SelectionScreen() {
 					/>
 					<CustomButton
 						loading={false}
-						onPress={() => {router.push('(New_User)/SignupScreen')}}
+						onPress={() => { router.push('(New_User)/SignupScreen') }}
 						onLongPress={() => { }}
 						title="Sign Up"
 						iconLeft={''}
@@ -61,9 +65,9 @@ export default function SelectionScreen() {
 						textStyle={[text.primary_button, text.white]}
 						disabled={false}
 					/>
-				</View>
+				</Animated.View>
 			</HorizontalPaddedView>
-		</SafeAreaView>
+		</CustomSafeAreaView>
 	)
 }
 

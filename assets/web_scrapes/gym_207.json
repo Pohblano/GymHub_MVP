@@ -1,0 +1,932 @@
+{
+	"search_metadata": {
+		"id": "6658da3daef264e9f48e25b5",
+		"status": "Success",
+		"json_endpoint": "https://serpapi.com/searches/b63f859bb9e91a1e/6658da3daef264e9f48e25b5.json",
+		"created_at": "2024-05-30 19:57:49 UTC",
+		"processed_at": "2024-05-30 19:57:49 UTC",
+		"google_maps_url": "https://www.google.com/maps/search/Gym+20%2F7?hl=en",
+		"raw_html_file": "https://serpapi.com/searches/b63f859bb9e91a1e/6658da3daef264e9f48e25b5.html",
+		"total_time_taken": 3.11
+	},
+	"search_parameters": {
+		"engine": "google_maps",
+		"type": "search",
+		"q": "Gym 20/7",
+		"google_domain": "google.com",
+		"hl": "en"
+	},
+	"search_information": {
+		"local_results_state": "Showing results for type: "place" instead of type: "search"",
+		"query_displayed": "Gym 20/7"
+	},
+	"place_results": {
+		"title": "20/7 GYM",
+		"place_id": "ChIJycu6b_lJ2YARtsHKMjszXRM",
+		"data_id": "0x80d949f96fbacbc9:0x135d333b32cac1b6",
+		"data_cid": "1395327788902957494",
+		"reviews_link": "https://serpapi.com/search.json?data_id=0x80d949f96fbacbc9%3A0x135d333b32cac1b6&engine=google_maps_reviews&hl=en",
+		"photos_link": "https://serpapi.com/search.json?data_id=0x80d949f96fbacbc9%3A0x135d333b32cac1b6&engine=google_maps_photos&hl=en",
+		"gps_coordinates": {
+			"latitude": 32.53349,
+			"longitude": -117.04236859999999
+		},
+		"place_id_search": "https://serpapi.com/search.json?engine=google_maps&google_domain=google.com&hl=en&place_id=ChIJycu6b_lJ2YARtsHKMjszXRM",
+		"provider_id": "/g/11mwldf__8",
+		"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipMmaT2T99yW7Nuj14Fpn0bWIgqTOBsVhgHKILsr=w114-h86-k-no",
+		"rating": 4.8,
+		"reviews": 86,
+		"type": [
+			"Gym"
+		],
+		"type_ids": [
+			"gym"
+		],
+		"unsupported_extensions": [
+			{
+				"accessibility": [
+					"Wheelchair accessible entrance",
+					"Wheelchair accessible parking lot"
+				]
+			}
+		],
+		"address": "C. Tercera 7843, Zona Centro, 22000 Tijuana, B.C., Mexico",
+		"website": "https://www.facebook.com/profile.php?id=100057806583369&mibextid=ZbWKwL",
+		"phone": "+52 663 335 1664",
+		"open_state": "Open ⋅ Closes 10 PM",
+		"plus_code": "GXM5+93 Tijuana, Baja California, Mexico",
+		"hours": [
+			{
+				"thursday": "6 AM–10 PM"
+			},
+			{
+				"friday": "6 AM–10 PM"
+			},
+			{
+				"saturday": "7 AM–3 PM"
+			},
+			{
+				"sunday": "8 AM–3 PM"
+			},
+			{
+				"monday": "6 AM–10 PM"
+			},
+			{
+				"tuesday": "6 AM–10 PM"
+			},
+			{
+				"wednesday": "6 AM–10 PM"
+			}
+		],
+		"images": [
+			{
+				"title": "All",
+				"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipMmaT2T99yW7Nuj14Fpn0bWIgqTOBsVhgHKILsr=w395-h298-k-no"
+			},
+			{
+				"title": "Latest",
+				"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipOZD8uap-PB63DsaL3xz3cJ4B2SgTpzwOR621t9=w224-h338-k-no"
+			},
+			{
+				"title": "Videos",
+				"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipP9BauOvNJgHJFJ7_uMIKQxj3NYzZjChWDA-sYC=w224-h401-k-no"
+			},
+			{
+				"title": "Gym",
+				"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipOhYIPxOzbdhGS4BAphwyrbYc527ZogEuSdE8GF=w395-h298-k-no"
+			},
+			{
+				"title": "By owner",
+				"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipOMkP9hffs6uvhwBeojQBSpzr1m8pQPHjv1zJor=w224-h398-k-no"
+			},
+			{
+				"title": "Street View & 360°",
+				"thumbnail": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=d09VsL5wsxvS8sfYxg6Ukg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=173.093&pitch=0&thumbfov=100"
+			}
+		],
+		"questions_and_answers": [
+			{
+				"question": {
+					"user": {
+						"name": "Ricky Camacho",
+						"link": "https://www.google.com/maps/contrib/114974311042921271204",
+						"thumbnail": "https://lh3.googleusercontent.com/a-/ALV-UjU9JQ0sCEK0HDk0_ziTqEM4pJM1Q2hcIWq5g877pPeYneyVPPGa=s120-c-rp-mo-ba3-br100"
+					},
+					"text": "(Translated by Google) I apologized for what is the correct # to be able to call or WhatsApp. The # given here is not from the gym... they blocked me 😅... thank you (Original) Disculpé cuál es el # correcto para uno poder llamar o Whatsapp. El # que da aquí no es del gym.. me bloquearon 😅.. gracias",
+					"date": "2 years ago",
+					"language": "es"
+				},
+				"answer": {
+					"text": "(Translated by Google) It is active, 663 335 1664 You can also communicate through Facebook (Original) Esta activo, 663 335 1664 También puedes comunicarte a traves del facebook",
+					"date": "2 years ago",
+					"language": "es"
+				},
+				"total_answers": 1
+			}
+		],
+		"user_reviews": {
+			"summary": [
+				{
+					"snippet": ""Great location, first of all.""
+				},
+				{
+					"snippet": ""They have really good music playing.""
+				},
+				{
+					"snippet": ""Plenty of equipment and pretty close to me.""
+				}
+			],
+			"most_relevant": [
+				{
+					"username": "Raul Flores",
+					"rating": 5,
+					"contributor_id": "104344860821732066188",
+					"description": "One of the best gyms you can ever go to, very English friendly and the trainers are amazing. The gym has everything you need to train and supplements in case you for forget to take yours plus there is great snack bar downstairs to get a meal before or after a session.",
+					"link": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSURqNzhiU2lBRRAB!2m1!1s0x0:0x135d333b32cac1b6!3m1!1s2@1:CIHM0ogKEICAgIDj78bSiAE%7CCgwI1InxsQYQ2Ne7tgI%7C?hl=en-US",
+					"date": "3 weeks ago"
+				},
+				{
+					"username": "jon nuanez",
+					"rating": 5,
+					"contributor_id": "101794328735922781930",
+					"description": "So glad I discovered this gym. This location was the D'Luis gym from years ago. Great location, first of all. The machines here are fantastic and in great condition. And the people here are very respectful and come to work out, not sit on their phones or to be looked at/look pretty. 600p monthly fee, 50p day pass. There are also supplements available to put in your water or to take as well as for sale. They'll be getting my business. Recommended.",
+					"link": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSURLMFBfbmlnRRAB!2m1!1s0x0:0x135d333b32cac1b6!3m1!1s2@1:CIHM0ogKEICAgIDK0P_nigE%7CCgwI3ND3iAYQiKeamwI%7C?hl=en-US",
+					"date": "2 years ago"
+				},
+				{
+					"username": "Peter Brito",
+					"rating": 4,
+					"contributor_id": "103022051164694284423",
+					"description": "You don’t need headphones. They have really good music playing. It feels like if you were working out at a night club.",
+					"link": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSUQyNDg3YjF3RRAB!2m1!1s0x0:0x135d333b32cac1b6!3m1!1s2@1:CIHM0ogKEICAgID2487b1wE%7CCgwI36WwlAYQwKfUpgI%7C?hl=en-US",
+					"date": "2 years ago"
+				},
+				{
+					"username": "Gainzilla100",
+					"rating": 5,
+					"contributor_id": "116535008898969843454",
+					"description": "Good old fashion gym 3 stars cause there's no shower they in the process of of remodeling jb got the showers up thats a mans gym 5 stars mi hermano",
+					"link": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSUNxel9INGZBEAE!2m1!1s0x0:0x135d333b32cac1b6!3m1!1s2@1:CIHM0ogKEICAgICqz_H4fA%7CCgwIzafilQYQiKCm_AE%7C?hl=en-US",
+					"date": "a year ago"
+				},
+				{
+					"username": "Cid Blanco",
+					"rating": 4,
+					"contributor_id": "107262506460841007084",
+					"description": "Cool gym! Plenty of equipment and pretty close to me. Seems like the gym improving everyday.",
+					"link": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSUNXeE5fS0pREAE!2m1!1s0x0:0x135d333b32cac1b6!3m1!1s2@1:CIHM0ogKEICAgICWxN_KJQ%7CCgwIkfv3sQYQyLrvvgE%7C?hl=en-US",
+					"date": "2 weeks ago"
+				},
+				{
+					"username": "dabyd torres",
+					"rating": 5,
+					"contributor_id": "111389261280920109579",
+					"description": "Super genial",
+					"link": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSUQ5akwtRFRBEAE!2m1!1s0x0:0x135d333b32cac1b6!3m1!1s2@1:CIHM0ogKEICAgID9jL-DTA%7CCgwInYPJrwYQ2MCY4AI%7C?hl=en-US",
+					"date": "2 months ago"
+				},
+				{
+					"username": "AngryTaxi Owner",
+					"rating": 5,
+					"contributor_id": "105827580744114924359",
+					"description": "Excellent!! Nice owner",
+					"link": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSURXNDhlOTVBRRAB!2m1!1s0x0:0x135d333b32cac1b6!3m1!1s2@1:CIHM0ogKEICAgIDW48e95AE%7CCgsIjN2jkgYQwN-USQ%7C?hl=en-US",
+					"date": "2 years ago"
+				},
+				{
+					"username": "ramon gomez",
+					"rating": 5,
+					"contributor_id": "109940812365950090207",
+					"description": "Cool gym",
+					"link": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSURLcmUyMUF3EAE!2m1!1s0x0:0x135d333b32cac1b6!3m1!1s2@1:CIHM0ogKEICAgIDKre21Aw%7CCgwI0YmGhQYQoN_7uQI%7C?hl=en-US",
+					"date": "3 years ago"
+				}
+			]
+		},
+		"people_also_search_for": [
+			{
+				"search_term": "People also search for",
+				"local_results": [
+					{
+						"position": 1,
+						"title": "TJ Fitness",
+						"data_id": "0x0:0x29c5c86d089dcbfb",
+						"data_cid": "3010032296588594171",
+						"reviews_link": "https://serpapi.com/search.json?data_id=0x0%3A0x29c5c86d089dcbfb&engine=google_maps_reviews&hl=en",
+						"photos_link": "https://serpapi.com/search.json?data_id=0x0%3A0x29c5c86d089dcbfb&engine=google_maps_photos&hl=en",
+						"gps_coordinates": {
+							"latitude": 32.5356759,
+							"longitude": -117.04169699999998
+						},
+						"place_id_search": "https://serpapi.com/search.json?data=%214m5%213m4%211s0x0%3A0x29c5c86d089dcbfb%218m2%213d32.5356759%214d-117.04169699999998&engine=google_maps&google_domain=google.com&hl=en&type=place",
+						"rating": 4.3,
+						"reviews": 402,
+						"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipO0o5wlvhlONDO_EJCeOUYccq9-28N_-S2TA_N0=w156-h156-n-k-no",
+						"type": [
+							"Gym"
+						]
+					},
+					{
+						"position": 2,
+						"title": "Bosco Gym",
+						"data_id": "0x0:0xbbbe08779fca4aad",
+						"data_cid": "13528259640542513837",
+						"reviews_link": "https://serpapi.com/search.json?data_id=0x0%3A0xbbbe08779fca4aad&engine=google_maps_reviews&hl=en",
+						"photos_link": "https://serpapi.com/search.json?data_id=0x0%3A0xbbbe08779fca4aad&engine=google_maps_photos&hl=en",
+						"gps_coordinates": {
+							"latitude": 32.5266598,
+							"longitude": -117.03241819999998
+						},
+						"place_id_search": "https://serpapi.com/search.json?data=%214m5%213m4%211s0x0%3A0xbbbe08779fca4aad%218m2%213d32.5266598%214d-117.03241819999998&engine=google_maps&google_domain=google.com&hl=en&type=place",
+						"rating": 4.4,
+						"reviews": 81,
+						"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipOS7a-ZeX01IjMbJHhyx6GHZgJKMbqh-p9ik9Hk=w156-h156-n-k-no",
+						"type": [
+							"Gymnastics center"
+						]
+					},
+					{
+						"position": 3,
+						"title": "El Gimnasio del Centro",
+						"data_id": "0x0:0xf5d84b30115b1b43",
+						"data_cid": "17714991804083542851",
+						"reviews_link": "https://serpapi.com/search.json?data_id=0x0%3A0xf5d84b30115b1b43&engine=google_maps_reviews&hl=en",
+						"photos_link": "https://serpapi.com/search.json?data_id=0x0%3A0xf5d84b30115b1b43&engine=google_maps_photos&hl=en",
+						"gps_coordinates": {
+							"latitude": 32.533739,
+							"longitude": -117.0394862
+						},
+						"place_id_search": "https://serpapi.com/search.json?data=%214m5%213m4%211s0x0%3A0xf5d84b30115b1b43%218m2%213d32.533739%214d-117.0394862&engine=google_maps&google_domain=google.com&hl=en&type=place",
+						"rating": 3.6,
+						"reviews": 34,
+						"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipNszb_4l4ycWmTcmz3YJ7r3ld-jDkBJwgQ7q67M=w156-h156-n-k-no",
+						"type": [
+							"Gym"
+						]
+					},
+					{
+						"position": 4,
+						"title": "Gimnasio burocratas",
+						"data_id": "0x0:0xd6b51b8ca04abf7",
+						"data_cid": "966956399106239479",
+						"reviews_link": "https://serpapi.com/search.json?data_id=0x0%3A0xd6b51b8ca04abf7&engine=google_maps_reviews&hl=en",
+						"photos_link": "https://serpapi.com/search.json?data_id=0x0%3A0xd6b51b8ca04abf7&engine=google_maps_photos&hl=en",
+						"gps_coordinates": {
+							"latitude": 32.530887899999996,
+							"longitude": -117.03393980000001
+						},
+						"place_id_search": "https://serpapi.com/search.json?data=%214m5%213m4%211s0x0%3A0xd6b51b8ca04abf7%218m2%213d32.530887899999996%214d-117.03393980000001&engine=google_maps&google_domain=google.com&hl=en&type=place",
+						"rating": 5,
+						"reviews": 4,
+						"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipN3dkaMWuHIQa7lR-XXxJ_Nk07-GdhcwkPrcocn=w156-h156-n-k-no",
+						"type": [
+							"Gym"
+						]
+					},
+					{
+						"position": 5,
+						"title": "24/7 GYM",
+						"data_id": "0x0:0x802be81c9c0983a1",
+						"data_cid": "9235730670427931553",
+						"reviews_link": "https://serpapi.com/search.json?data_id=0x0%3A0x802be81c9c0983a1&engine=google_maps_reviews&hl=en",
+						"photos_link": "https://serpapi.com/search.json?data_id=0x0%3A0x802be81c9c0983a1&engine=google_maps_photos&hl=en",
+						"gps_coordinates": {
+							"latitude": 32.4897341,
+							"longitude": -116.93084449999999
+						},
+						"place_id_search": "https://serpapi.com/search.json?data=%214m5%213m4%211s0x0%3A0x802be81c9c0983a1%218m2%213d32.4897341%214d-116.93084449999999&engine=google_maps&google_domain=google.com&hl=en&type=place",
+						"rating": 4.2,
+						"reviews": 296,
+						"thumbnail": "https://lh5.googleusercontent.com/p/AF1QipMAYErjLODwp4lGjaKn_H-vWgWmUsRB8WRabLHn=w156-h156-n-k-no",
+						"type": [
+							"Gym"
+						]
+					}
+				]
+			}
+		],
+		"popular_times": {
+			"graph_results": {
+				"sunday": [
+					{
+						"time": "6 AM",
+						"busyness_score": 0
+					},
+					{
+						"time": "7 AM",
+						"busyness_score": 0
+					},
+					{
+						"time": "8 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 27
+					},
+					{
+						"time": "9 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 33
+					},
+					{
+						"time": "10 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 34
+					},
+					{
+						"time": "11 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 38
+					},
+					{
+						"time": "12 PM",
+						"info": "Usually not too busy",
+						"busyness_score": 41
+					},
+					{
+						"time": "1 PM",
+						"info": "Usually not too busy",
+						"busyness_score": 42
+					},
+					{
+						"time": "2 PM",
+						"info": "Usually not too busy",
+						"busyness_score": 32
+					},
+					{
+						"time": "3 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "4 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "5 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "6 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "7 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "8 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "9 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "10 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "11 PM",
+						"busyness_score": 0
+					}
+				],
+				"monday": [
+					{
+						"time": "5 AM",
+						"busyness_score": 0
+					},
+					{
+						"time": "6 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 26
+					},
+					{
+						"time": "7 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 42
+					},
+					{
+						"time": "8 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 60
+					},
+					{
+						"time": "9 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 69
+					},
+					{
+						"time": "10 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 64
+					},
+					{
+						"time": "11 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 61
+					},
+					{
+						"time": "12 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 59
+					},
+					{
+						"time": "1 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 63
+					},
+					{
+						"time": "2 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 68
+					},
+					{
+						"time": "3 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 71
+					},
+					{
+						"time": "4 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 76
+					},
+					{
+						"time": "5 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 89
+					},
+					{
+						"time": "6 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 100
+					},
+					{
+						"time": "7 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 96
+					},
+					{
+						"time": "8 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 75
+					},
+					{
+						"time": "9 PM",
+						"info": "Usually not too busy",
+						"busyness_score": 47
+					},
+					{
+						"time": "10 PM",
+						"busyness_score": 0
+					}
+				],
+				"tuesday": [
+					{
+						"time": "5 AM",
+						"busyness_score": 0
+					},
+					{
+						"time": "6 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 24
+					},
+					{
+						"time": "7 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 37
+					},
+					{
+						"time": "8 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 59
+					},
+					{
+						"time": "9 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 70
+					},
+					{
+						"time": "10 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 66
+					},
+					{
+						"time": "11 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 62
+					},
+					{
+						"time": "12 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 58
+					},
+					{
+						"time": "1 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 62
+					},
+					{
+						"time": "2 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 67
+					},
+					{
+						"time": "3 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 71
+					},
+					{
+						"time": "4 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 77
+					},
+					{
+						"time": "5 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 85
+					},
+					{
+						"time": "6 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 90
+					},
+					{
+						"time": "7 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 89
+					},
+					{
+						"time": "8 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 84
+					},
+					{
+						"time": "9 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 59
+					},
+					{
+						"time": "10 PM",
+						"busyness_score": 0
+					}
+				],
+				"wednesday": [
+					{
+						"time": "5 AM",
+						"busyness_score": 0
+					},
+					{
+						"time": "6 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 25
+					},
+					{
+						"time": "7 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 42
+					},
+					{
+						"time": "8 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 53
+					},
+					{
+						"time": "9 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 53
+					},
+					{
+						"time": "10 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 52
+					},
+					{
+						"time": "11 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 51
+					},
+					{
+						"time": "12 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 51
+					},
+					{
+						"time": "1 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 61
+					},
+					{
+						"time": "2 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 69
+					},
+					{
+						"time": "3 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 77
+					},
+					{
+						"time": "4 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 78
+					},
+					{
+						"time": "5 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 83
+					},
+					{
+						"time": "6 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 80
+					},
+					{
+						"time": "7 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 72
+					},
+					{
+						"time": "8 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 55
+					},
+					{
+						"time": "9 PM",
+						"info": "Usually not too busy",
+						"busyness_score": 36
+					},
+					{
+						"time": "10 PM",
+						"busyness_score": 0
+					}
+				],
+				"thursday": [
+					{
+						"time": "5 AM",
+						"busyness_score": 0
+					},
+					{
+						"time": "6 AM",
+						"info": "Usually not busy",
+						"busyness_score": 18
+					},
+					{
+						"time": "7 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 38
+					},
+					{
+						"time": "8 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 58
+					},
+					{
+						"time": "9 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 65
+					},
+					{
+						"time": "10 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 60
+					},
+					{
+						"time": "11 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 62
+					},
+					{
+						"time": "12 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 64
+					},
+					{
+						"time": "1 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 70
+					},
+					{
+						"time": "2 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 68
+					},
+					{
+						"time": "3 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 68
+					},
+					{
+						"time": "4 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 73
+					},
+					{
+						"time": "5 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 77
+					},
+					{
+						"time": "6 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 78
+					},
+					{
+						"time": "7 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 76
+					},
+					{
+						"time": "8 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 69
+					},
+					{
+						"time": "9 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 53
+					},
+					{
+						"time": "10 PM",
+						"busyness_score": 0
+					}
+				],
+				"friday": [
+					{
+						"time": "5 AM",
+						"busyness_score": 0
+					},
+					{
+						"time": "6 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 35
+					},
+					{
+						"time": "7 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 58
+					},
+					{
+						"time": "8 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 63
+					},
+					{
+						"time": "9 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 59
+					},
+					{
+						"time": "10 AM",
+						"info": "Usually a little busy",
+						"busyness_score": 52
+					},
+					{
+						"time": "11 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 50
+					},
+					{
+						"time": "12 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 51
+					},
+					{
+						"time": "1 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 51
+					},
+					{
+						"time": "2 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 63
+					},
+					{
+						"time": "3 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 73
+					},
+					{
+						"time": "4 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 78
+					},
+					{
+						"time": "5 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 83
+					},
+					{
+						"time": "6 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 86
+					},
+					{
+						"time": "7 PM",
+						"info": "Usually as busy as it gets",
+						"busyness_score": 83
+					},
+					{
+						"time": "8 PM",
+						"info": "Usually a little busy",
+						"busyness_score": 77
+					},
+					{
+						"time": "9 PM",
+						"info": "Usually not too busy",
+						"busyness_score": 50
+					},
+					{
+						"time": "10 PM",
+						"busyness_score": 0
+					}
+				],
+				"saturday": [
+					{
+						"time": "6 AM",
+						"busyness_score": 0
+					},
+					{
+						"time": "7 AM",
+						"info": "Usually not busy",
+						"busyness_score": 18
+					},
+					{
+						"time": "8 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 28
+					},
+					{
+						"time": "9 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 33
+					},
+					{
+						"time": "10 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 34
+					},
+					{
+						"time": "11 AM",
+						"info": "Usually not too busy",
+						"busyness_score": 39
+					},
+					{
+						"time": "12 PM",
+						"info": "Usually not too busy",
+						"busyness_score": 47
+					},
+					{
+						"time": "1 PM",
+						"info": "Usually not too busy",
+						"busyness_score": 46
+					},
+					{
+						"time": "2 PM",
+						"info": "Usually not too busy",
+						"busyness_score": 38
+					},
+					{
+						"time": "3 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "4 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "5 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "6 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "7 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "8 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "9 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "10 PM",
+						"busyness_score": 0
+					},
+					{
+						"time": "11 PM",
+						"busyness_score": 0
+					}
+				]
+			},
+			"live_hash": {
+				"info": "Busier than usual",
+				"time_spent": "People typically spend 1-2 hours here"
+			}
+		},
+		"web_results_link": "https://www.google.com/search?q=local+guide+program&ibp=gwp;0,26,Oi8KLSIpMjAvNyBHWU0gVGlqdWFuYSwgQmFqYSBDYWxpZm9ybmlhLCBNZXhpY28oAg&pcl=lp",
+		"serpapi_web_results_link": "https://serpapi.com/search.json?device=desktop&engine=google&google_domain=google.com&ibp=gwp%3B0%2C26%2COi8KLSIpMjAvNyBHWU0gVGlqdWFuYSwgQmFqYSBDYWxpZm9ybmlhLCBNZXhpY28oAg&q=local+guide+program"
+	}
+}

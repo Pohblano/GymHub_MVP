@@ -14,6 +14,9 @@ export const text = StyleSheet.create({
 	light_grey: {
 		color: '#BDBDBD'
 	},
+	grey: {
+		color: '#a1a1a1'
+	},
 	gym207:{
 		color:'#62D767'
 	},
@@ -30,6 +33,9 @@ export const text = StyleSheet.create({
 	},
 	small: {
 		fontSize: 23
+	},
+	medium:{
+		fontSize: 30
 	},
 	large: {
 		fontSize: 36

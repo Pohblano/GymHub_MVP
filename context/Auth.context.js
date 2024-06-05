@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 // import {onAuthStateChanged, signOut} from 'firebase/auth'
 import { auth, db } from "@/firebase.config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from '@firebase/auth'
-import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc } from 'firebase/firestore'
+import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc, getDocs } from 'firebase/firestore'
 
 import { router } from "expo-router";
 
@@ -19,6 +19,7 @@ export const AuthContextProvider = ({ children }) => {
 				setIsAuthenticated(true);
 				setUser(user);
 				updateUserData(user.uid)
+				
 			} else {
 				setIsAuthenticated(false);
 				setUser(null)
@@ -72,7 +73,7 @@ export const AuthContextProvider = ({ children }) => {
 	const login = async (email, password, setErrors, setSubmitting) => {
 		try {
 			const response = await signInWithEmailAndPassword(auth, email, password)
-			if (response) router.replace('DashboardScreen')
+			if (response) router.replace('GymDashboardScreen')
 
 		} catch (error) {
 			console.log(error)
@@ -114,9 +115,7 @@ export const AuthContextProvider = ({ children }) => {
 						console.log('Error adding document: ')
 						console.log(error)
 					})
-
 			}
-
 		} catch (error) {
 			console.log(error)
 			let msg = error.message

@@ -20,11 +20,13 @@ import CustomLink from '../Buttons/CustomLink';
 import { BoldText } from '../Text/StyledText';
 import email_sent from '@/assets/lottie/email_sent.json'
 import LottieView from 'lottie-react-native';
+import Animated, { FadeIn, SlideInUp } from 'react-native-reanimated';
+import { useFadeInStyles } from '@/hooks/animationStyle';
 
 export default function RecoverPasswordForm() {
-	const router = useRouter();
 	const [emailSent, setEmailSent] = useState(false)
 	const { reset_password } = useAuth()
+	const {slideLeftStyle, slideUpStyle, fadeInStyle} = useFadeInStyles(50,50,800)
 
 
 	const formik = useFormik({
@@ -39,14 +41,14 @@ export default function RecoverPasswordForm() {
 	return (
 		<>
 			{(emailSent) ?
-				<View style={{flex: 4, display:'flex'}}>
+				<Animated.View style={[{flex: 4, display:'flex'}]} entering={FadeIn}>
 					<LottieView style={{ height: 200 }} source={email_sent} autoPlay loop/>
 					<Text style={[text.black, {}, {alignSelf:'center'}]}>An email has been sent to <BoldText>{formik.values.email}</BoldText>. {'\nFollow the link to reset your password.'}</Text>		
-				</View>
+				</Animated.View>
 				:
 				<>
 
-					< View style={container.form}>
+					<Animated.View style={[container.form, slideUpStyle]}>
 						<TextInput
 							style={[
 								container.input_text, text.black,
@@ -62,10 +64,10 @@ export default function RecoverPasswordForm() {
 						) : null}
 
 						<Text style={[text.black]}>Enter the email associated with your account and we will send you an email with a link and instructions to reset your password.</Text>
-					</View >
+					</Animated.View >
 
 
-					< View style={[container.bottom]} >
+					<Animated.View style={[container.bottom, slideUpStyle]} >
 						<CustomButton
 							loading={formik.isSubmitting}
 							onPress={formik.handleSubmit}
@@ -79,7 +81,7 @@ export default function RecoverPasswordForm() {
 							textStyle={[text.primary_button, text.white]}
 							disabled={formik.isSubmitting}
 						/>
-					</View >
+					</Animated.View >
 				</>
 			}
 		</>
