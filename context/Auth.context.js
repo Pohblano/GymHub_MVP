@@ -73,7 +73,7 @@ export const AuthContextProvider = ({ children }) => {
 	const login = async (email, password, setErrors, setSubmitting) => {
 		try {
 			const response = await signInWithEmailAndPassword(auth, email, password)
-			if (response) router.replace('GymDashboardScreen')
+			if (response) router.replace('(Drawer)/GymDashboardScreen')
 
 		} catch (error) {
 			console.log(error)

@@ -45,7 +45,7 @@ export default function SignupScreen() {
 				<View style={[container.bottom, { gap: 10 }]}>
 					<CustomButton
 						loading={false}
-						onPress={()=>router.replace('GymDashboardScreen')}
+						onPress={()=>router.replace('(Drawer)/GymDashboardScreen')}
 						onLongPress={() => { }}
 						title="Get Started"
 						iconLeft={''}

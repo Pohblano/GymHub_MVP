@@ -1,13 +1,10 @@
 // Modules
-import React, { useEffect, useState, useCallback } from 'react'
-import Animated from 'react-native-reanimated'
-import { ImageBackground, SafeAreaView, Text, View, StyleSheet, ScrollView } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
-import { LinearGradient } from 'expo-linear-gradient'
+import React, { useEffect, useState, useRef } from 'react'
+import { SafeAreaView, Text, StyleSheet} from 'react-native'
+import PagerView from 'react-native-pager-view';
 // * Routing
-import { useRouter, useSegments, Redirect, useFocusEffect } from 'expo-router'
+import { useRouter } from 'expo-router'
 // Styling
-import { text } from '@/styles/text.styles'
 import { container } from '@/styles/containers.styles'
 // Components
 import { HorizontalPaddedView } from '@/components/Views/PaddedView'
@@ -16,14 +13,10 @@ import MainGymHeader from '@/components/GymDashboard/MainGymHeader'
 import Home from '@/components/GymDashboard/Home/Home'
 import About from '@/components/GymDashboard/About/About'
 import Trainers from '@/components/GymDashboard/Trainers/Trainers'
+import Socials from '@/components/GymDashboard/Socials/Socials'
 // Context
 import { useAuth } from '@/context/Auth.context'
 import { useGym, GymContextProvider } from '@/context/Gym.context'
-
-
-
-import PagerView from 'react-native-pager-view';
-import CuratorIOFeed from '@/components/GymDashboard/Socials/CuratorFeed'
 
 
 interface ComponentMap {
@@ -45,11 +38,13 @@ export default function GymDashboardWrapper() {
 
 function GymDashboardScreen() {
 	const router = useRouter();
-	const items = ['Home', 'Trainers', 'Socials', 'Reviews', 'About'];
+	const items = ['Home', 'Trainers', 'Socials', 'About'];
 	const [activeItem, setActiveItem] = useState(items[0]);
 	const [loading, setLoading] = useState(true);
 	const { logout, user } = useAuth();
 	const { gym, gymsList } = useGym();
+
+	const pagerViewRef = useRef<PagerView>(null);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -59,14 +54,21 @@ function GymDashboardScreen() {
 
 	}, []);
 
-	const handleActiveItem = () => {
-
-	}
+	const handlePageChange = (index: number) => {
+		setActiveItem(items[index]);
+	  }
+	
+	  const handleNavigationChange = (item: string) => {
+		setActiveItem(item);
+		const index = items.indexOf(item);
+		pagerViewRef.current?.setPage(index);
+	  }
+	
 
 	const componentMapping: ComponentMap = {
 		Home: <Home logout={logout} />,
 		Trainers: <Trainers />,
-		Socials: <CuratorIOFeed/>,
+		Socials: <Socials/>,
 		About: <About />,
 		Reviews: <Text>Reviews</Text>,
 	}
@@ -79,22 +81,27 @@ function GymDashboardScreen() {
 				:
 				<SafeAreaView style={[container.wrapper, container.bg_white]}>
 					<HorizontalPaddedView>
-						{/* <ScrollView showsVerticalScrollIndicator={false}> */}
-
+						
 							<MainGymHeader
 								activeItem={activeItem}
-								setActiveItem={setActiveItem}
+								// setActiveItem={setActiveItem}
+								setActiveItem={handleNavigationChange}
 								gym_title={gym.name}
 							/>
-
-							 {/* <PagerView initialPage={0} style={{flex: 1}} scrollEnabled={true}>
+{/* 
+							<PagerView 
+								ref={pagerViewRef}
+								initialPage={0}
+								style={{ flex: 1 }}
+								onPageSelected={e => handlePageChange(e.nativeEvent.position)}
+								scrollEnabled={true}
+								>
 								<Home logout={logout} key={'1'}/>
 								<Trainers key={'2'}/>
-								<About key={'3'}/>
-								<CuratorIOFeed key={'4'}/>
+								<Socials key={'3'}/>
+								<About key={'4'}/>
 							</PagerView>  */}
 							{componentMapping[activeItem as Active]}
-						{/* </ScrollView> */}
 
 					</HorizontalPaddedView>
 				</ SafeAreaView>}

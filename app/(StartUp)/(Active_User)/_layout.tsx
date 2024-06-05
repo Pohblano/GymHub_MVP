@@ -11,8 +11,7 @@ export default function ActiveUserLayout() {
     <Stack screenOptions={{ animation: 'ios', }}>
       <Stack.Screen name='LoginScreen' options={{ title: 'Log In', headerShown: false }} />
       <Stack.Screen name='RecoverPasswordModalScreen' options={{ title: 'Recover Password', headerShown: false, presentation: 'modal' }} />
-      <Stack.Screen name='GymDashboardScreen' options={{ title: 'Dashboard', headerShown: false }} />
-      
+      <Stack.Screen name='(Drawer)' options={{ title: 'Drawer', headerShown: false }} />
     </Stack>
   );
 }

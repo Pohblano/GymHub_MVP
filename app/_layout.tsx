@@ -69,7 +69,7 @@ function Layout() {
     if(isAuthenticated && !inApp){
       console.log('USER LOGGED IN AND NOT IN APP', segments)
       // Redirect to Dashboard
-      router.replace('/(Active_User)/GymDashboardScreen')
+      router.replace('/(Active_User)/(Drawer)/GymDashboardScreen')
     }else if (!isAuthenticated) {
       console.log('NO USER IS LOGGED IN', segments)
       // Redirect to starting page

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, ActivityIndicator, Linking } from 'react-native';
 import { WebView } from 'react-native-webview'
 
-export default function CuratorIOFeed() {
+export default function Socials() {
 	const [feedData, setFeedData] = useState([]);
 	const pinHTML = `<!DOCTYPE html>
 	<html>

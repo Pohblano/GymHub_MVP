@@ -81,7 +81,7 @@ export default function GymLocation({ address, setDistance }: {
 				} else {
 					setErrorMsg('Unable to find the location');
 				}
-			}catch(error){
+			} catch (error) {
 				console.log(error)
 			}
 		})();
@@ -96,14 +96,16 @@ export default function GymLocation({ address, setDistance }: {
 
 
 	return (
-		<View style={{ marginTop: 30}}>
-			<SemiBoldText className='mb-6' style={[ text.sub_heading]}>{'Location'}</SemiBoldText>
+		<View style={{ marginTop: 30 }}>
+			<SemiBoldText className='mb-6' style={[text.sub_heading]}>{'Location'}</SemiBoldText>
 			<View className='mb-3 d-flex flex-row'>
-				<FontAwesome6
-					name="location-dot"
-					size={24}
-					color="#454545"
-					style={{ marginRight: 10 }} />
+				<View style={{ width: 30 }}>
+					<FontAwesome6
+						name="location-dot"
+						size={24}
+						color="#454545"
+						style={{ marginRight: 10 }} />
+				</View>
 
 				<RegularText className='' style={[text.black, text.sub_heading]}>{address}</RegularText>
 			</View>
@@ -120,10 +122,10 @@ export default function GymLocation({ address, setDistance }: {
 						</MapView>
 						<View style={styles.button_wrapper}>
 							<Button title="Get Directions" onPress={openMaps} />
-						</View>	
+						</View>
 					</>
 				) : (
-					<Text style={styles.text}><ActivityIndicator size="small" color="#0000ff" />{ errorMsg || "Gathering location..."}</Text>
+					<Text style={styles.text}><ActivityIndicator size="small" color="#0000ff" />{errorMsg || "Gathering location..."}</Text>
 				)}
 			</View>
 		</View>
