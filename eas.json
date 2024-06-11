@@ -12,9 +12,6 @@
       "distribution": "internal",
       "channel": "preview"
     },
-    "production": {},
-    "submit": {
-      "production": {}
-    }
+    "production": {}  
   }
 }
