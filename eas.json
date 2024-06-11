@@ -12,16 +12,9 @@
       "distribution": "internal",
       "channel": "preview"
     },
-    "production": {
-      "android": {
-        "image": "latest"
-      },
-      "ios": {
-        "image": "latest"
-      }
+    "production": {},
+    "submit": {
+      "production": {}
     }
-  },
-  "submit": {
-    "production": {}
   }
 }
