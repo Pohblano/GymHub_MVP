@@ -1,47 +1,36 @@
 import React, { useState } from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { View, Text, Image, Dimensions, StyleSheet } from 'react-native'
-import { useSharedValue } from "react-native-reanimated";
+import { View, Text, Dimensions, StyleSheet } from 'react-native'
+import { Image } from 'expo-image'
 import Carousel from 'react-native-reanimated-carousel'
+import { useFadeInStyles } from '@/hooks/animationStyle'
 
 
-
-export default function LargeImageSlider({images}) {
+export default function LargeImageSlider({ images }: any) {
 	const sliderImages = images.large_slider
 
 	return (
-		<View style={{  height: 350, alignContent: 'flex-start', display: 'flex', alignItems: 'center' }}>
-			<Carousel
-				loop
-				width={wp(100) - 38}
-				height={350}
-				data={sliderImages}
-				scrollAnimationDuration={250}
-				mode="parallax"
-				style={{}}
-				modeConfig={{
-					parallaxScrollingScale: 0.9,
-					parallaxScrollingOffset: 50,
-				}}
-				renderItem={({ item }) => (
-					<Image source={{ uri: item }} resizeMode='cover' style={styles.image} />
-				)}
-			/>
-		</View>
+		<Carousel
+			loop
+			width={wp(100) - 38}
+			height={350}
+			data={sliderImages}
+			scrollAnimationDuration={250}
+			renderItem={({ item }: { item: string }) => (
+				<Image source={item} contentFit='cover' style={styles.image} />
+			)} />
 	)
 }
 
-
 const styles = StyleSheet.create({
 	container: {
-		// justifyContent: 'center',
-		// alignItems: 'center',
 		backgroundColor: '#fff',
 		width: '100%',
 		borderRadius: 10,
 	},
 	image: {
-		width: '100%',
+		width: '99%',
+		alignSelf: 'center',
 		height: 350,
 		borderRadius: 10,
 	},

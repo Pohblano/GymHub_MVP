@@ -26,48 +26,49 @@ import { useFadeInStyles } from '@/hooks/animationStyle';
 export default function RecoverPasswordForm() {
 	const [emailSent, setEmailSent] = useState(false)
 	const { reset_password } = useAuth()
-	const {slideLeftStyle, slideUpStyle, fadeInStyle} = useFadeInStyles(50,50,800)
-
-
+	const animation = useFadeInStyles(50, 50, 800, 0)
+	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
 	const formik = useFormik({
 		initialValues: { email: '' },
 		validationSchema: RecoverPasswordSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
 			const response = await reset_password(values.email, setErrors, setSubmitting, setEmailSent)
-		
+
 		},
 	});
 
 	return (
 		<>
 			{(emailSent) ?
-				<Animated.View style={[{flex: 4, display:'flex'}]} entering={FadeIn}>
-					<LottieView style={{ height: 200 }} source={email_sent} autoPlay loop/>
-					<Text style={[text.black, {}, {alignSelf:'center'}]}>An email has been sent to <BoldText>{formik.values.email}</BoldText>. {'\nFollow the link to reset your password.'}</Text>		
+				<Animated.View style={[{ flex: 4, display: 'flex' }]}>
+					<LottieView style={{ height: 200 }} source={email_sent} autoPlay loop />
+					<Animated.Text style={[text.black, { alignSelf: 'center' }, animation.fadeInStyle]}>An email has been sent to <BoldText>{formik.values.email}</BoldText>. {'\nFollow the link to reset your password.'}</Animated.Text>
 				</Animated.View>
 				:
 				<>
 
-					<Animated.View style={[container.form, slideUpStyle]}>
-						<TextInput
-							style={[
-								container.input_text, text.black,
-								formik.touched.email && formik.errors.email ? form.error_input : null]}
-							placeholderTextColor={'#BDBDBD'}
-							placeholder='Email'
-							value={formik.values.email}
-							onChangeText={formik.handleChange('email')}
-							onBlur={formik.handleBlur('email')}
-						/>
+					<View style={[container.form]}>
+						<Animated.View style={animation.fadeInStyle}>
+							<TextInput
+								style={[
+									container.input_text, text.black,
+									formik.touched.email && formik.errors.email ? form.error_input : null]}
+								placeholderTextColor={'#BDBDBD'}
+								placeholder='Email'
+								value={formik.values.email}
+								onChangeText={formik.handleChange('email')}
+								onBlur={formik.handleBlur('email')}/>
+						</Animated.View>
+
 						{formik.touched.email && formik.errors.email ? (
-							<Text style={text.error} >{formik.errors.email}</Text>
+							<Animated.Text style={[text.error, animation.fadeInStyle]} >{formik.errors.email}</Animated.Text>
 						) : null}
 
-						<Text style={[text.black]}>Enter the email associated with your account and we will send you an email with a link and instructions to reset your password.</Text>
-					</Animated.View >
+						<Animated.Text style={[text.black, delayedAnimation.fadeInStyle]}>Enter the email associated with your account and we will send you an email with a link and instructions to reset your password.</Animated.Text>
+					</View >
 
 
-					<Animated.View style={[container.bottom, slideUpStyle]} >
+					<Animated.View style={[container.bottom, animation.slideUpStyle]} >
 						<CustomButton
 							loading={formik.isSubmitting}
 							onPress={formik.handleSubmit}

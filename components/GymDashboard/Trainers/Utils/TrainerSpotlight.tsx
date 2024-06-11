@@ -1,54 +1,78 @@
 // Modules
 import React from 'react'
-import { ImageBackground, View, StyleSheet } from 'react-native'
+import { ImageBackground, View, StyleSheet, Pressable } from 'react-native'
 import Animated from 'react-native-reanimated'
 import { LinearGradient } from 'expo-linear-gradient'
 import { FontAwesome } from '@expo/vector-icons'
+import { Image } from 'expo-image'
 // Styling
 import { text } from '@/styles/text.styles'
+import { useFadeInStyles } from '@/hooks/animationStyle'
 // Components
-import { IconPressable } from '../../../Buttons/CustomPressable'
 import { BoldText, LightText, RegularText } from '../../../Text/StyledText'
-import ScrollableNavBar from '../../../Utils/ScrollableNavBar'
 import CustomLink from '../../../Buttons/CustomLink'
 // Context
 import { useGym } from '@/context/Gym.context'
 import { TrainerType } from '../Trainers'
+import { Link } from 'expo-router'
 
 
-function TrainerSpotlight({ trainer }:{
+
+export default function TrainerSpotlight({ trainer }: {
 	trainer: TrainerType
 }) {
-	const { gym } = useGym()
-	const images = gym.images
+	const { gym } = useGym();
+	const images = gym.images;
+	const animation = useFadeInStyles(50, 50, 800,0)
+	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
+	const delayeddAnimation = useFadeInStyles(50, 50, 800, 400)
+
 	return (
-		<ImageBackground
-			style={{ height: 380, width: 'auto' }}
-			imageStyle={{ borderRadius: 10 }}
-			source={{uri: images.trainer_spotlight}}
-		>
-			<LinearGradient
-				colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0)']}
-				start={[0, 0]} end={[1, 0]}
-				style={styles.background}
-			>
-				<View>
-					<LightText style={[text.white, text.regular]}>Trainer Spotlight:</LightText>
-					<BoldText className=' w-5/6' style={[text.large, text.white]}>{`Meet\n${trainer.name}`}</BoldText>
-				</View>
-				<CustomLink
-					onPress={() => { }}
-					onLongPress={() => { }}
-					title={'Learn more'}
-					iconLeft={null}
-					iconRight={<FontAwesome name="chevron-right" />}
-					iconRightStyle={text.gym207}
-					style={{ display: 'flex' }}
-					textStyle={text.gym207}
-					disabled={false}
-					loading={false} />
-			</LinearGradient>
-		</ImageBackground>
+		<Animated.View style={animation.slideUpStyle}>
+			<Link
+			asChild
+			key={trainer.uid}
+			href={{
+				pathname: `/Trainers/[uid]`,
+				params: {
+					uid: trainer.uid,
+				}
+			}}>
+			<Pressable style={{ height: 350, width: 'auto' }}>
+				<Image
+					source={{ uri: trainer.img }}
+					style={{ height: 350, width: 'auto', borderRadius: 10 }} />
+				<LinearGradient
+					colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0)']}
+					start={[0, 0]} end={[1, 0]}
+					style={styles.background}>
+					<Animated.View style={delayedAnimation.slideLeftStyle}>
+						<LightText style={[text.white, text.regular]}>
+							Trainer Spotlight:
+						</LightText>
+						<BoldText className=' w-5/6' style={[text.large, text.white]}>
+							{`Meet\n${trainer.first_name}`}
+						</BoldText>
+					</Animated.View>
+					<Animated.View style={delayeddAnimation.slideLeftStyle}>
+						<LightText className='mb-1' style={[text.white, { width: '75%' }]}>{trainer.specialty?.join(', ')}</LightText>
+						<CustomLink
+							onPress={() => { }}
+							onLongPress={() => { }}
+							title={'See more'}
+							iconLeft={null}
+							iconRight={<FontAwesome name="chevron-right" />}
+							iconRightStyle={[text.gym207, { marginLeft: 4, alignSelf: 'baseline' }]}
+							style={{ display: 'flex' }}
+							textStyle={text.gym207}
+							disabled={false}
+							loading={false} />
+					</Animated.View>
+
+				</LinearGradient>
+			</Pressable>
+		</Link>
+		</Animated.View>
 	)
 }
 
@@ -66,5 +90,3 @@ const styles = StyleSheet.create({
 		borderRadius: 10
 	},
 })
-
-export default TrainerSpotlight

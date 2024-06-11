@@ -8,6 +8,7 @@ import 'react-native-reanimated';
 import '../global.css'
 // import PageLoading from '@/components/Loading/PageLoading'
 import { AuthContextProvider, useAuth } from '@/context/Auth.context'
+import { GymContextProvider } from '@/context/Gym.context';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -51,7 +52,9 @@ export default function RootLayout() {
 function MainLayout() {
   return (
     <AuthContextProvider>
-      <Layout />
+      <GymContextProvider>
+        <Layout />
+      </GymContextProvider>
     </AuthContextProvider>
   )
 }

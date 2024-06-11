@@ -15,7 +15,7 @@ interface ReviewProps {
 	uid?: string,
 	name?: string,
 	description?: string,
-	rating?: number
+	rating: number
 }
 
 interface CarouselProps {
@@ -30,7 +30,7 @@ export default function GymReviews({ rating, reviews }: {
 }) {
 
 	const [expanded, setExpanded] = useState(false);
-	const [carouselHeight, setCarouselHeight] = useState(300)
+	const [carouselHeight, setCarouselHeight] = useState(200)
 
 	useEffect(() => {
 	}, [])
@@ -49,8 +49,7 @@ export default function GymReviews({ rating, reviews }: {
 					style={{}}
 					renderItem={(data) =>
 						<Item data={data} />
-					}
-				/>
+					}/>
 			</View>
 
 		</View>
@@ -62,7 +61,7 @@ const Item = ({ data }: {
 }) => {
 	const { name, description, rating } = data.item
 
-	const renderTruncatedFooter = (handlePress) => {
+	const renderTruncatedFooter = (handlePress: () => void) => {
 		return (
 			<Text style={{ color: '#528eff', marginTop: 5 }} onPress={() => { handlePress();  }}>
 				Read more
@@ -70,7 +69,7 @@ const Item = ({ data }: {
 		)
 	}
 
-	const renderRevealedFooter = (handlePress) => {
+	const renderRevealedFooter = (handlePress: () => void) => {
 
 		return (
 			<Text style={{ color: '#528eff', marginTop: 5 }} onPress={() => { handlePress();  }}>
@@ -81,14 +80,14 @@ const Item = ({ data }: {
 
 
 	return (
-		<View className='p-5 h-80'>
+		<View className='h-80'>
 			<MediumText className='mb-1' style={text.sub_heading}>{name}</MediumText>
-			<DisplayStarRating rating={rating} style={{ marginBottom: 18 }} />
+			<DisplayStarRating rating={rating} style={{ marginBottom: 18 }} size={16} />
 			<ReadMore
 				numberOfLines={4}
 				renderTruncatedFooter={renderTruncatedFooter}
-				renderRevealedFooter={renderRevealedFooter}
-			>
+				renderRevealedFooter={renderRevealedFooter}>
+				
 				<RegularText style={[text.black, { overflow: 'scroll', flex: 1 }]} >{description}</RegularText>
 			</ReadMore>
 		</View>
@@ -102,8 +101,5 @@ const Styles = StyleSheet.create({
 		alignContent: 'flex-start',
 		display: 'flex',
 		alignItems: 'center',
-		borderWidth: 1,
-		borderRadius: 8,
-		borderColor: '#BDBDBD',
 	}
 })

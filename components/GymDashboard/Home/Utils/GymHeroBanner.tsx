@@ -1,43 +1,69 @@
 // Modules
 import React from 'react'
-import { ImageBackground, View, StyleSheet } from 'react-native'
+import { ImageBackground, View, StyleSheet, Pressable } from 'react-native'
 import Animated from 'react-native-reanimated'
 import { LinearGradient } from 'expo-linear-gradient'
 import { FontAwesome } from '@expo/vector-icons'
+import { Image } from 'expo-image'
 // Styling
 import { text } from '@/styles/text.styles'
 // Components
-import { IconPressable } from '../../../Buttons/CustomPressable'
-import { BoldText, RegularText } from '../../../Text/StyledText'
-import ScrollableNavBar from '../../../Utils/ScrollableNavBar'
+import { BoldText, LightText, RegularText } from '../../../Text/StyledText'
 import CustomLink from '../../../Buttons/CustomLink'
+import { Link } from 'expo-router'
 
-function GymHeroBanner({image, caption}) {
+function GymHeroBanner({ href, image, title, subtitle, details, textAnimation, linkAnimation }: {
+	image: string,
+	href: string,
+	title: string,
+	subtitle: string,
+	details: string,
+	textAnimation?: any,
+	linkAnimation?: any
+}) {
 	return (
-		<ImageBackground
-			style={{ height: 192, width: 'auto' }}
-			imageStyle={{ borderRadius: 10 }}
-			source={{uri: image}}
-		>
-			<LinearGradient
-				colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0)']}
-				start={[0, 0]} end={[1, 0]}
-				style={styles.background}
-			>
-				<BoldText className=' w-5/6' style={[text.small, text.white]}>{caption}</BoldText>
-				<CustomLink
-					onPress={() => { }}
-					onLongPress={() => { }}
-					title={'See more'}
-					iconLeft={null}
-					iconRight={<FontAwesome name="chevron-right" />}
-					iconRightStyle={text.gym207}
-					style={{ display: 'flex' }}
-					textStyle={text.gym207}
-					disabled={false}
-					loading={false} />
-			</LinearGradient>
-		</ImageBackground>
+		<Link
+			asChild
+			href={{
+				pathname: href,
+
+			}}>
+			<Pressable>
+				<Image
+					style={{ height: 250, width: 'auto', borderRadius: 10 }}
+					source={{ uri: image }} />
+				<LinearGradient
+					colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0)']}
+					start={[0, 0]} end={[1, 0]}
+					style={styles.background}>
+					<Animated.View style={{}} entering={textAnimation}>
+						<LightText style={[text.white, text.regular]}>
+							{subtitle}
+						</LightText>
+						<BoldText className='w-full font-large' style={[text.large, text.white]}>
+							{title}
+						</BoldText>
+					</Animated.View>
+					<Animated.View style={{}} entering={linkAnimation}>
+						<LightText className='mb-1' style={[text.white, { width: '75%' }]}>
+							{details}
+						</LightText>
+						<CustomLink
+							onPress={() => { }}
+							onLongPress={() => { }}
+							title={'See more'}
+							iconLeft={null}
+							iconRight={<FontAwesome name="chevron-right" />}
+							iconRightStyle={[text.gym207, { marginLeft: 4, alignSelf: 'baseline' }]}
+							style={{ display: 'flex' }}
+							textStyle={text.gym207}
+							disabled={false}
+							loading={false} />
+					</Animated.View>
+
+				</LinearGradient>
+			</Pressable>
+		</Link>
 	)
 }
 

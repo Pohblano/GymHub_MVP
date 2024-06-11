@@ -21,6 +21,7 @@ export default function StartUpScreen() {
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
+		setLoading(false)
 		// setTimeout(() => {
 		// 	setLoading(false)
 		// }, 3000)

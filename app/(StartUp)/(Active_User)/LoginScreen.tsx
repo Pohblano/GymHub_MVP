@@ -1,6 +1,7 @@
 // Node Modules
-import React, { useState } from 'react';
-import { SafeAreaView, View, TextInput } from 'react-native'
+import React from 'react';
+import Animated from 'react-native-reanimated';
+import { FontAwesome } from '@expo/vector-icons';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -11,31 +12,33 @@ import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
 import { CustomSafeAreaView, HorizontalPaddedView } from '@/components/Views/PaddedView'
 import { BoldText } from '@/components/Text/StyledText';
-import { IconPressable } from '@/components/Buttons/CustomPressable';
 import CustomLink from '@/components/Buttons/CustomLink';
 import LoginForm from '@/components/Forms/LoginForm';
-import Animated from 'react-native-reanimated';
-
-
-
 
 export default function LoginScreen() {
 	const router = useRouter();
-	const { fadeInStyle, slideUpStyle, slideLeftStyle } = useFadeInStyles(50, 50, 800)
+	const animation = useFadeInStyles(50, 50, 800, 0)
 
 	return (
 		<>
 			<CustomSafeAreaView style={[container.wrapper, container.bg_white]}>
 				<HorizontalPaddedView>
 					{/* Back Button */}
-					<IconPressable
-						style={[container.back_button, text.black, text.icon]}
-						icon={'chevron-left'}
-						onPress={() => router.back()}
-					></IconPressable>
-
+				<Animated.View style={animation.fadeInStyle}>
+					<CustomLink
+						onPress={() => { router.back() }}
+						onLongPress={() => { }}
+						title={''}
+						iconLeft={null}
+						iconRight={<FontAwesome name="chevron-left" style={[text.black, text.icon, container.back_button]} />}
+						iconRightStyle={{}}
+						style={container.back_button}
+						textStyle={{}}
+						disabled={false}
+						loading={false} />
+				</Animated.View>
 					{/* Header */}
-					<Animated.View style={[container.header, slideLeftStyle]}>
+					<Animated.View style={[container.header, animation.slideLeftStyle]}>
 						<BoldText style={[text.large, text.black]}>{'Welcome\nBack!'}</BoldText>
 					</Animated.View>
 
@@ -43,7 +46,7 @@ export default function LoginScreen() {
 					<LoginForm />
 
 					{/* Recover Password */}
-					<Animated.View style={slideUpStyle}>
+					<Animated.View style={animation.slideUpStyle}>
 						<CustomLink
 							loading={false}
 							onPress={() => { router.push('RecoverPasswordModalScreen') }}
@@ -65,20 +68,3 @@ export default function LoginScreen() {
 
 	)
 }
-
-const styles = StyleSheet.create({
-	side_buttons: {
-		justifyContent: 'space-between'
-	},
-	side_button: {
-		backgroundColor: 'rgba(231, 190, 96, .12)',
-		borderStyle: 'solid',
-		borderColor: '#e7be60',
-		borderWidth: 1,
-	},
-	brand_icon: {
-		paddingRight: 4,
-		paddingTop: 3,
-		backgroundColor: 'transparent'
-	}
-})

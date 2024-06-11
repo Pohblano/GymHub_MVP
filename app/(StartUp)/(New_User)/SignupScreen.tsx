@@ -1,37 +1,45 @@
 // Node Modules
 import React, { useState } from 'react';
-import { SafeAreaView, View } from 'react-native'
+import { SafeAreaView, View, StyleSheet } from 'react-native'
 import Animated, { FadeInUp } from 'react-native-reanimated';
+import { FontAwesome } from '@expo/vector-icons';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
-import { StyleSheet } from 'react-native'
 import { text } from '@/styles/text.styles';
 import { container } from '@/styles/containers.styles';
 import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
 import { HorizontalPaddedView } from '../../../components/Views/PaddedView'
 import { BoldText } from '../../../components/Text/StyledText';
-import { IconPressable } from '../../../components/Buttons/CustomPressable';
 import CustomLink from '../../../components/Buttons/CustomLink';
 import SignupForm from '../../../components/Forms/SignupForm';
 
 
 export default function SignupScreen() {
 	const router = useRouter();
-	const { slideUpStyle, fadeInStyle, slideLeftStyle } = useFadeInStyles(50, 50, 800)
+	const animation = useFadeInStyles(50, 50, 800, 0)
+
 	return (
 		<SafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
 				{/* Back Button */}
-				<IconPressable
-					style={[container.back_button, text.black, text.icon]}
-					icon={'chevron-left'}
-					onPress={() => router.back()}
-				></IconPressable>
+				<Animated.View style={animation.fadeInStyle}>
+					<CustomLink
+						onPress={() => { router.back() }}
+						onLongPress={() => { }}
+						title={''}
+						iconLeft={null}
+						iconRight={<FontAwesome name="chevron-left" style={[text.black, text.icon, container.back_button]} />}
+						iconRightStyle={{}}
+						style={container.back_button}
+						textStyle={{}}
+						disabled={false}
+						loading={false} />
+				</Animated.View>
 
 				{/* Header */}
-				<Animated.View style={[container.header, slideLeftStyle]}>
+				<Animated.View style={[container.header, animation.slideLeftStyle]}>
 					<BoldText style={[text.large, text.black]}>{'Create\nAccount.'}</BoldText>
 				</Animated.View>
 
@@ -39,7 +47,7 @@ export default function SignupScreen() {
 				<SignupForm />
 
 				{/* Recover Password */}
-				<Animated.View style={slideUpStyle}>
+				<Animated.View style={animation.slideUpStyle}>
 					<CustomLink
 						loading={false}
 						onPress={() => { router.push('../(Active_User)/LoginScreen'); }}

@@ -2,6 +2,9 @@
 import React, { useCallback } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { Pressable as RNPressable } from 'react-native';
+import Animated from 'react-native-reanimated';
+import { useFadeInStyles } from '@/hooks/animationStyle';
+
 
 // Opacity and transformation changes upon press 
 export function ButtonPressable({ children, style, activeOpacity, ...otherProps }) {
@@ -22,7 +25,8 @@ export function ButtonPressable({ children, style, activeOpacity, ...otherProps 
   );
 }
 
-export function LinkPressable({ children, style,  ...otherProps }) {
+export function LinkPressable({ children, style, ...otherProps }) {
+  const animation = useFadeInStyles(50, 50, 800,0)
   const _style = useCallback(
     ({ pressed }) => [
       {
@@ -36,29 +40,32 @@ export function LinkPressable({ children, style,  ...otherProps }) {
     <RNPressable style={_style} {...otherProps}>
       {children}
     </RNPressable>
-    
+
   );
 }
 
 // Animation icon button
 export function IconPressable({ style, icon, onPress, ...otherProps }) {
+  const animation = useFadeInStyles(50, 50, 800,0)
   const _style = useCallback(
     ({ pressed }) => [
       {
         activeOpacity: 1,
         transform: (pressed ? [{ scale: 0.80 }] : ''),
-      } && {alignSelf: 'baseline'}],
+      } && { alignSelf: 'baseline' }],
     [style]
   );
 
   return (
-    <RNPressable style={_style} {...otherProps}>
-      <FontAwesome 
-        name={icon}
-        style={[style]}
-        onPress={onPress}
+    <Animated.View style={animation.fadeInStyle}>
+      <RNPressable style={_style} {...otherProps}>
+        <FontAwesome
+          name={icon}
+          style={[style]}
+          onPress={onPress}
         />
-    </RNPressable>
+      </RNPressable>
+    </Animated.View>
   );
 }
 

@@ -14,31 +14,40 @@ import { CustomSafeAreaView, HorizontalPaddedView } from '../../components/Views
 import { BoldText, SemiBoldText } from '../../components/Text/StyledText';
 import { IconPressable } from '../../components/Buttons/CustomPressable';
 import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-
+import CustomLink from '@/components/Buttons/CustomLink';
+import { FontAwesome } from '@expo/vector-icons';
 
 
 export default function SelectionScreen() {
 	const router = useRouter();
-	const { fadeInStyle, slideUpStyle } = useFadeInStyles(50, 50, 800)
+	const animation = useFadeInStyles(50, 50, 800, 0)
 
 	return (
 		<CustomSafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
-				<IconPressable
-					style={[container.back_button, text.black, text.icon]}
-					icon={'chevron-left'}
-					onPress={() => router.back()}
-				></IconPressable>
+				<Animated.View style={animation.fadeInStyle}>
+					<CustomLink
+						onPress={() => { router.back() }}
+						onLongPress={() => { }}
+						title={''}
+						iconLeft={null}
+						iconRight={<FontAwesome name="chevron-left" style={[text.black, text.icon, container.back_button]} />}
+						iconRightStyle={{}}
+						style={container.back_button}
+						textStyle={{}}
+						disabled={false}
+						loading={false} />
+				</Animated.View>
 
 				{/* Logo */}
-				<Animated.View style={[container.logo, fadeInStyle]}>
+				<Animated.View style={[container.logo, animation.fadeInStyle]}>
 					<BoldText style={[text.black, text.largest]}>
 						GYM/<SemiBoldText style={text.yellow}>HUB</SemiBoldText>
 					</BoldText>
 				</Animated.View>
 
 				{/* Bottom Buttons */}
-				<Animated.View style={[container.bottom, slideUpStyle]}>
+				<Animated.View style={[container.bottom, animation.slideUpStyle]}>
 					<CustomButton
 						loading={false}
 						onPress={() => { router.push('(Active_User)/LoginScreen') }}

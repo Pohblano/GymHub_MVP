@@ -24,14 +24,15 @@ import { SignupSchema } from '@/utils/validation';
 
 
 
-
 export default function SignupForm() {
 	const router = useRouter();
-	const { slideUpStyle, fadeInStyle, slideLeftStyle } = useFadeInStyles(50, 50, 800)
+	const animation = useFadeInStyles(50, 50, 800, 0)
+	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
+	const delayeddAnimation = useFadeInStyles(50, 50, 800, 400)
 	const [isPassVisible, setPassVisible] = useState(false)
 	const [isConfirmPassVisible, setConfirmPassVisible] = useState(false)
 	const [loading, setLoading] = useState(false)
-	const {register} = useAuth()
+	const { register } = useAuth()
 
 	useEffect(() => {
 		let timer: string | number | NodeJS.Timeout | undefined;
@@ -51,7 +52,7 @@ export default function SignupForm() {
 
 	const formik = useFormik({
 		initialValues: { email: '', password: '', confirmPassword: '' },
-		// validationSchema: SignupSchema,
+		validationSchema: SignupSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
 			await register(values.email, values.password, setErrors, setSubmitting)
 		},
@@ -60,56 +61,62 @@ export default function SignupForm() {
 	return (
 		<>
 			{/* START OF FORM */}
-			<Animated.View style={[container.form, fadeInStyle]}>
-				<TextInput
-					style={[
-						container.input_text, text.black,
-						formik.touched.email && formik.errors.email ? form.error_input : null]}
-					placeholderTextColor={'#BDBDBD'}
-					placeholder='Email'
-					value={formik.values.email}
-					onChangeText={formik.handleChange('email')}
-					onBlur={formik.handleBlur('email')}
-				/>
+			<View style={[container.form]}>
+				<Animated.View style={animation.fadeInStyle}>
+					<TextInput
+						style={[
+							container.input_text, text.black,
+							formik.touched.email && formik.errors.email ? form.error_input : null]}
+						placeholderTextColor={'#BDBDBD'}
+						placeholder='Email'
+						value={formik.values.email}
+						onChangeText={formik.handleChange('email')}
+						onBlur={formik.handleBlur('email')} />
+				</Animated.View>
 				{formik.touched.email && formik.errors.email ? (
-					<Text style={text.error} >{formik.errors.email}</Text>
+					<Animated.Text style={[text.error, animation.fadeInStyle]} >{formik.errors.email}</Animated.Text>
 				) : null}
-				<PasswordInput
-					value={formik.values.password}
-					setValue={formik.handleChange('password')}
-					visible={isPassVisible}
-					setVisible={setPassVisible}
-					placeholder={'Password'}
-					containerStyle={{}}
-					inputStyle={[
-						container.input_text, text.black,
-						formik.touched.password && formik.errors.password ? form.error_input : null]}
-					iconStyle={{}}
-				/>
+
+				<Animated.View style={delayedAnimation.fadeInStyle}>
+					<PasswordInput
+						value={formik.values.password}
+						setValue={formik.handleChange('password')}
+						visible={isPassVisible}
+						setVisible={setPassVisible}
+						placeholder={'Password'}
+						containerStyle={{}}
+						inputStyle={[
+							container.input_text, text.black,
+							formik.touched.password && formik.errors.password ? form.error_input : null]}
+						iconStyle={{}} />
+				</Animated.View>
 				{formik.touched.password && formik.errors.password ? (
-					<Text style={text.error}>{formik.errors.password}</Text>
+					<Animated.Text style={[text.error, animation.fadeInStyle]}>{formik.errors.password}</Animated.Text>
 				) : null}
 
-				<PasswordInput
-					value={formik.values.confirmPassword}
-					setValue={formik.handleChange('confirmPassword')}
-					visible={isConfirmPassVisible}
-					setVisible={setConfirmPassVisible}
-					placeholder={'Confirm Password'}
-					containerStyle={{}}
-					inputStyle={[
-						container.input_text, text.black,
-						formik.touched.confirmPassword && formik.errors.confirmPassword ? form.error_input : null]}
-					iconStyle={{}}
-				/>
+				<Animated.View style={delayeddAnimation.fadeInStyle}>
+					<PasswordInput
+						value={formik.values.confirmPassword}
+						setValue={formik.handleChange('confirmPassword')}
+						visible={isConfirmPassVisible}
+						setVisible={setConfirmPassVisible}
+						placeholder={'Confirm Password'}
+						containerStyle={{}}
+						inputStyle={[
+							container.input_text, text.black,
+							formik.touched.confirmPassword && formik.errors.confirmPassword ? form.error_input : null]}
+						iconStyle={{}} />
+				</Animated.View>
 				{formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-					<Text style={text.error}>{formik.errors.confirmPassword}</Text>
+					<Animated.Text style={[text.error, animation.fadeInStyle]}>{formik.errors.confirmPassword}</Animated.Text>
 				) : null}
 
 
+				<Animated.View style={delayedAnimation.fadeInStyle}>
 				<Seperator_Text style={{ marginVertical: 10 }}>{'Or Sign Up With'}</Seperator_Text>
+				</Animated.View>
 
-				<View style={[container.flex_x, styles.side_buttons]}>
+				<Animated.View style={[container.flex_x, styles.side_buttons, delayeddAnimation.fadeInStyle]}>
 					<CustomButton
 						loading={false}
 						onPress={() => { }}
@@ -136,11 +143,11 @@ export default function SignupForm() {
 						textStyle={[text.black, text.regular_button]}
 						disabled={false}
 					/>
-				</View>
-			</Animated.View>
+				</Animated.View>
+			</View>
 
 			{/* Bottom Buttons */}
-			<Animated.View style={[container.bottom, { gap: 10 }, slideUpStyle]}>
+			<Animated.View style={[container.bottom, { gap: 10 }, animation.slideUpStyle]}>
 				<CustomButton
 					loading={formik.isSubmitting}
 					onPress={formik.handleSubmit}

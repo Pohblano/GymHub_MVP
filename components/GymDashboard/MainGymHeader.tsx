@@ -1,42 +1,55 @@
 // Modules
 import React from 'react'
-import { View } from 'react-native'
+import { View, Text} from 'react-native'
 import { useNavigation, useRouter } from 'expo-router'
 import { DrawerNavigationProp, DrawerToggleButton } from "@react-navigation/drawer";
 import { DrawerActions, ParamListBase } from '@react-navigation/native';
-// Styling
 import Animated from 'react-native-reanimated'
-
+// Styling
 import { text } from '@/styles/text.styles'
+import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
-import { IconPressable } from '../Buttons/CustomPressable'
 import { BoldText, RegularText } from '../Text/StyledText'
 import ScrollableNavBar from '../Utils/ScrollableNavBar'
+import CustomLink from '../Buttons/CustomLink';
+import { FontAwesome } from '@expo/vector-icons';
+import ScheduleStatus, { ScheduleType } from '../Utils/ScheduleStatus';
 
-
-function MainGymHeader({activeItem, setActiveItem, gym_title}:{
+function MainGymHeader({ activeItem, setActiveItem, gym_title, items, schedule }: {
 	activeItem: string,
-	// setActiveItem:
-	gym_title: string
+	setActiveItem: (item:string) => any
+	gym_title: string,
+	items: string[],
+	schedule: ScheduleType
 }
 ) {
 	const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
-
+	const animation = useFadeInStyles(50, 50, 800, 0)
+	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
+	
 	return (
 		<Animated.View className='flex-none' >
-			<IconPressable
-				className='self-end mb-8'
-				style={[text.black, text.large]}
+			<CustomLink
 				onPress={() => { navigation.dispatch(DrawerActions.toggleDrawer()) }}
-				icon='navicon' />  
-			{/* <DrawerToggleButton /> */}
+				onLongPress={() => { }}
+				title={''}
+				iconLeft={null}
+				iconRight={<FontAwesome name="navicon" style={[text.black, text.large]} />}
+				iconRightStyle={{}}
+				style={{ display: 'flex', alignSelf: 'flex-end', marginBottom: 0 }}
+				textStyle={{}}
+				disabled={false}
+				loading={false} />
 			<View className='mb-2'>
-				<RegularText style={[text.light_grey, text.small]}>{'This is'}</RegularText>
-				<BoldText style={[text.large,]}>{gym_title}</BoldText>
+				<RegularText style={[text.light_grey, text.small, animation.slideLeftStyle]}>{'This is'}</RegularText>
+				<Animated.View className='d-flex flex-row' style={delayedAnimation.slideLeftStyle}>
+					<BoldText style={[text.large]}>{gym_title}</BoldText>
+					<ScheduleStatus business={'The gym'} schedule={schedule}/>
+				</Animated.View>
 			</View>
 
 			<ScrollableNavBar
-				items={['Home', 'Trainers', 'Socials', 'About']}
+				items={items}
 				activeItem={activeItem}
 				setActiveItem={setActiveItem} />
 		</Animated.View >

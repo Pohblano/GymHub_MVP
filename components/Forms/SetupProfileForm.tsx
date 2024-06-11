@@ -1,5 +1,5 @@
 // Node Modules
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { Picker } from '@react-native-picker/picker';
 import * as ImagePicker from 'expo-image-picker';
@@ -14,7 +14,6 @@ import { container } from '@/styles/containers.styles'
 import { form } from '@/styles/form.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
-import { Text, View } from '../Themed';
 import CustomButton from '../Buttons/CustomButton';
 import ImagePreviewInput from './Utils/ImagePreviewInput'
 import DisplayNameInput from './Utils/DisplayNameInput';
@@ -28,10 +27,12 @@ export default function SetupProfileForm() {
 	const router = useRouter();
 	const [location, setLocation] = useState<Boolean>(false);
 	const [imageUri, setImageUri] = useState<String>('');
-	const { slideUpStyle, fadeInStyle, slideLeftStyle } = useFadeInStyles(50, 50, 800)
+	const animation = useFadeInStyles(50, 50, 800, 0)
+	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
+	const delayeddAnimation = useFadeInStyles(50, 50, 800, 400)
 	const [gyms, setGyms] = useState([])
 	const [selectedGym, setSelectedGym] = useState('');
-	const { user, update} = useAuth()
+	const { user, update } = useAuth()
 
 	const handleImagePreview = async () => {
 		let result = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -77,7 +78,7 @@ export default function SetupProfileForm() {
 	};
 
 	const formik = useFormik({
-		initialValues: { profile_img: '',name: '', location: '' },
+		initialValues: { profile_img: '', name: '', location: '' },
 		validationSchema: SetupProfileSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
 			const response = await update(user.uid, values, setErrors, setSubmitting)
@@ -88,45 +89,52 @@ export default function SetupProfileForm() {
 	return (
 		<>
 
-			<Animated.View style={[{ flex: 2, gap: 15 }, fadeInStyle]}>
+			<Animated.View style={[{ flex: 2, gap: 15 }]}>
 
 				{/* START OF FORM */}
-				<ImagePreviewInput
-					style={{ alignSelf: 'center' }}
-					imageUri={imageUri}
-					handleImagePreview={handleImagePreview} />
+				<Animated.View>
+					<ImagePreviewInput
+						style={[{ alignSelf: 'center' }, animation.fadeInStyle]}
+						imageUri={imageUri}
+						handleImagePreview={handleImagePreview} />
+				</Animated.View>
+
 				{formik.touched.profile_img && formik.errors.profile_img ? (
-					<Text style={text.error}>{formik.errors.profile_img}</Text>
+					<Animated.Text style={[text.error, animation.fadeInStyle]}>{formik.errors.profile_img}</Animated.Text>
 				) : null}
 
 
-				<DisplayNameInput
-					iconStyle={{}}
-					containerStyle={{}}
-					inputStyle={[
-						container.input_text, text.black,
-						formik.touched.name && formik.errors.name ? form.error_input : null]}
-					placeholder='Display Name'
-					value={formik.values.name}
-					setValue={formik.handleChange('name')}
-					setBlur={formik.handleBlur('name')} />
+				<Animated.View style={delayedAnimation.fadeInStyle}>
+					<DisplayNameInput
+						iconStyle={{}}
+						containerStyle={{}}
+						inputStyle={[
+							container.input_text, text.black,
+							formik.touched.name && formik.errors.name ? form.error_input : null]}
+						placeholder='Display Name'
+						value={formik.values.name}
+						setValue={formik.handleChange('name')}
+						setBlur={formik.handleBlur('name')} />
+				</Animated.View>
 				{formik.touched.name && formik.errors.name ? (
-					<Text style={text.error} >{formik.errors.name}</Text>
+					<Animated.Text style={[text.error, animation.fadeInStyle]} >{formik.errors.name}</Animated.Text>
 				) : null}
 
 
-				<GetLocationInput
-					iconStyle={{}}
-					containerStyle={[]}
-					inputStyle={[
-						container.input_text,
-						text.black,
-						formik.touched.location && formik.errors.location ? form.error_input : null]}
-					location={location}
-					handleGetLocation={handleGetLocation}
-					value={formik.values.location} />
+				<Animated.View style={delayeddAnimation.fadeInStyle}>
+					<GetLocationInput
+						iconStyle={{}}
+						containerStyle={[]}
+						inputStyle={[
+							container.input_text,
+							text.black,
+							formik.touched.location && formik.errors.location ? form.error_input : null]}
+						location={location}
+						handleGetLocation={handleGetLocation}
+						value={formik.values.location} />
+				</Animated.View>
 				{formik.touched.location && formik.errors.location ? (
-					<Text style={text.error}>{formik.errors.location}</Text>
+					<Animated.Text style={[text.error, animation.fadeInStyle]}>{formik.errors.location}</Animated.Text>
 				) : null}
 
 				{/* <Picker
@@ -152,7 +160,7 @@ export default function SetupProfileForm() {
 
 
 			{/* Bottom Buttons */}
-			<Animated.View style={[container.bottom, { gap: 10 }, slideUpStyle]}>
+			<Animated.View style={[container.bottom, { gap: 10 }, animation.slideUpStyle]}>
 				<CustomButton
 					loading={formik.isSubmitting}
 					onPress={formik.handleSubmit}
