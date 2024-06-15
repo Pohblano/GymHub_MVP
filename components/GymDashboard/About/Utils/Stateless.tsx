@@ -3,7 +3,7 @@ import { IconBenchPress, IconDumbells, IconExerciseBike, IconPunchingBag, IconSu
 import { text } from '@/styles/text.styles'
 import { FontAwesome5, FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons'
 import React from 'react'
-import { View } from 'react-native'
+import { View, Text} from 'react-native'
 
 // TYPES
 type Amenity = keyof typeof gym_ammenities;
@@ -46,7 +46,7 @@ export function GymBiography({ bio }: {
 	bio: string
 }) {
 	return (
-		<MediumText style={[{ marginTop: 30 }, text.regular]}>{bio}</MediumText>
+		<Text style={[{ marginTop: 30, fontWeight: 300 }, text.sub_heading,]}>{bio}</Text>
 	)
 }
 
@@ -58,7 +58,8 @@ export function GymAllEquipment({ list }: {
 	}[]
 }) {
 	return (
-		<>
+		<>	
+			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{'EQUIPMENT'}</SemiBoldText>
 			{list.map((
 				item: {
 					title: string,
@@ -80,13 +81,13 @@ function GymEquipment({ title, description, icon }: {
 	icon: React.JSX.Element
 }) {
 	return (
-		<View className='d-flex flex-row gap-4' style={{ marginTop: 30 }}>
+		<View className='d-flex flex-row gap-4' style={{ marginBottom: 30 }}>
 			<View style={{width: 30}}>
 				{icon}
 			</View>
 			<View style={{ width: '100%' }}>
 				<SemiBoldText className='mb-2' style={[text.black, text.sub_heading]}>{title}</SemiBoldText>
-				<RegularText style={[text.light_grey, text.regular, {}]}>{description}</RegularText>
+				<Text style={[text.light_grey, text.regular, {fontWeight: 300}]}>{description}</Text>
 			</View>
 		</View>
 
@@ -101,7 +102,7 @@ export function GymAmenities({ list }: {
 }) {
 	return (
 		<>
-			<SemiBoldText className='mb-1' style={[text.sub_heading]}>{'Amenities'}</SemiBoldText>
+			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{'AMENITIES'}</SemiBoldText>
 			{list.map((
 				item: {
 					icon: string,
@@ -120,11 +121,11 @@ function GymAmenity({ title, icon }: {
 	icon: React.JSX.Element
 }) {
 	return (
-		<View className="d-flex flex-row " style={{ marginTop: 30, gap: 15 }}>
+		<View className="d-flex flex-row " style={{ marginBottom: 30, gap: 15 }}>
 			<View style={{width: 30}}>
 				{icon}
 			</View>
-			<RegularText style={[text.sub_heading, text.black,]}>{title}</RegularText>
+			<SemiBoldText style={[text.sub_heading, text.black,]}>{title}</SemiBoldText>
 		</View>
 	)
 }

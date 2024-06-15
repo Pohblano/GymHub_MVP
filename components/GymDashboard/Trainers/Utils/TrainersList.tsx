@@ -23,13 +23,11 @@ export default function TrainersList({ trainers }: {
 }) {
 	const delayeddAnimation = useFadeInStyles(50, 50, 500, 400)
 	const sequentialSlideUpStyle = sequentialStyles(trainers, 50, 800, -300, 200)
-0
 	return (
-		<Animated.View className='d-flex' style={{ marginTop: 40 }}>
+		<Animated.View className='d-flex' style={{ marginTop: 40 }} entering={FadeInDown.duration(600).delay(400)}>
 			<SemiBoldText style={[text.sub_heading, delayeddAnimation.fadeInStyle]}>{'Trainers'}</SemiBoldText>
 
 			{trainers.map((trainer, index) => (
-				// style={[sequentialSlideUpStyle[index].slideInStyle]}
 				<Animated.View key={index} style={[sequentialSlideUpStyle[index].slideInStyle]}>
 					<Link
 						asChild

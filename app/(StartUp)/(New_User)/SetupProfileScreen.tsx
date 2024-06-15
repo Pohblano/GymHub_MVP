@@ -24,7 +24,7 @@ export default function SetupProfileScreen() {
 					style={[container.back_button, text.white, text.icon]}
 					icon={'chevron-left'}
 					onPress={() => { }}
-				></IconPressable>
+				/>
 
 				{/* Header */}
 				<Animated.View style={[container.header, { marginBottom: 10 }, animation.slideLeftStyle]}>

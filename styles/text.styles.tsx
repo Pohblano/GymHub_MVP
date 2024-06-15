@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 export const text = StyleSheet.create({
 	// Color
 	black: {
-		color: '#454545',
+		color: 'rgba(0, 0, 0, 0.842)',
 	},
 	yellow: {
 		color: '#e7be60',
@@ -12,10 +12,13 @@ export const text = StyleSheet.create({
 		color: 'white'
 	},
 	light_grey: {
-		color: '#BDBDBD'
+		color: '#000000b0'
 	},
 	grey: {
-		color: '#a1a1a1'
+		color: '#00000056'
+	},
+	lighter_grey:{
+		color: '#9b9b9b'
 	},
 	gym207:{
 		color:'#62D767'
@@ -33,6 +36,9 @@ export const text = StyleSheet.create({
 	},
 	small: {
 		fontSize: 23
+	},
+	smedium:{
+		fontSize: 26
 	},
 	medium:{
 		fontSize: 30

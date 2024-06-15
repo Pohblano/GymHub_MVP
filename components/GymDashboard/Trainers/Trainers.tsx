@@ -13,10 +13,26 @@ export interface TrainerType {
 	name?: string,
 	first_name?: string,
 	last_name?: string,
+	contact_info?: { 
+		email?:string, 
+		phone?: string
+	}
 	biography?: string,
-	specialty?: string[],
+	specialty?: [],
 	rating?: number,
 	img?: string,
+	img_list?: [],
+	schedule?: {},
+	schedule_overview?: {
+		days?: string,
+		time?: string,
+	},
+	socials?: {
+		tiktok?: string,
+		instagram?: string,
+		facebook?: string,
+	},
+	appointments?: []
 }
 
 export default function Trainers() {

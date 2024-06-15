@@ -33,14 +33,37 @@ export const GymContextProvider = ({ children }) => {
 
 	}, [])
 
+	const updateGym = async (uid, data) => {
+		try {
+			const gymRef = doc(db, 'Gyms', uid)
+			await updateDoc(gymRef, data)
+			console.log('UPDATED GYM DATA')
 
+		} catch (err) {
+			console.log(err)
+			setError(err.message);
+			console.log('There was an error updating gym data.')
+		}
+	}
+
+	const createTrainers = async (gym_uid, data) => {
+		try{
+			const collRef = collection(db, 'Gyms', gym_uid, 'Trainers')
+			data.map((item)=>{
+				addDoc(collRef, item)
+			})
+		}catch(e){
+			console.log(e)
+		}
+	} 
+	
 	const getGyms = async () => {
 		try {
 			const querySnapshot = await getDocs(collection(db, 'Gyms'))
 			const gymsList = querySnapshot.docs.map(doc => ({
 				uid: doc.id,
 				...doc.data()
-			  }));
+			}));
 			return gymsList
 
 		} catch (err) {
@@ -52,7 +75,7 @@ export const GymContextProvider = ({ children }) => {
 	const getGymSubCollectionData = async (gym_uid, sub_collection, setStateData) => {
 		try {
 			const querySnapshot = await getDocs(collection(db, 'Gyms', gym_uid, sub_collection))
-			const dataList = querySnapshot.docs.map((doc) =>({
+			const dataList = querySnapshot.docs.map((doc) => ({
 				uid: doc.id,
 				...doc.data()
 			}))
@@ -61,12 +84,12 @@ export const GymContextProvider = ({ children }) => {
 			setError(err.message);
 			console.log(err.message)
 			console.log(`There was an error retrieving ${sub_collection}`)
-			
-		} 
+
+		}
 	}
 
 	return (
-		<GymContext.Provider value={{ dataLoading, gym, trainers, reviews }}>
+		<GymContext.Provider value={{ dataLoading, gym, trainers, reviews, updateGym, createTrainers }}>
 			{children}
 		</GymContext.Provider>
 	)

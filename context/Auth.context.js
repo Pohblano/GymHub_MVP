@@ -97,7 +97,6 @@ export const AuthContextProvider = ({ children }) => {
 
 	const register = async (email, password, setErrors, setSubmitting) => {
 		try {
-			// router.replace('./(Active_User)/DashboardScreen')
 			const response = await createUserWithEmailAndPassword(auth, email, password)
 
 			if (response.user) {

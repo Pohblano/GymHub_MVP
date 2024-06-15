@@ -92,9 +92,9 @@ export default function SetupProfileForm() {
 			<Animated.View style={[{ flex: 2, gap: 15 }]}>
 
 				{/* START OF FORM */}
-				<Animated.View>
+				<Animated.View style={ animation.fadeInStyle}>
 					<ImagePreviewInput
-						style={[{ alignSelf: 'center' }, animation.fadeInStyle]}
+						style={[{ alignSelf: 'center' }]}
 						imageUri={imageUri}
 						handleImagePreview={handleImagePreview} />
 				</Animated.View>

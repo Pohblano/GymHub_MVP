@@ -30,10 +30,10 @@ type ActiveComponent = keyof ComponentMap;
 export default function GymDashboardScreen() {
 	const router = useRouter();
 	const items = ['Home', 'Trainers', 'About', 'Socials',];
-	const [activeItem, setActiveItem] = useState(items[0]);
+	const [activeItem, setActiveItem] = useState(items[1]);
 	const [loading, setLoading] = useState(true);
-	const { logout, user } = useAuth();
-	const { gym, gymsList } = useGym();
+	// const { logout, user } = useAuth();
+	const { gym } = useGym();
 
 	const pagerViewRef = useRef<PagerView>(null);
 
@@ -44,9 +44,9 @@ export default function GymDashboardScreen() {
 		return () => clearTimeout(timer);
 	}, []);
 
-	const handlePageChange = (index: number) => {
-		setActiveItem(items[index]);
-	}
+	// const handlePageChange = (index: number) => {
+	// 	setActiveItem(items[index]);
+	// }
 
 	const handleNavigationChange = (item: string) => {
 		setActiveItem(item);
@@ -55,7 +55,7 @@ export default function GymDashboardScreen() {
 	}
 
 	const dashboardMapping: ComponentMap = {
-		Home: <Home logout={logout} />,
+		Home: <Home />,
 		Trainers: <Trainers />,
 		Socials: <Socials user={'gym'} />,
 		About: <About />,
@@ -85,16 +85,16 @@ export default function GymDashboardScreen() {
 	)
 }
 
-const styles = StyleSheet.create({
-	background: {
-		position: 'absolute',
-		left: 0,
-		right: 0,
-		top: 0,
-		height: '100%',
-		display: 'flex',
-		justifyContent: 'space-between',
-		padding: 30,
-		borderRadius: 10
-	},
-})
+// const styles = StyleSheet.create({
+// 	background: {
+// 		position: 'absolute',
+// 		left: 0,
+// 		right: 0,
+// 		top: 0,
+// 		height: '100%',
+// 		display: 'flex',
+// 		justifyContent: 'space-between',
+// 		padding: 30,
+// 		borderRadius: 10
+// 	},
+// })

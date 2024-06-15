@@ -14,7 +14,7 @@ import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
 import { Text } from '../Themed';
 import { Seperator_Text } from '../Views/PaddedView';
-import { IconGoogleRound, IconFacebookRound, IconShowPassword, IconHidePassword } from '@/constants/Icons';
+import { IconGoogleRound, IconFacebookRound } from '@/constants/Icons';
 import CustomButton from '../Buttons/CustomButton';
 import PasswordInput from './Utils/PasswordInput';
 // Context

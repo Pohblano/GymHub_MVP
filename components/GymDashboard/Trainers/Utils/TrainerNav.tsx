@@ -12,7 +12,7 @@ import { useFadeInStyles } from '@/hooks/animationStyle';
 import ScrollableNavBar from '@/components/Utils/ScrollableNavBar';
 
 
-function TrainerHeader({activeItem, setActiveItem, items}:{
+function TrainerNav({activeItem, setActiveItem, items}:{
 	
 	activeItem: string,
 	// setActiveItem:
@@ -32,4 +32,4 @@ function TrainerHeader({activeItem, setActiveItem, items}:{
 	)
 }
 
-export default TrainerHeader
+export default TrainerNav

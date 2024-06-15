@@ -1,0 +1,158 @@
+{
+	"address": "C. Tercera 7839, Zona Centro, 22000 Tijuana, B.C.",
+	"amenities": [
+		{
+			"icon": "wifi",
+			"title": "Wifi"
+		},
+		{
+			"icon": "showers",
+			"title": "Showers"
+		},
+		{
+			"icon": "storage",
+			"title": "Storage"
+		}
+	],
+	"biography": "20/7 Gym is a staple to many locals. Located near the heart of the city, it is surrounded with a variety of accessible stores and vendors all within a walking distance. The gym itself holds a plethora of equipment including the popular three, being the squat rack.",
+	"equipment": [
+		{
+			"description": "Dumbell weights up to 100lbs",
+			"icon": "dumbells",
+			"title": "Extensive Dumbell Rack"
+		},
+		{
+			"description": "Machines for all body parts (e.g. Squat Rack, Bench Press, Rows, etc.)",
+			"icon": "weight_machines",
+			"title": "Weight Machines"
+		},
+		{
+			"description": "Variety of machines for cardio (e.g. treadmill, cycles, stair master, etc.)",
+			"icon": "cardio_machines",
+			"title": "Cardio Machines"
+		},
+		{
+			"description": "Access to popular supplements (e.g. Protein Powder, Creatine, BCAAs, etc.)",
+			"icon": "supplements",
+			"title": "Supplements"
+		},
+		{
+			"description": "Small fruit and protein smoothie bar, good for pre or post workout.",
+			"icon": "stand",
+			"title": "Protein Bar"
+		}
+	],
+	"images": {
+		"gym_display_image": "https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2Fgym_display_image.png?alt=media&token=5988c186-0d0f-424d-8d95-1f76b6bfac21",
+		"large_slider": [
+			"https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FLargeAboutSlider%2Fgym_front.jpg?alt=media&token=58b8b5b0-e5b7-4b1b-8bd7-59fbb0b11789",
+			"https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FLargeAboutSlider%2Fequipment_squatrack.jpg?alt=media&token=23e14a23-869c-4b87-8ddb-9b08fe84a70a",
+			"https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FLargeAboutSlider%2Fequipment_dumbells.jpg?alt=media&token=b2e20973-8177-49a5-b964-4e8705e6370a",
+			"https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FLargeAboutSlider%2Fequipment_cardio.jpg?alt=media&token=63469ad1-5f55-46ac-ad89-ab6d03fe70c8",
+			"https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FLargeAboutSlider%2Fequipment_cables.webp?alt=media&token=3d3438c2-e634-4af5-a12f-c7942d0adc6d"
+		],
+		"memberships": "https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2Feduardo-cano-photo-co-sxBt--IMwQc-unsplash.jpg?alt=media&token=8c3449b9-a5d6-4ca1-980e-3cca527f60af",
+		"promotions": "https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FCapture.PNG?alt=media&token=d4297691-5a96-48a4-a877-24036d0d1235",
+		"trainer_spotlight": "https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2Ftrainer_spotlight.png?alt=media&token=bf2e6cde-8bd3-4fca-bf54-f25d11c91f31"
+	},
+	"location_coordinates": {
+		"latitude": 32.53349,
+		"latitudeDelta": 0.01,
+		"longitude": -117.04236859999999,
+		"longitudeDelta": 0.01
+	},
+	"name": "Gym 20/7",
+	"price": "$$",
+	"rating": 5,
+	"reviews": [
+		"6izuGPxLMmXZPTxNlJZc",
+		"Guufd8xmVXsuQN1mwcX1",
+		"REmvL7eGmNq98JWM2XwQ",
+		"ccUjRJNMlG9ozbq9sCj9",
+		"g6OwASGQUdBgtu9nJ3gp",
+		"liZYGj7RFxMRK2QBknWX",
+		"u6Qe3UGbZbWoRANNc8pN",
+		"uEbzONOcrpYZrfuc6Xw2"
+	],
+	"schedule": {
+		"friday": {
+			"close": "22:00",
+			"open": "06:00"
+		},
+		"monday": {
+			"close": "22:00",
+			"open": "06:00"
+		},
+		"saturday": {
+			"close": "15:00",
+			"open": "07:00"
+		},
+		"sunday": {
+			"close": "15:00",
+			"open": "08:00"
+		},
+		"thursday": {
+			"close": "22:00",
+			"open": "06:00"
+		},
+		"tuesday": {
+			"close": "22:00",
+			"open": "06:00"
+		},
+		"wednesday": {
+			"close": "22:00",
+			"open": "06:00"
+		}
+	},
+	"socials": {
+		"instagram": "  <blockquote class=\"instagram-media\" data-instgrm-permalink=\"https://www.instagram.com/20_7_gym\" data-instgrm-version=\"12\" style=\" background:#FFF; border:1; border-radius:10px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); max-width:540px; min-width:326px; padding:0; width:99.375%; width:undefinedpx;height:undefinedpx;max-height:100%; width:undefinedpx;\">     </blockquote>           <script async src=\"https://www.instagram.com/embed.js\"></script>",
+		"tiktok": " <blockquote class=\"tiktok-embed\" cite=\"https://www.tiktok.com/@20.7gymtj\" data-unique-id=\"20.7gymtj\" data-embed-type=\"creator\" style=\" height: 100%;\"> <section style=\"width: 100%; height: 100%; \"> <a target=\"_blank\" href=\"https://www.tiktok.com/@20.7gymtj?refer=creator_embed\">@20.7gymtj</a> </section> </blockquote> <script async src=\"https://www.tiktok.com/embed.js\"></script>"
+	},
+	"trainer_spotlight": "MRIr2pzzw6fMNp8k2Tm6",
+	"trainers": [
+		"MRIr2pzzw6fMNp8k2Tm6",
+		"lDXavKIQUTcuxTTPg15j",
+		"o7KAFieEzF2sbN5NVArd",
+		"yJ1JPoC3avklySFZwhgy"
+	],
+	"uid": "7NRQM4Uh79imolGP2rNW",
+	"memberships": {
+		"title": "Individual Memberships",
+		"subtitle": "Hastle free, no committment",
+		"frontDetails": "No contract & no training limitations.",
+		"list": [
+			{
+				"title": "Month-to-Month",
+				"details": "",
+				"price": "600 MXN /mo"
+			},
+			{
+				"title": "Week Pass",
+				"details": "",
+				"price": "200 MXN /wk"
+			},
+			{
+				"title": "Day Pass",
+				"details": "",
+				"price": "50 MXN /day"
+			}
+		],
+		"extraDetails": "*Memberships are with no committments and come with access to all amenities."
+	},
+	"promotions":{
+		"extraDetails": "*All promos apply to new and existing clients without training or day limits",
+		"frontDetails": "Packages aimed to save you more in the long run.",
+		"list": [
+			{
+				"details": "(Partners must renew together monthly)",
+				"price": "1,000 MXN /mo",
+				"title": "Join with your partner!"
+			},
+			{
+				"details": "(Pricing set for individual memberships)",
+				"price": "3,000 MXN /6 mo5,500 MXN /yr", "title": "Saving longterm"}
+			],
+			"subtitle": "Bundles set to help you",
+			"title": "Save More"
+		}
+	}

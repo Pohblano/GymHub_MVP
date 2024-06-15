@@ -100,8 +100,8 @@ export default function GymLocation({ address }: {
 	};
 
 	return (
-		<View style={{ marginTop: 30 }}>
-			<SemiBoldText className='mb-6' style={[text.sub_heading]}>{'Location'}</SemiBoldText>
+		<>
+			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{'LOCATION'}</SemiBoldText>
 			<View className='mb-3 d-flex flex-row'>
 				<View style={{ width: 30 }}>
 					<FontAwesome6
@@ -111,10 +111,10 @@ export default function GymLocation({ address }: {
 						style={{ marginRight: 10 }} />
 				</View>
 
-				<RegularText className='' style={[text.black, text.sub_heading]}>{address}</RegularText>
+				<Text className='' style={[text.black, text.sub_heading, {fontWeight: 300, width: '75%'}]}>{address}</Text>
 			</View>
 
-			<View className='mt-5' style={{}}>
+			<View className='mt-2' style={{}}>
 				{gym.location_coordinates ? (
 					<>
 						{
@@ -134,14 +134,11 @@ export default function GymLocation({ address }: {
 								</LinkPressable>
 						}
 						<MapView
-							
+							initialRegion={gym.location_coordinates}
 							style={styles.map}>
-							<Marker  title={gym.name} description='Gym' coordinate={{
-								latitude: 0,
-								longitude: 0
-							}}/>
+							<Marker  title={gym.name} description='Gym' coordinate={gym.location_coordinates}/>
 						</MapView>
-						<View >
+						<View style={styles.button_wrapper}>
 							<Button title="Get Directions" onPress={openMaps} />
 						</View>
 					</>
@@ -149,7 +146,7 @@ export default function GymLocation({ address }: {
 					<Text style={styles.text}>{errorMsg || "Couldn't find location."}</Text>
 				)}
 			</View>
-		</View>
+		</>
 	)
 }
 

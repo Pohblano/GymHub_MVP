@@ -26,7 +26,7 @@ const isOpen = (schedule: ScheduleType) => {
         // Check if the current time is within any of the open-close intervals for today
         return (currentTime >= todayHours.open && currentTime <= todayHours.close)
     }
-    return false;
+    return false
 }
 
 export default function ScheduleStatus({ business, schedule, subtitle }: {

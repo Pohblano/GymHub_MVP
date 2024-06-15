@@ -15,7 +15,7 @@ export default function GymDisplayImage({ image, caption }:{
 }) {
 	return (
 		<ImageBackground
-			style={{ height: 250, width: 'auto', marginTop: 60, marginBottom: 60}}
+			style={{ height: 250, width: 'auto'}}
 			imageStyle={{ borderRadius: 10 }}
 			source={{ uri: image }}
 		>
