@@ -2,7 +2,9 @@ import { MediumText, RegularText, SemiBoldText } from '@/components/Text/StyledT
 import { IconBenchPress, IconDumbells, IconExerciseBike, IconPunchingBag, IconSupplements } from '@/constants/Icons'
 import { text } from '@/styles/text.styles'
 import { FontAwesome5, FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons'
+import { t } from 'i18next'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { View, Text} from 'react-native'
 
 // TYPES
@@ -57,9 +59,10 @@ export function GymAllEquipment({ list }: {
 		icon: string
 	}[]
 }) {
+	const {t} = useTranslation()
 	return (
 		<>	
-			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{'EQUIPMENT'}</SemiBoldText>
+			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{t('EQUIPMENT')}</SemiBoldText>
 			{list.map((
 				item: {
 					title: string,
@@ -102,7 +105,7 @@ export function GymAmenities({ list }: {
 }) {
 	return (
 		<>
-			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{'AMENITIES'}</SemiBoldText>
+			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{t('AMENITIES')}</SemiBoldText>
 			{list.map((
 				item: {
 					icon: string,

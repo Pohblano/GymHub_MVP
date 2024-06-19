@@ -1,10 +1,11 @@
-// Node Modules
+// Modules
 import React, { useEffect } from 'react';
-import { SafeAreaView, View } from 'react-native'
+import { SafeAreaView, View, StyleSheet } from 'react-native'
+import { useTranslation } from "react-i18next";
+import { FontAwesome } from '@expo/vector-icons';
 // * Routing
 import { useFocusEffect, useRouter } from 'expo-router';
 // *Styling
-import { StyleSheet } from 'react-native'
 import { text } from '../../styles/text.styles'
 import { container } from '../../styles/containers.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle';
@@ -15,12 +16,11 @@ import { BoldText, SemiBoldText } from '../../components/Text/StyledText';
 import { IconPressable } from '../../components/Buttons/CustomPressable';
 import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import CustomLink from '@/components/Buttons/CustomLink';
-import { FontAwesome } from '@expo/vector-icons';
-
 
 export default function SelectionScreen() {
 	const router = useRouter();
 	const animation = useFadeInStyles(50, 50, 800, 0)
+	const { t, i18n } = useTranslation();
 
 	return (
 		<CustomSafeAreaView style={[container.wrapper, container.bg_white]}>
@@ -52,7 +52,7 @@ export default function SelectionScreen() {
 						loading={false}
 						onPress={() => { router.push('(Active_User)/LoginScreen') }}
 						onLongPress={() => { }}
-						title="Log In"
+						title={t('Log In')}
 						iconLeft={''}
 						iconRight={''}
 						activeOpacity={0.8}
@@ -65,7 +65,7 @@ export default function SelectionScreen() {
 						loading={false}
 						onPress={() => { router.push('(New_User)/SignupScreen') }}
 						onLongPress={() => { }}
-						title="Sign Up"
+						title={t("Sign Up")}
 						iconLeft={''}
 						iconRight={''}
 						activeOpacity={0.8}

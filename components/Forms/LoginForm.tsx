@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, TextInput } from 'react-native'
 import { useFormik } from 'formik';
+import Animated from 'react-native-reanimated';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -9,8 +10,8 @@ import { StyleSheet } from 'react-native'
 import { text } from '@/styles/text.styles'
 import { container } from '@/styles/containers.styles'
 import { form } from '@/styles/form.styles'
+import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
-import { Text } from '../Themed';
 import { Seperator_Text } from '../Views/PaddedView';
 import { IconGoogleRound, IconFacebookRound } from '@/constants/Icons';
 import CustomButton from '../Buttons/CustomButton';
@@ -19,10 +20,7 @@ import PasswordInput from './Utils/PasswordInput';
 import { useAuth } from '@/context/Auth.context';
 // Schema
 import { LoginSchema } from '@/utils/validation';
-import Animated from 'react-native-reanimated';
-import { useFadeInStyles } from '@/hooks/animationStyle';
-
-
+import { useTranslation } from 'react-i18next';
 
 
 export default function LoginForm() {
@@ -32,7 +30,7 @@ export default function LoginForm() {
 	const delayeddAnimation = useFadeInStyles(50, 50, 800, 400)
 	const [isPassVisible, setPassVisible] = useState(false)
 	const { login } = useAuth()
-
+	const {t} = useTranslation()
 	useEffect(() => {
 		let timer: string | number | NodeJS.Timeout | undefined;
 		if (isPassVisible) {
@@ -52,8 +50,6 @@ export default function LoginForm() {
 		},
 	});
 
-
-
 	return (
 		<>
 			{/* START OF FORM */}
@@ -64,13 +60,15 @@ export default function LoginForm() {
 							container.input_text, text.black,
 							formik.touched.email && formik.errors.email ? form.error_input : null]}
 						placeholderTextColor={'#BDBDBD'}
-						placeholder='Email'
+						placeholder={t('Email')}
 						value={formik.values.email}
 						onChangeText={formik.handleChange('email')}
 						onBlur={formik.handleBlur('email')} />
 				</Animated.View>
 				{formik.touched.email && formik.errors.email ? (
-					<Animated.Text style={[text.error, animation.fadeInStyle]} >{formik.errors.email}</Animated.Text>
+					<Animated.Text style={[text.error, animation.fadeInStyle]}>
+						{t(formik.errors.email)}{/* i18next-extract-disable-line */}
+					</Animated.Text>
 				) : null}
 
 				<Animated.View style={delayedAnimation.fadeInStyle}>
@@ -79,7 +77,7 @@ export default function LoginForm() {
 						setValue={formik.handleChange('password')}
 						visible={isPassVisible}
 						setVisible={setPassVisible}
-						placeholder={'Password'}
+						placeholder={t('Password')}
 						containerStyle={{}}
 						inputStyle={[
 							container.input_text, text.black,
@@ -87,11 +85,13 @@ export default function LoginForm() {
 						iconStyle={{}} />
 				</Animated.View>
 				{formik.touched.password && formik.errors.password ? (
-					<Animated.Text style={[text.error, animation.fadeInStyle]}>{formik.errors.password}</Animated.Text>
+					/* i18next-extract-disable-line */<Animated.Text style={[text.error, animation.fadeInStyle]}>
+						{t(formik.errors.password)} {/* i18next-extract-disable-line */}
+						</Animated.Text>
 				) : null}
 
 				<Animated.View style={delayedAnimation.fadeInStyle}>
-					<Seperator_Text style={{ marginVertical: 10 }}>{'Or Log In With'}</Seperator_Text>
+					<Seperator_Text style={{ marginVertical: 10 }}>{t('Or Log In With')}</Seperator_Text>
 				</Animated.View>
 
 				<Animated.View style={[container.flex_x, styles.side_buttons, delayeddAnimation.fadeInStyle]}>
@@ -130,7 +130,7 @@ export default function LoginForm() {
 					loading={formik.isSubmitting}
 					onPress={formik.handleSubmit}
 					onLongPress={() => { }}
-					title="Log In"
+					title={t("Log In")}
 					iconLeft={''}
 					iconRight={''}
 					activeOpacity={0.8}

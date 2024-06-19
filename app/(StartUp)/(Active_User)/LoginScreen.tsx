@@ -1,4 +1,4 @@
-// Node Modules
+// Modules
 import React from 'react';
 import Animated from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
@@ -14,11 +14,12 @@ import { CustomSafeAreaView, HorizontalPaddedView } from '@/components/Views/Pad
 import { BoldText } from '@/components/Text/StyledText';
 import CustomLink from '@/components/Buttons/CustomLink';
 import LoginForm from '@/components/Forms/LoginForm';
+import { useTranslation } from 'react-i18next';
 
 export default function LoginScreen() {
 	const router = useRouter();
-	const animation = useFadeInStyles(50, 50, 800, 0)
-
+	const animation = useFadeInStyles(50, 50, 800, 0);
+	const {t} = useTranslation()
 	return (
 		<>
 			<CustomSafeAreaView style={[container.wrapper, container.bg_white]}>
@@ -39,7 +40,7 @@ export default function LoginScreen() {
 				</Animated.View>
 					{/* Header */}
 					<Animated.View style={[container.header, animation.slideLeftStyle]}>
-						<BoldText style={[text.large, text.black]}>{'Welcome\nBack!'}</BoldText>
+						<BoldText style={[text.large, text.black]}>{t('Welcome\nBack!')}</BoldText>
 					</Animated.View>
 
 					{/* Form */}
@@ -51,7 +52,7 @@ export default function LoginScreen() {
 							loading={false}
 							onPress={() => { router.push('RecoverPasswordModalScreen') }}
 							onLongPress={() => { }}
-							title="Forgot your password?"
+							title={t('Forgot your password?')}
 							iconLeft={''}
 							iconRight={''}
 							iconRightStyle={{}}

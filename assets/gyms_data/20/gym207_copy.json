@@ -1,0 +1,114 @@
+{
+	"address": "C. Tercera 7839, Zona Centro, 22000 Tijuana, B.C.",
+	"amenities": [
+		{
+			"icon": "wifi",
+			"title": "Wifi"
+		},
+		{
+			"icon": "showers",
+			"title": "Showers"
+		},
+		{
+			"icon": "storage",
+			"title": "Storage"
+		}
+	],
+	"biography": "20/7 Gym is a staple to many locals. Located near the heart of the city, it is surrounded with a variety of accessible stores and vendors all within a walking distance. The gym itself holds a plethora of equipment including the popular three, being the squat rack.",
+	"equipment": [
+		{
+			"description": "Dumbell weights up to 100lbs",
+			"icon": "dumbells",
+			"title": "Extensive Dumbell Rack"
+		},
+		{
+			"description": "Machines for all body parts (e.g. Squat Rack, Bench Press, Rows, etc.)",
+			"icon": "weight_machines",
+			"title": "Weight Machines"
+		},
+		{
+			"description": "Variety of machines for cardio (e.g. treadmill, cycles, stair master, etc.)",
+			"icon": "cardio_machines",
+			"title": "Cardio Machines"
+		},
+		{
+			"description": "Access to popular supplements (e.g. Protein Powder, Creatine, BCAAs, etc.)",
+			"icon": "supplements",
+			"title": "Supplements"
+		},
+		{
+			"description": "Small fruit and protein smoothie bar, good for pre or post workout.",
+			"icon": "stand",
+			"title": "Protein Bar"
+		}
+	],
+	"schedule": {
+		"friday": {
+			"close": "22:00",
+			"open": "06:00"
+		},
+		"monday": {
+			"close": "22:00",
+			"open": "06:00"
+		},
+		"saturday": {
+			"close": "15:00",
+			"open": "07:00"
+		},
+		"sunday": {
+			"close": "15:00",
+			"open": "08:00"
+		},
+		"thursday": {
+			"close": "22:00",
+			"open": "06:00"
+		},
+		"tuesday": {
+			"close": "22:00",
+			"open": "06:00"
+		},
+		"wednesday": {
+			"close": "22:00",
+			"open": "06:00"
+		}
+	},
+	"memberships": {
+		"title": "Individual Memberships",
+		"subtitle": "Hastle free, no committment",
+		"frontDetails": "No contract & no training limitations.",
+		"list": [
+			{
+				"title": "Month-to-Month",
+				"details": "",
+				"price": "600 MXN /mo"
+			},
+			{
+				"title": "Week Pass",
+				"details": "",
+				"price": "200 MXN /wk"
+			},
+			{
+				"title": "Day Pass",
+				"details": "",
+				"price": "50 MXN /day"
+			}
+		],
+		"extraDetails": "*Memberships are with no committments and come with access to all amenities."
+	},
+	"promotions":{
+		"extraDetails": "*All promos apply to new and existing clients without training or day limits",
+		"frontDetails": "Packages aimed to save you more in the long run.",
+		"list": [
+			{
+				"details": "(Partners must renew together monthly)",
+				"price": "1,000 MXN /mo",
+				"title": "Join with your partner!"
+			},
+			{
+				"details": "(Pricing set for individual memberships)",
+				"price": "3,000 MXN /6 mo5,500 MXN /yr", "title": "Saving longterm"}
+			],
+			"subtitle": "Bundles set to help you",
+			"title": "Save More"
+		}
+	}

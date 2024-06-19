@@ -15,12 +15,13 @@ import { BoldText } from '@/components/Text/StyledText';
 import { IconPressable } from '@/components/Buttons/CustomPressable';
 import RecoverPasswordForm from '@/components/Forms/RecoverPasswordForm'
 import CustomLink from '@/components/Buttons/CustomLink';
+import { useTranslation } from 'react-i18next';
 // Context
 
 export default function RecoverPasswordModalScreen() {
   const router = useRouter();
   const animation = useFadeInStyles(50, -50, 800, 0)
-
+  const {t} = useTranslation()
   return (
     <SafeAreaView style={[container.wrapper, container.bg_white]}>
       <HorizontalPaddedView >
@@ -42,7 +43,7 @@ export default function RecoverPasswordModalScreen() {
 
         {/* Header */}
         <Animated.View style={[container.header, animation.slideUpStyle]}>
-          <BoldText style={[text.large, text.black]}>{'Forgot\nPassword.'}</BoldText>
+          <BoldText style={[text.large, text.black]}>{t('Forgot\nPassword.')}</BoldText>
         </Animated.View>
 
         {/* Form */}

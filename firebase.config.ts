@@ -5,6 +5,7 @@ import {getAuth, GoogleAuthProvider, FacebookAuthProvider, initializeAuth} from 
 // @ts-expect-error Some error with types in this import because of the versions
 import { getReactNativePersistence } from '@firebase/auth/dist/rn/index.js';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { getStorage } from "firebase/storage";
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -32,4 +33,6 @@ export const facebookProvide = new FacebookAuthProvider()
 
 // Keeps user data so on refresh we don't lose user data
 export const db = getFirestore(app);
+// export const storage = getStorage(app);
+// console.log(storage)
 export const Users = collection(db, 'Users')

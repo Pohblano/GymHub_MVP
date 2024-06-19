@@ -28,6 +28,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useTranslation } from 'react-i18next';
 
 const renderItem = ({
 	item,
@@ -53,6 +54,7 @@ export default function ImageViewerScreen() {
 	const { params } = useRoute();
 	const gallery = useRef<GalleryRef>(null);
 	const [mounted, setMounted] = useState(false);
+	const {t} = useTranslation()
 
 	useEffect(() => {
 		setMounted(true);
@@ -125,7 +127,7 @@ export default function ImageViewerScreen() {
 						},
 					]}>
 					<Text style={styles.headerText}>
-						{params.index + 1} of {params.images.length}
+						{params.index + 1} {t('of')} {params.images.length}
 					</Text>
 				</Animated.View>
 			)}
@@ -142,7 +144,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		width: '100%',
 		alignItems: 'center',
-		// justifyContent: 'space-around'
 	},
 	buttonText: {
 		fontSize: 20,

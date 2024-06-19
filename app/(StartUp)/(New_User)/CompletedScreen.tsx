@@ -1,8 +1,8 @@
 // Node Modules
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, View } from 'react-native'
 import LottieView from 'lottie-react-native';
-import { FontAwesome } from '@expo/vector-icons';
+
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -14,39 +14,22 @@ import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
 import { CustomSafeAreaView, HorizontalPaddedView } from '../../../components/Views/PaddedView'
 import { BoldText } from '../../../components/Text/StyledText';
-import { IconPressable } from '../../../components/Buttons/CustomPressable';
 import CustomButton from '@/components/Buttons/CustomButton';
 import Animated from 'react-native-reanimated';
-
-import CustomLink from '@/components/Buttons/CustomLink';
-
-
+import { useTranslation } from 'react-i18next';
 
 
 export default function CompletedScreen() {
 	const router = useRouter();
 	const animation = useFadeInStyles(50, 50, 800, 0)
+	const {t} = useTranslation()
 	return (
 		<CustomSafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
-				{/* Back Button */}
-				<Animated.View style={animation.fadeInStyle}>
-					<CustomLink
-						onPress={() => { router.back() }}
-						onLongPress={() => { }}
-						title={''}
-						iconLeft={null}
-						iconRight={<FontAwesome name="chevron-left" style={[text.black, text.icon, container.back_button]} />}
-						iconRightStyle={{}}
-						style={container.back_button}
-						textStyle={{}}
-						disabled={false}
-						loading={false} />
-				</Animated.View>
 
 				{/* Header */}
 				<Animated.View style={[container.header, animation.slideLeftStyle]}>
-					<BoldText style={[text.large, text.black]}>{'Welcome\nto the Team!'}</BoldText>
+					<BoldText style={[text.large, text.black]}>{t('Welcome\nto the Team!')}</BoldText>
 				</Animated.View>
 
 				{/* Form */}
@@ -60,7 +43,7 @@ export default function CompletedScreen() {
 						loading={false}
 						onPress={()=>router.replace('(Drawer)/GymDashboardScreen')}
 						onLongPress={() => { }}
-						title="Get Started"
+						title={t("Get Started")}
 						iconLeft={''}
 						iconRight={''}
 						activeOpacity={0.8}

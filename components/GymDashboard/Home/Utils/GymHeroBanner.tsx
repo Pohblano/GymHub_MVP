@@ -8,6 +8,8 @@ import { Image } from 'expo-image'
 import { text } from '@/styles/text.styles'
 // Components
 import { BoldText, LightText, MediumText, RegularText, SemiBoldText } from '../../../Text/StyledText'
+import { useGym } from '@/context/Gym.context'
+import { useTranslation } from 'react-i18next'
 
 
 function GymHeroBanner({ image, title, subtitle, details, textAnimation, linkAnimation, bodyContent, headerContent, bodyContentLength}: {
@@ -21,9 +23,10 @@ function GymHeroBanner({ image, title, subtitle, details, textAnimation, linkAni
 	bodyContent: React.JSX.Element,
 	bodyContentLength: number
 }) {
-
+	const {gym}= useGym()
 	const [expanded, setExpanded] = useState(false);
 	const contentHeight = useSharedValue(250)
+	const {t} = useTranslation()
 	const toggleExpand = () => {
 		setExpanded((prev) => !prev);
 		const newHeight = (bodyContentLength > 1) ? 275 + bodyContentLength * 100 : 450 
@@ -74,8 +77,8 @@ function GymHeroBanner({ image, title, subtitle, details, textAnimation, linkAni
 								style={{}}
 								entering={linkAnimation}>
 								<SemiBoldText className='mb-2' style={[text.white, text.sub_heading]}>{details}</SemiBoldText>
-								<RegularText style={[text.gym207, { width: '75%' }]}>
-									{'Tap for more information'}
+								<RegularText style={[ { width: '75%', color: gym.theme.text }]}>
+									{t('Tap for more information')}
 								</RegularText>
 							</Animated.View>
 						}

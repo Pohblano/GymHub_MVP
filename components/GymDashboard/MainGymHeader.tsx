@@ -1,8 +1,8 @@
 // Modules
 import React from 'react'
-import { View, Text} from 'react-native'
-import { useNavigation, useRouter } from 'expo-router'
-import { DrawerNavigationProp, DrawerToggleButton } from "@react-navigation/drawer";
+import { View } from 'react-native'
+import { useNavigation } from 'expo-router'
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { DrawerActions, ParamListBase } from '@react-navigation/native';
 import Animated from 'react-native-reanimated'
 // Styling
@@ -14,6 +14,7 @@ import ScrollableNavBar from '../Utils/ScrollableNavBar'
 import CustomLink from '../Buttons/CustomLink';
 import { FontAwesome } from '@expo/vector-icons';
 import ScheduleStatus, { ScheduleType } from '../Utils/ScheduleStatus';
+import { useTranslation } from 'react-i18next';
 
 function MainGymHeader({ activeItem, setActiveItem, gym_title, items, schedule }: {
 	activeItem: string,
@@ -26,6 +27,7 @@ function MainGymHeader({ activeItem, setActiveItem, gym_title, items, schedule }
 	const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>();
 	const animation = useFadeInStyles(50, 50, 800, 0)
 	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
+	const {t} = useTranslation();
 	
 	return (
 		<Animated.View className='flex-none' >
@@ -44,7 +46,7 @@ function MainGymHeader({ activeItem, setActiveItem, gym_title, items, schedule }
 				<RegularText style={[text.light_grey, text.small, animation.slideLeftStyle]}>{'This is'}</RegularText>
 				<Animated.View className='d-flex flex-row' style={delayedAnimation.slideLeftStyle}>
 					<BoldText style={[text.large]}>{gym_title}</BoldText>
-					<ScheduleStatus business={'The gym'} schedule={schedule}/>
+					<ScheduleStatus business={t('The gym')} schedule={schedule}/>
 				</Animated.View>
 			</View>
 

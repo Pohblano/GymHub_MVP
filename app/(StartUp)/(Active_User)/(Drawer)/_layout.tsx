@@ -5,6 +5,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 
 // Components
 import MainDrawerContent from '@/components/GymDashboard/MainDrawerContent';
+import { EvilIcons, Octicons } from '@expo/vector-icons';
 
 export default function Layout() {
 
@@ -13,14 +14,14 @@ export default function Layout() {
       <Drawer
         drawerContent={(props) => <MainDrawerContent {...props}/>}
         screenOptions={{ 
-          drawerPosition: "left", 
+          drawerPosition: 'left', 
           headerShown: false,
-          drawerActiveBackgroundColor: '#e7be60',
-          drawerActiveTintColor: 'white',
+          drawerActiveBackgroundColor: '#00000010',
+          drawerActiveTintColor: 'black',
           drawerLabelStyle: {
             marginLeft: -20,
             fontSize: 16
-          }
+          },
         }}
       >
         <Drawer.Screen
@@ -29,10 +30,9 @@ export default function Layout() {
             drawerLabel: 'Home',
             title: 'Home',
             drawerIcon: ({size,color}) => (
-              <AntDesign name="home" size={24} color="white" />
+              <Octicons name="home" size={24} color="black" />
             )
-          }}
-        />
+          }}/>
       </Drawer>
     </GestureHandlerRootView>
   );

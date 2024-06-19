@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Pressable } from 'react-native'
 import { useFormik } from 'formik';
-import Animated from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
+import { useTranslation } from 'react-i18next';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -12,7 +13,6 @@ import { container } from '@/styles/containers.styles'
 import { form } from '@/styles/form.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
-import { Text } from '../Themed';
 import { Seperator_Text } from '../Views/PaddedView';
 import { IconGoogleRound, IconFacebookRound } from '@/constants/Icons';
 import CustomButton from '../Buttons/CustomButton';
@@ -21,8 +21,8 @@ import PasswordInput from './Utils/PasswordInput';
 import { useAuth } from '@/context/Auth.context';
 // Schema
 import { SignupSchema } from '@/utils/validation';
-
-
+import { useGym } from '@/context/Gym.context';
+import i18n from '@/utils/i118n';
 
 export default function SignupForm() {
 	const router = useRouter();
@@ -33,6 +33,9 @@ export default function SignupForm() {
 	const [isConfirmPassVisible, setConfirmPassVisible] = useState(false)
 	const [loading, setLoading] = useState(false)
 	const { register } = useAuth()
+	const { t } = useTranslation();
+	const { gym } = useGym()
+
 
 	useEffect(() => {
 		let timer: string | number | NodeJS.Timeout | undefined;
@@ -68,22 +71,23 @@ export default function SignupForm() {
 							container.input_text, text.black,
 							formik.touched.email && formik.errors.email ? form.error_input : null]}
 						placeholderTextColor={'#BDBDBD'}
-						placeholder='Email'
+						placeholder={t('Email')}
 						value={formik.values.email}
 						onChangeText={formik.handleChange('email')}
 						onBlur={formik.handleBlur('email')} />
 				</Animated.View>
 				{formik.touched.email && formik.errors.email ? (
-					<Animated.Text style={[text.error, animation.fadeInStyle]} >{formik.errors.email}</Animated.Text>
+					<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
+						{formik.errors.email}{/* i18next-extract-disable-line */}
+					</Animated.Text>
 				) : null}
-
 				<Animated.View style={delayedAnimation.fadeInStyle}>
 					<PasswordInput
 						value={formik.values.password}
 						setValue={formik.handleChange('password')}
 						visible={isPassVisible}
 						setVisible={setPassVisible}
-						placeholder={'Password'}
+						placeholder={t('Password')}
 						containerStyle={{}}
 						inputStyle={[
 							container.input_text, text.black,
@@ -91,7 +95,9 @@ export default function SignupForm() {
 						iconStyle={{}} />
 				</Animated.View>
 				{formik.touched.password && formik.errors.password ? (
-					<Animated.Text style={[text.error, animation.fadeInStyle]}>{formik.errors.password}</Animated.Text>
+					<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
+						{formik.errors.password}{/* i18next-extract-disable-line */}
+					</Animated.Text>
 				) : null}
 
 				<Animated.View style={delayeddAnimation.fadeInStyle}>
@@ -100,7 +106,7 @@ export default function SignupForm() {
 						setValue={formik.handleChange('confirmPassword')}
 						visible={isConfirmPassVisible}
 						setVisible={setConfirmPassVisible}
-						placeholder={'Confirm Password'}
+						placeholder={t('Confirm Password')}
 						containerStyle={{}}
 						inputStyle={[
 							container.input_text, text.black,
@@ -108,12 +114,14 @@ export default function SignupForm() {
 						iconStyle={{}} />
 				</Animated.View>
 				{formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-					<Animated.Text style={[text.error, animation.fadeInStyle]}>{formik.errors.confirmPassword}</Animated.Text>
+					<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
+						{formik.errors.confirmPassword} {/* i18next-extract-disable-line */}
+					</Animated.Text>
 				) : null}
 
 
 				<Animated.View style={delayedAnimation.fadeInStyle}>
-				<Seperator_Text style={{ marginVertical: 10 }}>{'Or Sign Up With'}</Seperator_Text>
+					<Seperator_Text style={{ marginVertical: 10 }}>{t('Or Sign Up With')}</Seperator_Text>
 				</Animated.View>
 
 				<Animated.View style={[container.flex_x, styles.side_buttons, delayeddAnimation.fadeInStyle]}>
@@ -151,8 +159,8 @@ export default function SignupForm() {
 				<CustomButton
 					loading={formik.isSubmitting}
 					onPress={formik.handleSubmit}
-					onLongPress={() => { }}
-					title="Sign Up"
+					onLongPress={() => { router.replace('SetupProfileScreen') }}
+					title={t("Sign Up")}
 					iconLeft={''}
 					iconRight={''}
 					activeOpacity={0.8}

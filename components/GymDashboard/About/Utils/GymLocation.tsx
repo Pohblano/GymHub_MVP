@@ -12,6 +12,7 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { RegularText, SemiBoldText } from '@/components/Text/StyledText'
 // Context
 import { useGym } from '@/context/Gym.context'
+import { useTranslation } from 'react-i18next';
 
 
 interface GeoLocation {
@@ -52,6 +53,7 @@ export default function GymLocation({ address }: {
 	const [userLocation, setUserLocation] = useState<LocationType>();
 	const [errorMsg, setErrorMsg] = useState<String>('');
 	const { gym } = useGym()
+	const {t} = useTranslation()
 
 	const getDistance = async () => {
 		setLoading(true)
@@ -59,7 +61,7 @@ export default function GymLocation({ address }: {
 			
 			let { status } = await Location.requestForegroundPermissionsAsync();
 			if (status !== 'granted') {
-				setErrorMsg('Permission to access location was denied');
+				setErrorMsg(t('Permission to access location was denied'));
 				return;
 			}
 
@@ -86,7 +88,7 @@ export default function GymLocation({ address }: {
 				setDistance(calculatedDistance.toFixed(2)); // Set distance in kilometers with 2 decimal places
 				
 			} else {
-				setErrorMsg('Unable to find the location');
+				setErrorMsg(t('Unable to find the location'));
 			}
 		} catch (error) {
 			console.log(error)
@@ -101,7 +103,7 @@ export default function GymLocation({ address }: {
 
 	return (
 		<>
-			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{'LOCATION'}</SemiBoldText>
+			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{t('LOCATION')}</SemiBoldText>
 			<View className='mb-3 d-flex flex-row'>
 				<View style={{ width: 30 }}>
 					<FontAwesome6
@@ -122,15 +124,15 @@ export default function GymLocation({ address }: {
 								(loading)?
 									<Animated.View className={'d-flex flex-row self-end'} entering={FadeIn.duration(800)}>
 										<ActivityIndicator  size="small" color="#0000ff" />
-										<Text> {'Calculating distance...'}</Text>
+										<Text> {t('Calculating distance...')}</Text>
 									</Animated.View>
 								 	:
 									<Animated.Text className='self-end' entering={FadeIn.duration(800)}>
-										{`Distance: ${distance}km`}
+										{`${t('Distance:')} ${distance}km`}
 									</Animated.Text>
 								:	
 								<LinkPressable style={{alignSelf: 'flex-end'}} onPress={getDistance}>
-									<Text className='text-lg text-blue-600'>How far is it?</Text>
+									<Text className='text-lg text-blue-600'>{t('How far is it?')}</Text>
 								</LinkPressable>
 						}
 						<MapView
@@ -139,11 +141,11 @@ export default function GymLocation({ address }: {
 							<Marker  title={gym.name} description='Gym' coordinate={gym.location_coordinates}/>
 						</MapView>
 						<View style={styles.button_wrapper}>
-							<Button title="Get Directions" onPress={openMaps} />
+							<Button title={t("Get Directions")} onPress={openMaps} />
 						</View>
 					</>
 				) : (
-					<Text style={styles.text}>{errorMsg || "Couldn't find location."}</Text>
+					<Text style={styles.text}>{errorMsg || t("Couldn't find location.")}</Text>
 				)}
 			</View>
 		</>

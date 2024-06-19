@@ -8,6 +8,7 @@ import { text } from "@/styles/text.styles";
 // Components
 import { View, Text } from "@/components/Themed";
 import { IconLocation, IconUser } from "@/constants/Icons";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -19,7 +20,7 @@ export default function GetLocationInput({
 	iconStyle,
 	value,
 }) {
-	// const []
+	const {t} = useTranslation()
 	return (
 		<>
 			<Pressable
@@ -35,7 +36,7 @@ export default function GetLocationInput({
 							
 						)}
 						<Text style={[text.light_grey, inputStyle, { paddingLeft: 48, display: 'flex', alignItems: 'center', paddingVertical: 14 }]}>
-							{(value)? value : 'Tap here to get location'
+							{(value)? value : t('Tap here to get location')
 							}
 						</Text>
 					</>

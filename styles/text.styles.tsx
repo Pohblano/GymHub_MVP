@@ -15,13 +15,16 @@ export const text = StyleSheet.create({
 		color: '#000000b0'
 	},
 	grey: {
-		color: '#00000056'
+		color: '#929292'
 	},
 	lighter_grey:{
-		color: '#9b9b9b'
+		color: '#a0a0a0'
 	},
 	gym207:{
 		color:'#62D767'
+	},
+	gym207_buttons:{
+		color:'#00da0be8'
 	},
 	error:{
 		color: 'red',

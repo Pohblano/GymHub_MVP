@@ -16,33 +16,36 @@ import CustomButton from '../Buttons/CustomButton';
 import { useAuth } from '@/context/Auth.context';
 // Schema
 import { RecoverPasswordSchema } from '@/utils/validation';
-import CustomLink from '../Buttons/CustomLink';
 import { BoldText } from '../Text/StyledText';
 import email_sent from '@/assets/lottie/email_sent.json'
 import LottieView from 'lottie-react-native';
 import Animated, { FadeIn, SlideInUp } from 'react-native-reanimated';
 import { useFadeInStyles } from '@/hooks/animationStyle';
+import { useTranslation } from 'react-i18next';
 
 export default function RecoverPasswordForm() {
 	const [emailSent, setEmailSent] = useState(false)
 	const { reset_password } = useAuth()
 	const animation = useFadeInStyles(50, 50, 800, 0)
 	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
+	const {t} = useTranslation()
 	const formik = useFormik({
 		initialValues: { email: '' },
 		validationSchema: RecoverPasswordSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
 			const response = await reset_password(values.email, setErrors, setSubmitting, setEmailSent)
-
 		},
 	});
-
 	return (
 		<>
 			{(emailSent) ?
 				<Animated.View style={[{ flex: 4, display: 'flex' }]}>
 					<LottieView style={{ height: 200 }} source={email_sent} autoPlay loop />
-					<Animated.Text style={[text.black, { alignSelf: 'center' }, animation.fadeInStyle]}>An email has been sent to <BoldText>{formik.values.email}</BoldText>. {'\nFollow the link to reset your password.'}</Animated.Text>
+					<Animated.Text style={[text.black, { alignSelf: 'center' }, animation.fadeInStyle]}>
+						{t('An email has been sent to ')}
+						<BoldText>{t('recover_email',{recover_email: formik.values.email})} </BoldText>
+						{/* <BoldText>{t(formik.values.email)}</BoldText>.  */}
+						{t('\nFollow the link to reset your password.')}</Animated.Text>
 				</Animated.View>
 				:
 				<>
@@ -54,17 +57,18 @@ export default function RecoverPasswordForm() {
 									container.input_text, text.black,
 									formik.touched.email && formik.errors.email ? form.error_input : null]}
 								placeholderTextColor={'#BDBDBD'}
-								placeholder='Email'
+								placeholder={t('Email')}
 								value={formik.values.email}
 								onChangeText={formik.handleChange('email')}
 								onBlur={formik.handleBlur('email')}/>
 						</Animated.View>
 
 						{formik.touched.email && formik.errors.email ? (
-							<Animated.Text style={[text.error, animation.fadeInStyle]} >{formik.errors.email}</Animated.Text>
+							<Animated.Text style={[text.error, animation.fadeInStyle]} >{t(formik.errors.email)}{/* i18next-extract-disable-line */}
+							</Animated.Text>
 						) : null}
 
-						<Animated.Text style={[text.black, delayedAnimation.fadeInStyle]}>Enter the email associated with your account and we will send you an email with a link and instructions to reset your password.</Animated.Text>
+						<Animated.Text style={[text.black, delayedAnimation.fadeInStyle]}>{t('Enter the email associated with your account and we will send you an email with a link and instructions to reset your password.')}</Animated.Text>
 					</View >
 
 
@@ -73,7 +77,7 @@ export default function RecoverPasswordForm() {
 							loading={formik.isSubmitting}
 							onPress={formik.handleSubmit}
 							onLongPress={() => { }}
-							title="Submit"
+							title={t("Submit")}
 							iconLeft={''}
 							iconRight={''}
 							activeOpacity={0.8}

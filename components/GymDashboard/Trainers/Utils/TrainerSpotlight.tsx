@@ -15,6 +15,7 @@ import CustomLink from '../../../Buttons/CustomLink'
 import { useGym } from '@/context/Gym.context'
 import { TrainerType } from '../Trainers'
 import { Link } from 'expo-router'
+import { useTranslation } from 'react-i18next'
 
 
 
@@ -24,9 +25,9 @@ export default function TrainerSpotlight({ trainer }: {
 	const { gym } = useGym();
 	const images = gym.images;
 	const animation = useFadeInStyles(50, 50, 800,0)
-	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
-	const delayeddAnimation = useFadeInStyles(50, 50, 800, 400)
-
+	const delayedAnimation = useFadeInStyles(50, 50, 600, 200)
+	const delayeddAnimation = useFadeInStyles(50, 50, 600, 400)
+	const {t} = useTranslation()
 	return (
 		<Animated.View style={animation.slideUpStyle}>
 			<Link
@@ -40,18 +41,18 @@ export default function TrainerSpotlight({ trainer }: {
 			}}>
 			<Pressable style={{ height: 350, width: 'auto' }}>
 				<Image
-					source={{ uri: trainer.img }}
+					source={{ uri: gym.images.trainer_spotlight }}
 					style={{ height: 350, width: 'auto', borderRadius: 10 }} />
 				<LinearGradient
-					colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0)']}
+					colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0)']}
 					start={[0, 0]} end={[1, 0]}
 					style={styles.background}>
 					<Animated.View style={delayedAnimation.slideLeftStyle}>
 						<LightText style={[text.white, text.regular]}>
-							Trainer Spotlight:
+							{t('Trainer Spotlight:')}
 						</LightText>
 						<BoldText className=' w-5/6' style={[text.large, text.white]}>
-							{`Meet\n${trainer.first_name}`}
+							{`${t('Meet\n')}${trainer.first_name}`}
 						</BoldText>
 					</Animated.View>
 					<Animated.View style={delayeddAnimation.slideLeftStyle}>
@@ -59,12 +60,12 @@ export default function TrainerSpotlight({ trainer }: {
 						<CustomLink
 							onPress={() => { }}
 							onLongPress={() => { }}
-							title={'See more'}
+							title={t('See more')}
 							iconLeft={null}
 							iconRight={<FontAwesome name="chevron-right" />}
-							iconRightStyle={[text.gym207, { marginLeft: 4, alignSelf: 'baseline' }]}
+							iconRightStyle={[{ marginLeft: 4, alignSelf: 'baseline', color: gym.theme.text }]}
 							style={{ display: 'flex' }}
-							textStyle={text.gym207}
+							textStyle={{color: gym.theme.text}}
 							disabled={false}
 							loading={false} />
 					</Animated.View>

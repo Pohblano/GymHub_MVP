@@ -18,6 +18,7 @@ import ScheduleStatus from '@/components/Utils/ScheduleStatus'
 import { useGym } from '@/context/Gym.context'
 import { openPhoneApp, openSocial, openWhatsApp } from '@/utils/linking'
 import { Facebook, Instagram, Tiktok } from '@/constants/Icons'
+import { useTranslation } from 'react-i18next'
 
 
 export default function About() {
@@ -25,7 +26,7 @@ export default function About() {
 	const images = gym.images
 	const animation = useFadeInStyles(50, 50, 800, 0)
 	const delayedAnimation = useFadeInStyles(50, 50, 500, 400)
-
+	const {t} = useTranslation()
 	return (
 		<ScrollView showsVerticalScrollIndicator={false} style={{}}>
 			<View className='flex-1 d-flex'>
@@ -39,16 +40,16 @@ export default function About() {
 					<BoldText style={[text.largest, { marginTop: 20 }, delayedAnimation.slideLeftStyle]}>{gym.name}</BoldText>
 
 					<Animated.View style={delayedAnimation.slideLeftStyle} className='d-flex flex-row mt-2'>
-						<ScheduleStatus schedule={gym.schedule} business={'The gym'} subtitle='is open' />
+						<ScheduleStatus schedule={gym.schedule} business={t('The gym')} subtitle={t('is open')} />
 					</Animated.View>
 
 
 					<View className='d-flex flex-row'>
 						<Animated.View className={'d-flex flex-row flex-1'} entering={FadeInRight.duration(800).delay(200)} style={[{ marginTop: 30 }, styles.contacts]}>
-							<Pressable style={styles.phone} onPress={() => openPhoneApp(gym.contact_info.phone)}>
+							<Pressable style={[styles.phone, {backgroundColor: gym.theme.buttons}]} onPress={() => openPhoneApp(gym.contact_info.phone)}>
 								<Feather name="phone" size={26} color="white" />
 							</Pressable>
-							<Pressable style={styles.whatsApp} onPress={() => openWhatsApp(gym.contact_info.phone)}>
+							<Pressable style={[styles.whatsApp, {backgroundColor: gym.theme.buttons}]} onPress={() => openWhatsApp(gym.contact_info.phone)}>
 								<FontAwesome5 name="whatsapp" size={30} color="white" />
 							</Pressable>
 						</Animated.View>
@@ -69,16 +70,12 @@ export default function About() {
 						</Animated.View>
 					</View>
 
-
-
-
 					<Animated.View style={animation.fadeInStyle}>
 						<Seperator style={{ marginTop: 20 }} />
 					</Animated.View>
 
-
 					<Animated.View style={{ marginTop: 30 }} entering={FadeInDown.duration(800).delay(200)}>
-						<SemiBoldText style={[ text.smedium]}>{'Overview'}</SemiBoldText>
+						<SemiBoldText style={[ text.smedium]}>{t('Overview')}</SemiBoldText>
 						<GymBiography bio={gym.biography} />
 					</Animated.View>
 
@@ -87,7 +84,7 @@ export default function About() {
 					</Animated.View>
 
 					<Animated.View style={{ marginTop: 10 }} entering={FadeInDown.duration(800).delay(600)}>
-						<GymDisplayImage image={images.gym_display_image} caption={'Join \nthe Family'} />
+						<GymDisplayImage image={images.gym_display_image} caption={t('Join \nthe Family')} />
 					</Animated.View>
 
 					<Animated.View style={{ marginTop: 40 }} entering={FadeInDown.duration(800).delay(800)}>
@@ -102,7 +99,6 @@ export default function About() {
 					<Animated.View style={animation.fadeInStyle}>
 						<Seperator style={{ marginTop: 30 }} />
 					</Animated.View>
-
 
 					<Animated.View entering={FadeInDown.duration(800).delay(1200)}>
 						<GymReviews rating={gym.rating} reviews={reviews} />
@@ -136,7 +132,6 @@ const styles = StyleSheet.create({
 		width: 50,
 		marginRight: 15,
 		marginTop: 3,
-		backgroundColor: "#00da0be8",
 		padding: 10,
 		paddingLeft: 12,
 		borderRadius: 60
@@ -144,7 +139,6 @@ const styles = StyleSheet.create({
 	whatsApp: {
 		width: 50,
 		marginRight: 20,
-		backgroundColor: "#00da0be8",
 		padding: 10,
 		paddingLeft: 12,
 		borderRadius: 60

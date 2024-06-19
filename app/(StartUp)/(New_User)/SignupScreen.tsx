@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, StyleSheet } from 'react-native'
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
+
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -15,11 +17,10 @@ import { BoldText } from '../../../components/Text/StyledText';
 import CustomLink from '../../../components/Buttons/CustomLink';
 import SignupForm from '../../../components/Forms/SignupForm';
 
-
 export default function SignupScreen() {
 	const router = useRouter();
 	const animation = useFadeInStyles(50, 50, 800, 0)
-
+	const { t } = useTranslation();
 	return (
 		<SafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
@@ -37,12 +38,11 @@ export default function SignupScreen() {
 						disabled={false}
 						loading={false} />
 				</Animated.View>
-
 				{/* Header */}
 				<Animated.View style={[container.header, animation.slideLeftStyle]}>
-					<BoldText style={[text.large, text.black]}>{'Create\nAccount.'}</BoldText>
+					<BoldText style={[text.large, text.black]}>{t('Create\nAccount.')}</BoldText>
 				</Animated.View>
-
+				
 				{/* Form */}
 				<SignupForm />
 
@@ -52,8 +52,8 @@ export default function SignupScreen() {
 						loading={false}
 						onPress={() => { router.push('../(Active_User)/LoginScreen'); }}
 						onLongPress={() => { }}
-						title="Sign In"
-						iconLeft={'Have an account? '}
+						title={t("Sign In")}
+						iconLeft={t('Have an account? ')}
 						iconRight={''}
 						style={{ alignSelf: 'center', marginBottom: 0 }}
 						textStyle={text.option_link}

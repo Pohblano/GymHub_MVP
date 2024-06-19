@@ -3,14 +3,16 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "@/firebase.config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from '@firebase/auth'
 import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc, getDocs } from 'firebase/firestore'
-
+import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import { router } from "expo-router";
+import { getBlobFromUri } from "@/utils/linking";
+import { useTranslation } from "react-i18next";
 
 export const AuthContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [isAuthenticated, setIsAuthenticated] = useState(undefined)
 	const [completedSetup, setCompletedSetup] = useState(undefined)
-
+	const {t} = useTranslation()
 	/// add condition to check if user completed setup if not then reroute them to finish setup page.
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
@@ -19,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
 				setIsAuthenticated(true);
 				setUser(user);
 				updateUserData(user.uid)
-				
+
 			} else {
 				setIsAuthenticated(false);
 				setUser(null)
@@ -34,9 +36,10 @@ export const AuthContextProvider = ({ children }) => {
 		const docSnap = await getDoc(docRef)
 
 		if (docSnap.exists()) {
-			let data = docSnap.data()
+			const data = docSnap.data()
+			delete data.password
 			setUser({
-				...user,
+				...data,
 				uid: uid
 			})
 		}
@@ -60,7 +63,7 @@ export const AuthContextProvider = ({ children }) => {
 					})
 					router.replace('CompletedScreen')
 				})
-		
+
 		} catch (error) {
 			console.log(error)
 			let msg = error.message
@@ -79,7 +82,7 @@ export const AuthContextProvider = ({ children }) => {
 			console.log(error)
 			let msg = error.message
 			console.log(msg)
-			if (msg.includes('(auth/invalid-credential)')) msg = 'Invalid Credentials'
+			if (msg.includes('(auth/invalid-credential)')) msg = t('Invalid Credentials')
 			setErrors({ email: msg });
 		} finally {
 			setSubmitting(false)
@@ -118,12 +121,44 @@ export const AuthContextProvider = ({ children }) => {
 		} catch (error) {
 			console.log(error)
 			let msg = error.message
-			if (msg.includes('(auth/invalid-email)')) msg = 'That email is invalid'
-			if (msg.includes('(auth/email-already-in-use)')) msg = 'That email is already in use'
+			if (msg.includes('(auth/invalid-email)')) msg = t('That email is invalid')
+			if (msg.includes('(auth/email-already-in-use)')) msg = t('That email is already in use')
 
 			setErrors({ email: msg });
 		} finally {
 			setSubmitting(false);
+		}
+	}
+
+	const upload_image = async (uri) => {
+		try {
+			// Upload image to Firebase Storage
+			const storage = getStorage()
+			const imageBlob = await getBlobFromUri(uri)
+			const imageName = imageBlob['data']['name']
+			const storageRef = ref(storage, `profile_images/${user.uid}`);
+			const uploadTask = uploadBytesResumable(storageRef, imageBlob);
+			uploadTask.on('state_changed',
+				(snapshot) => {
+					const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					console.log('Upload is ' + progress + '% done');
+					switch (snapshot.state) {
+						case 'paused':
+							console.log('Upload is paused');
+							break;
+						case 'running':
+							console.log('Upload is running');
+							break;
+					}
+				}, (error) => {
+					console.log(error)
+				}
+			);
+			const url = getDownloadURL(uploadTask.snapshot.ref)
+			return url
+
+		} catch (error) {
+			console.log(error)
 		}
 	}
 
@@ -137,7 +172,7 @@ export const AuthContextProvider = ({ children }) => {
 			let msg = error.message
 			if (msg.includes('(auth/invalid-email)')) {
 				console.log(msg)
-				msg = 'That email is invalid'
+				msg = t('That email is invalid')
 			}
 			setErrors({ email: msg });
 		} finally {
@@ -146,7 +181,7 @@ export const AuthContextProvider = ({ children }) => {
 	}
 
 	return (
-		<AuthContext.Provider value={{ user, isAuthenticated, login, logout, register, update, reset_password }}>
+		<AuthContext.Provider value={{ user, isAuthenticated, login, logout, register, update, reset_password, upload_image }}>
 			{children}
 		</AuthContext.Provider>
 	)

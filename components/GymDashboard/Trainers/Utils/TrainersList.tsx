@@ -17,15 +17,18 @@ import { TrainerType } from '../Trainers'
 import { Link } from 'expo-router'
 import { useFadeInStyles } from '@/hooks/animationStyle'
 import { sequentialStyles } from '@/hooks/sequentialAnimationStyles'
+import { useTranslation } from 'react-i18next'
 
 export default function TrainersList({ trainers }: {
 	trainers: TrainerType[]
 }) {
+	const {gym} = useGym()
 	const delayeddAnimation = useFadeInStyles(50, 50, 500, 400)
-	const sequentialSlideUpStyle = sequentialStyles(trainers, 50, 800, -300, 200)
+	const sequentialSlideUpStyle = sequentialStyles(trainers, 50, 600, 0, 200)
+	const {t} = useTranslation()
 	return (
 		<Animated.View className='d-flex' style={{ marginTop: 40 }} entering={FadeInDown.duration(600).delay(400)}>
-			<SemiBoldText style={[text.sub_heading, delayeddAnimation.fadeInStyle]}>{'Trainers'}</SemiBoldText>
+			<SemiBoldText style={[text.sub_heading, delayeddAnimation.fadeInStyle]}>{t('Trainers')}</SemiBoldText>
 
 			{trainers.map((trainer, index) => (
 				<Animated.View key={index} style={[sequentialSlideUpStyle[index].slideInStyle]}>
@@ -47,19 +50,19 @@ export default function TrainersList({ trainers }: {
 								start={[0, 0]} end={[1, 0]}
 								style={styles.background}>
 
-								<BoldText className=' w-5/6' style={[text.medium, text.white, sequentialSlideUpStyle[index].childSlideInXStyle]}>{trainer.name?.split(' ').join('\n')}</BoldText>
+								<BoldText className='w-5/6' style={[text.medium, text.white, sequentialSlideUpStyle[index].childSlideInXStyle]}>{trainer.name?.split(' ').join('\n')}</BoldText>
 
 								<Animated.View style={sequentialSlideUpStyle[index].childSlideInXStyle}>
 									<LightText className='mb-1' style={[text.white, { width: '75%' }]}>{trainer.specialty?.join(', ')}</LightText>
 									<CustomLink
 										onPress={() => { }}
 										onLongPress={() => { }}
-										title={'See more'}
+										title={t('See more')}
 										iconLeft={null}
 										iconRight={<FontAwesome name="chevron-right" />}
-										iconRightStyle={[text.gym207,{marginLeft: 4, alignSelf: 'baseline'}]}
+										iconRightStyle={[{marginLeft: 4, alignSelf: 'baseline', color: gym.theme.text}]}
 										style={{ display: 'flex' }}
-										textStyle={text.gym207}
+										textStyle={{color: gym.theme.text}}
 										disabled={false}
 										loading={false} />
 								</Animated.View>

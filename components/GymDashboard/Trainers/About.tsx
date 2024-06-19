@@ -1,38 +1,36 @@
-import React, { useEffect } from 'react'
-import Animated, { FadeIn, FadeInDown, FadeInLeft, FadeInRight, FadeInUp } from 'react-native-reanimated'
-import { View, Text, StyleSheet, Linking, Pressable } from 'react-native'
+import React from 'react'
+import Animated, { FadeInDown, FadeInLeft } from 'react-native-reanimated'
+import { View, Text, StyleSheet, Pressable } from 'react-native'
 import ReadMore from 'react-native-read-more-text'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 // Styles
 import { text } from '@/styles/text.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle'
-
 // Components
-import { BoldText, LightText, MediumText, RegularText, SemiBoldText } from '@/components/Text/StyledText'
-import { Seperator, Seperator_Text } from '@/components/Views/PaddedView'
+import { RegularText, SemiBoldText } from '@/components/Text/StyledText'
 import MasonryImageGallery from '@/components/Utils/MasonryImageGallery'
 // Context
 import { useGym } from '@/context/Gym.context'
 import { TrainerType } from './Trainers'
-import { Feather, FontAwesome6 } from '@expo/vector-icons';
+import { Entypo, Feather, FontAwesome6 } from '@expo/vector-icons';
 import { Facebook, Instagram, Tiktok } from '@/constants/Icons';
 import { openSocial } from '@/utils/linking';
-
+import { useTranslation } from 'react-i18next';
 
 export default function About({ trainer }: {
 	trainer: TrainerType
 }) {
 	const { gym, createTrainers } = useGym()
-	const animation = useFadeInStyles(50, 50, 800, 0)
-	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
-	const delayeddAnimation = useFadeInStyles(50, 50, 800, 400)
+	const animation = useFadeInStyles(50, 50, 600, 0)
+	const delayedAnimation = useFadeInStyles(50, 50, 600, 200)
+	const delayeddAnimation = useFadeInStyles(50, 50, 600, 400)
+	const {t} = useTranslation()
 	const renderTruncatedFooter = (handlePress: () => any) => {
 		return (
 			<Text
 				style={{ color: '#528eff', marginTop: 5 }}
 				onPress={() => { handlePress(); }}>
-				Read more
+				{t('Read more')}
 			</Text>
 		)
 	}
@@ -42,20 +40,16 @@ export default function About({ trainer }: {
 			<Text
 				style={{ color: '#528eff', marginTop: 5 }}
 				onPress={() => { handlePress(); }}>
-				Show less
+				{t('Show less')}
 			</Text>
 		)
 	}
 
 	return (
 		<Animated.View className='flex-1 d-flex'>
-			{/* <Animated.View className='d-flex' style={animation.slideUpStyle}>
-				<BoldText className='mb-1' style={[text.large]}>{trainer.name}</BoldText>
-				<RegularText style={[text.light_grey, text.regular]}>{trainer.specialty?.join(', ')}</RegularText>
-			</Animated.View> */}
 
-			<Animated.View className='d-flex' style={[{ marginBottom: 10, marginTop: 30 }]} entering={FadeInDown.duration(800)} >
-				<SemiBoldText style={[ text.smedium, {marginBottom: 20}]}>{'Overview'}</SemiBoldText>
+			<Animated.View className='d-flex' style={[{ marginBottom: 10, marginTop: 30 }]} entering={FadeInDown.duration(600)} >
+				<SemiBoldText style={[text.smedium, { marginBottom: 20 }]}>{t('Overview')}</SemiBoldText>
 				<ReadMore
 					numberOfLines={8}
 					renderTruncatedFooter={renderTruncatedFooter}
@@ -67,7 +61,7 @@ export default function About({ trainer }: {
 
 				{(
 					(trainer.socials?.facebook || trainer.socials?.instagram || trainer.socials?.tiktok) &&
-					<Animated.View entering={FadeInLeft.duration(800).delay(200)} style={styles.iconContainer}>
+					<Animated.View entering={FadeInLeft.duration(600).delay(200)} style={styles.iconContainer}>
 						<View className={'d-flex flex-row'} >
 							{(trainer.socials?.facebook && <Pressable style={{ width: 30, marginRight: 15 }} onPress={() => openSocial(trainer.socials?.facebook)}>
 								<Facebook height={32} iconStyle={{}} />
@@ -86,9 +80,29 @@ export default function About({ trainer }: {
 			</Animated.View>
 
 
-			<Animated.View entering={FadeInDown.duration(800).delay(600)} style={[{ marginBottom: 40, marginTop: 30 }]}>
+
+			<Animated.View entering={FadeInDown.duration(600).delay(600)} style={[{ marginTop: 30 }]}>
 				{/* <View className='d-flex flex-row'> */}
-				<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{'AVAILABLE'}</SemiBoldText>
+				<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20 }]}>{t('SPECIALTIES')}</SemiBoldText>
+
+				{trainer.specialty?.map((x, index) => (
+					<View key={index} className='d-flex flex-row gap-3'>
+						<View style={{ width: 30 }}>
+							<Entypo name="dot-single" size={24} color="black" />
+						</View>
+						<View style={{ width: '100%' }}>
+							<Text style={[text.black, text.sub_heading]}>{x}</Text>
+							<RegularText style={[text.light_grey, text.regular, {}]}>{''}</RegularText>
+						</View>
+					</View>
+				))}
+				{/* </View> */}
+
+			</Animated.View>
+
+			<Animated.View entering={FadeInDown.duration(600).delay(600)} style={[{ marginTop: 30 }]}>
+				{/* <View className='d-flex flex-row'> */}
+				<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20 }]}>{t('AVAILABLE')}</SemiBoldText>
 				<View className='d-flex flex-row gap-3'>
 					<View style={{ width: 30 }}>
 						<FontAwesome name="calendar-o" size={24} color="black" />
@@ -113,13 +127,12 @@ export default function About({ trainer }: {
 
 
 			{(trainer.img_list && trainer.img_list.length > 0) ?
-				<Animated.View entering={FadeInDown.duration(800).delay(400)} style={[{ marginBottom: 40 }]}>
-					<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{'GALLERY'}</SemiBoldText>
+				<Animated.View entering={FadeInDown.duration(600).delay(400)} style={[{ marginTop: 30 }]}>
+					<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20 }]}>{t('GALLERY')}</SemiBoldText>
 					<MasonryImageGallery images={trainer.img_list} style={{}} />
 				</Animated.View> :
 				null
 			}
-
 
 		</Animated.View>
 	)

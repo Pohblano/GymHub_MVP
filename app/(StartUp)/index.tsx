@@ -1,30 +1,27 @@
 // Node Modules
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View } from 'react-native'
+import { Button, SafeAreaView, View } from 'react-native'
 import Animated, { FadeInDown, FadeInUp, FadeOutDown, FadeOutUp } from 'react-native-reanimated';
+import { useTranslation } from "react-i18next";
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
 import { StyleSheet } from 'react-native'
 import { text } from '../../styles/text.styles'
 import { container } from '../../styles/containers.styles'
-
 // Components
 import CustomButton from '../../components/Buttons/CustomButton'
 import { CustomSafeAreaView, HorizontalPaddedView } from '../../components/Views/PaddedView'
 import { BoldText, MediumText, SemiBoldText } from '../../components/Text/StyledText';
 import PageLoading from '@/components/Loading/PageLoading';
 
-
 export default function StartUpScreen() {
+	const { t } = useTranslation();
 	const router = useRouter()
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		setLoading(false)
-		// setTimeout(() => {
-		// 	setLoading(false)
-		// }, 3000)
 	}, []);
 
 	return (
@@ -41,18 +38,18 @@ export default function StartUpScreen() {
 								GYM/<SemiBoldText style={text.black}>HUB</SemiBoldText>
 							</BoldText>
 						</Animated.View>
-
 						{/* Bottom Text */}
 						<Animated.View entering={FadeInDown.duration(1000)} exiting={FadeOutUp.duration(1000)} style={container.bottom}>
 							<MediumText style={[text.white, text.small]}>
-								{'Join the \n'}
-								<MediumText style={[text.white, text.large]}>{'Online Gym Community'}</MediumText>
+								{t('Join the\n')}
+								<MediumText style={[text.white, text.large]}>{t('Online Gym Community')}</MediumText>
 							</MediumText>
+							
 							<CustomButton
 								loading={false}
 								onPress={() => router.push('SelectionScreen')}
 								onLongPress={() => { }}
-								title="Get Started"
+								title={t('Get Started')}
 								iconLeft={''}
 								iconRight={''}
 								activeOpacity={0.8}

@@ -28,7 +28,7 @@ export default function GymReviews({ rating, reviews }: {
 	rating: number,
 	reviews: ReviewProps[]
 }) {
-
+	
 	const [expanded, setExpanded] = useState(false);
 	const [carouselHeight, setCarouselHeight] = useState(200)
 

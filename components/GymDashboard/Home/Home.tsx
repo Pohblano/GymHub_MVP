@@ -7,10 +7,12 @@ import GymHeroBanner from './Utils/GymHeroBanner'
 import { GymBannerBody, GymBannerHeader} from './Utils/GymPromotions'
 // Context
 import { useGym } from '@/context/Gym.context'
+import { useTranslation } from 'react-i18next'
 
 function Home() {
 	const { gym, updateGym } = useGym()
 	const images = gym.images
+	const {t} = useTranslation()
 
 	useEffect(()=>{
 	},[])
@@ -19,8 +21,8 @@ function Home() {
 		<ScrollView showsVerticalScrollIndicator={false}>
 			<Animated.View className='flex-1 mb-3' entering={FadeInDown.duration(600).withInitialValues({ transform: [{ translateY: 50 }]}) } exiting={FadeOut}>
 				<GymHeroBanner
-					title={'Promotions'}
-					subtitle={'Our latest'}
+					title={t('Promotions')}
+					subtitle={t('Our latest')}
 					details={gym.promotions.frontDetails}
 					image={images?.promotions}
 					textAnimation={FadeInRight.duration(800).delay(200)}
@@ -37,8 +39,8 @@ function Home() {
 
 			<Animated.View className='flex-1 mb-3' entering={FadeInDown.duration(800).delay(200).withInitialValues({ transform: [{ translateY: 50 }] })} exiting={FadeOut}>
 				<GymHeroBanner
-					title={'Memberships'}
-					subtitle={'All access'}
+					title={t('Memberships')}
+					subtitle={t('All access')}
 					details={gym.memberships.frontDetails}
 					image={images?.memberships}
 					textAnimation={FadeInRight.duration(800).delay(500)}

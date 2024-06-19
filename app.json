@@ -15,7 +15,13 @@
     "ios": {
       "googleServicesFile": "",
       "bundleIdentifier": "com.alberto.gymhub",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true
+      },
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "googleServicesFile": "",
@@ -63,8 +69,9 @@
         {
           "userTrackingPermission": "This identifier will be used to deliver personalized ads to you."
         }
-      ]
-      
+      ],
+      "expo-localization",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
@@ -77,6 +84,10 @@
         "projectId": "da109601-5d2a-4244-b09d-8268a875bad6"
       }
     },
-    "owner": "pohblano"
+    "owner": "pohblano",
+    "locales": {
+      "en": ".locales/en/translation.json",
+      "es": ".locales/es/translation.json"
+    }
   }
 }

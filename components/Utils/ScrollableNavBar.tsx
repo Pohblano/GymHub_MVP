@@ -1,3 +1,4 @@
+import { useGym } from '@/context/Gym.context';
 import { useFadeInStyles } from '@/hooks/animationStyle';
 import { text } from '@/styles/text.styles';
 import React, { useState, useEffect, useRef } from 'react';
@@ -10,6 +11,7 @@ const ScrollableNavBar = ({ items, activeItem, setActiveItem }:{
   setActiveItem: (item:string) => any
 }) => {
   const scrollViewRef = useRef<any>();
+  const {gym} = useGym()
   const animation = useFadeInStyles(50, -50, 800,0)
 	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
 
@@ -38,8 +40,8 @@ const ScrollableNavBar = ({ items, activeItem, setActiveItem }:{
         contentContainerStyle={styles.scrollContainer}>
         {items.map((item: string, index: number) => (
           <Pressable key={index} onPress={() => handleSelect(item)}>
-            <View style={[styles.navItem, item === activeItem && styles.activeNavItem]}>
-              <Text style={[styles.navText, item === activeItem && [text.gym207, styles.activeNavText]]}>{item}</Text>
+            <View style={[styles.navItem, item === activeItem && [styles.activeNavItem, {backgroundColor: gym.theme.text}],]}>
+              <Text style={[styles.navText, item === activeItem && [{color: gym.theme.text}, styles.activeNavText]]}>{item}</Text>
             </View>
           </Pressable>
         ))}
@@ -62,7 +64,6 @@ const styles = StyleSheet.create({
   },
   activeNavItem: {
     borderRadius: 50,
-    backgroundColor: '#62D767',
     color: 'white',
     fontWeight: '800'
   },

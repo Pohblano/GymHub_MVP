@@ -5,6 +5,7 @@ import Animated, { useSharedValue, withRepeat, withTiming, useAnimatedStyle, Eas
 import { Popover, Popable } from 'react-native-popable'
 import { MediumText } from '../Text/StyledText';
 import { text } from '@/styles/text.styles';
+import { useTranslation } from 'react-i18next';
 
 export interface ScheduleType {
     'sunday': { open: string, close: string },
@@ -24,7 +25,12 @@ const isOpen = (schedule: ScheduleType) => {
     const todayHours = schedule[currentDay as CurrentDayType];
     if (todayHours) {
         // Check if the current time is within any of the open-close intervals for today
-        return (currentTime >= todayHours.open && currentTime <= todayHours.close)
+        // return (currentTime >= todayHours.open && currentTime <= todayHours.close)
+        return {
+            bool: (currentTime >= todayHours.open && currentTime <= todayHours.close), 
+            open: todayHours.open, 
+            close: todayHours.close
+        }
     }
     return false
 }
@@ -36,6 +42,7 @@ export default function ScheduleStatus({ business, schedule, subtitle }: {
 }) {
     const open = isOpen(schedule);
     const glow = useSharedValue(10);
+    const {t} = useTranslation()
 
     useEffect(() => {
         glow.value = withRepeat(
@@ -60,26 +67,19 @@ export default function ScheduleStatus({ business, schedule, subtitle }: {
                 <View className='d-flex flex-row ml-2' style={{}}>
                     <Animated.View style={[styles.circle, animatedStyle, { backgroundColor: open ? '#22D767' : '#d76262' }]} />
                     <MediumText style={text.light_grey}>
-                        {open ? `${business} is currently open` : `${business} is currently closed`}
+                        {open ? `${business} ${t('is currently open')}` : `${business} ${t('is currently closed')}`}
                     </MediumText>
                     
                 </View>
                 :
                 <>
-                    <Popable content={open ? `${business} is currently open` : `${business} is currently closed`}>
+                    <Popable content={open ? `${business} ${t('is currently open')}` : `${business} ${t('is currently closed')}`}>
                         <Animated.View className='ml-2' style={[styles.circle, animatedStyle,{ backgroundColor: open ? '#22D767' : '#d76262' }]} />
                     </Popable>
                 </>
             }
 
         </>
-        // // <Animated.View  className='ml-2' style={[styles.circle, animatedStyle]} />
-        // <View className='d-flex flex-row ml-2' style={{}}>
-        // 	<Animated.View  className='mr-2' style={[styles.circle, animatedStyle]} />
-        //     <Text className=' text-sm'>
-        //         {open ? `${business} is currently open` : `${business} is currently closed`}
-        //     </Text>
-        // </View>
     );
 }
 
