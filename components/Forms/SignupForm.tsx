@@ -78,7 +78,7 @@ export default function SignupForm() {
 				</Animated.View>
 				{formik.touched.email && formik.errors.email ? (
 					<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
-						{formik.errors.email}{/* i18next-extract-disable-line */}
+						{t(formik.errors.email)}{/* i18next-extract-disable-line */}
 					</Animated.Text>
 				) : null}
 				<Animated.View style={delayedAnimation.fadeInStyle}>
@@ -96,7 +96,7 @@ export default function SignupForm() {
 				</Animated.View>
 				{formik.touched.password && formik.errors.password ? (
 					<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
-						{formik.errors.password}{/* i18next-extract-disable-line */}
+						{t(formik.errors.password)}{/* i18next-extract-disable-line */}
 					</Animated.Text>
 				) : null}
 
@@ -115,12 +115,12 @@ export default function SignupForm() {
 				</Animated.View>
 				{formik.touched.confirmPassword && formik.errors.confirmPassword ? (
 					<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
-						{formik.errors.confirmPassword} {/* i18next-extract-disable-line */}
+						{t(formik.errors.confirmPassword)} {/* i18next-extract-disable-line */}
 					</Animated.Text>
 				) : null}
 
 
-				<Animated.View style={delayedAnimation.fadeInStyle}>
+				{/* <Animated.View style={delayedAnimation.fadeInStyle}>
 					<Seperator_Text style={{ marginVertical: 10 }}>{t('Or Sign Up With')}</Seperator_Text>
 				</Animated.View>
 
@@ -151,7 +151,7 @@ export default function SignupForm() {
 						textStyle={[text.black, text.regular_button]}
 						disabled={false}
 					/>
-				</Animated.View>
+				</Animated.View> */}
 			</View>
 
 			{/* Bottom Buttons */}

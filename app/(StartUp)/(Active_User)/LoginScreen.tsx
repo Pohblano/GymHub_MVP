@@ -63,9 +63,6 @@ export default function LoginScreen() {
 					</Animated.View>
 				</HorizontalPaddedView>
 			</CustomSafeAreaView>
-
 		</>
-
-
 	)
 }

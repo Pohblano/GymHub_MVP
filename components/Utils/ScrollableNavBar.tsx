@@ -2,18 +2,20 @@ import { useGym } from '@/context/Gym.context';
 import { useFadeInStyles } from '@/hooks/animationStyle';
 import { text } from '@/styles/text.styles';
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, ScrollView, Text, StyleSheet, Pressable } from 'react-native';
 import Animated from 'react-native-reanimated';
 
-const ScrollableNavBar = ({ items, activeItem, setActiveItem }:{
+const ScrollableNavBar = ({ items, activeItem, setActiveItem }: {
   items: string[],
-  activeItem: string, 
-  setActiveItem: (item:string) => any
+  activeItem: string,
+  setActiveItem: (item: string) => any
 }) => {
   const scrollViewRef = useRef<any>();
-  const {gym} = useGym()
-  const animation = useFadeInStyles(50, -50, 800,0)
-	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
+  const { gym } = useGym()
+  const animation = useFadeInStyles(50, -50, 800, 0)
+  const { t } = useTranslation()
+
 
   useEffect(() => {
     const index = items.indexOf(activeItem);
@@ -40,8 +42,10 @@ const ScrollableNavBar = ({ items, activeItem, setActiveItem }:{
         contentContainerStyle={styles.scrollContainer}>
         {items.map((item: string, index: number) => (
           <Pressable key={index} onPress={() => handleSelect(item)}>
-            <View style={[styles.navItem, item === activeItem && [styles.activeNavItem, {backgroundColor: gym.theme.text}],]}>
-              <Text style={[styles.navText, item === activeItem && [{color: gym.theme.text}, styles.activeNavText]]}>{item}</Text>
+            <View style={[styles.navItem, item === activeItem && [styles.activeNavItem, { backgroundColor: gym.theme.text }],]}>
+              <Text style={[styles.navText, item === activeItem && [{ color: gym.theme.text }, styles.activeNavText]]}>
+                {t(item)}{/* i18next-extract-disable-line */}
+              </Text>
             </View>
           </Pressable>
         ))}

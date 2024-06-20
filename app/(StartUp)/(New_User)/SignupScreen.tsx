@@ -4,7 +4,6 @@ import { SafeAreaView, View, StyleSheet } from 'react-native'
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling

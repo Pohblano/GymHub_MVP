@@ -12,13 +12,15 @@ import { BoldText, RegularText, SemiBoldText } from "../Text/StyledText";
 import { useAuth } from "@/context/Auth.context";
 import { Octicons } from '@expo/vector-icons';
 import { router, useSegments } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 
 export default function MainDrawerContent(props: any) {
 	const { logout, user } = useAuth();
 	const { bottom } = useSafeAreaInsets();
-	const segments = useSegments()
-  	console.log(segments)
+	const {t}= useTranslation()
+	console.log(user.profile_img)
+	
 	return (
 		<View style={{ flex: 1 }}>
 			<DrawerContentScrollView {...props}>
@@ -27,7 +29,7 @@ export default function MainDrawerContent(props: any) {
 						<Image style={styles.avatar} source={user.profile_img} />
 					</View>
 					<View className='ml-3'>
-						<BoldText className='' numberOfLines={1} style={[text.regular, text.light_grey, {maxWidth: 180}]}>{user.name}</BoldText>
+						<BoldText className='' numberOfLines={1} style={[text.regular, text.light_grey, {maxWidth: 180}]}>{user.username}</BoldText>
 						<RegularText className='' numberOfLines={1} style={[ text.light_grey, {maxWidth: 180}]}>{user.email}</RegularText>
 					</View>
 					{/* <BoldText style={[text.black, text.large]}>
@@ -38,7 +40,7 @@ export default function MainDrawerContent(props: any) {
 
 				<DrawerItemList {...props} />
 				<DrawerItem
-					label={'Settings'}
+					label={t('Settings')}
 					onPress={() => router.push('/Settings')}
 					icon={() => <Octicons name="gear" size={24} color="black" />}
 					labelStyle={{
@@ -47,9 +49,9 @@ export default function MainDrawerContent(props: any) {
 					}}/>
 
 				<DrawerItem
-					label={'Sign Out'}
-					onPress={logout}
-					// onPress={() => router.push('/')}
+					label={t('Sign Out')}
+					// onPress={logout}
+					onPress={() => router.push('/')}
 					icon={() => <Octicons name="sign-out" size={24} color="black" />}
 					labelStyle={{
 						marginLeft: -20,

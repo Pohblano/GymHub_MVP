@@ -1,7 +1,7 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React from 'react'
 import Animated, { FadeInDown, FadeInLeft, FadeInRight } from 'react-native-reanimated'
 import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native'
-import { Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons'
+import { Feather, FontAwesome5 } from '@expo/vector-icons'
 // Styles
 import { text } from '@/styles/text.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle'
@@ -19,7 +19,6 @@ import { useGym } from '@/context/Gym.context'
 import { openPhoneApp, openSocial, openWhatsApp } from '@/utils/linking'
 import { Facebook, Instagram, Tiktok } from '@/constants/Icons'
 import { useTranslation } from 'react-i18next'
-
 
 export default function About() {
 	const { gym, reviews } = useGym()
@@ -96,13 +95,9 @@ export default function About() {
 						<GymLocation address={gym.address} />
 					</Animated.View>
 
-					<Animated.View style={animation.fadeInStyle}>
-						<Seperator style={{ marginTop: 30 }} />
-					</Animated.View>
-
-					<Animated.View entering={FadeInDown.duration(800).delay(1200)}>
+					{/* <Animated.View entering={FadeInDown.duration(800).delay(1200)}>
 						<GymReviews rating={gym.rating} reviews={reviews} />
-					</Animated.View>
+					</Animated.View> */}
 
 				</View>
 

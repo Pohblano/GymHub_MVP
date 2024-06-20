@@ -46,3 +46,6 @@ export function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve as () => void, ms));
 }
 
+export function inSpanish(){
+  
+}

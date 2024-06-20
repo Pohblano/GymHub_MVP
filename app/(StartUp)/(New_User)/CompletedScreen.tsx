@@ -2,7 +2,6 @@
 import React from 'react';
 import { SafeAreaView, View } from 'react-native'
 import LottieView from 'lottie-react-native';
-
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -17,7 +16,6 @@ import { BoldText } from '../../../components/Text/StyledText';
 import CustomButton from '@/components/Buttons/CustomButton';
 import Animated from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
-
 
 export default function CompletedScreen() {
 	const router = useRouter();

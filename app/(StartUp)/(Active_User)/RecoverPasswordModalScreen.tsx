@@ -12,7 +12,6 @@ import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
 import { HorizontalPaddedView } from '@/components/Views/PaddedView'
 import { BoldText } from '@/components/Text/StyledText';
-import { IconPressable } from '@/components/Buttons/CustomPressable';
 import RecoverPasswordForm from '@/components/Forms/RecoverPasswordForm'
 import CustomLink from '@/components/Buttons/CustomLink';
 import { useTranslation } from 'react-i18next';

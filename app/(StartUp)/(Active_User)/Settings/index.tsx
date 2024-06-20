@@ -1,22 +1,22 @@
 // Modules
 import React from 'react'
-import { Text, View, StyleSheet, Pressable } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Entypo, Feather, FontAwesome, FontAwesome5, Fontisto, Ionicons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons'
+import { Entypo, FontAwesome,  Ionicons, Octicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 // Styling
 import { container } from '@/styles/containers.styles'
 import { text } from '@/styles/text.styles'
 // Components
 import CustomLink from '@/components/Buttons/CustomLink'
-import { BoldText, RegularText, SemiBoldText } from '@/components/Text/StyledText'
-import { CustomSafeAreaView, HorizontalPaddedView } from '@/components/Views/PaddedView'
+import { BoldText, RegularText } from '@/components/Text/StyledText'
+import { HorizontalPaddedView } from '@/components/Views/PaddedView'
 import { ButtonPressable } from '@/components/Buttons/CustomPressable'
 // Context
 import { useAuth } from '@/context/Auth.context'
 import { Image } from 'expo-image'
-import CustomButton from '@/components/Buttons/CustomButton'
+
 import { useTranslation } from 'react-i18next'
 
 export default function SettingsScreen() {
@@ -50,7 +50,7 @@ export default function SettingsScreen() {
 						<Animated.View entering={FadeInRight.duration(600).delay(100)} className='d-flex flex-row' style={{ alignItems: 'center' }}>
 							<Image source={user.profile_img} style={[styles.avatar]} />
 							<View className='d-flex gap-1'>
-								<BoldText style={[text.small, text.light_grey]}>{user.name}</BoldText>
+								<BoldText style={[text.small, text.light_grey]}>{user.username}</BoldText>
 								<RegularText style={[text.light_grey]}>{user.email}</RegularText>
 							</View>
 						</Animated.View>

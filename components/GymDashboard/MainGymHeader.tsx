@@ -43,7 +43,7 @@ function MainGymHeader({ activeItem, setActiveItem, gym_title, items, schedule }
 				disabled={false}
 				loading={false} />
 			<View className='mb-2'>
-				<RegularText style={[text.light_grey, text.small, animation.slideLeftStyle]}>{'This is'}</RegularText>
+				<RegularText style={[text.light_grey, text.small, animation.slideLeftStyle]}>{t('This is')}</RegularText>
 				<Animated.View className='d-flex flex-row' style={delayedAnimation.slideLeftStyle}>
 					<BoldText style={[text.large]}>{gym_title}</BoldText>
 					<ScheduleStatus business={t('The gym')} schedule={schedule}/>

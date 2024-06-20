@@ -24,7 +24,7 @@ export default function TrainerSpotlight({ trainer }: {
 }) {
 	const { gym } = useGym();
 	const images = gym.images;
-	const animation = useFadeInStyles(50, 50, 800,0)
+	const animation = useFadeInStyles(50, 50, 600,0)
 	const delayedAnimation = useFadeInStyles(50, 50, 600, 200)
 	const delayeddAnimation = useFadeInStyles(50, 50, 600, 400)
 	const {t} = useTranslation()
@@ -44,7 +44,7 @@ export default function TrainerSpotlight({ trainer }: {
 					source={{ uri: gym.images.trainer_spotlight }}
 					style={{ height: 350, width: 'auto', borderRadius: 10 }} />
 				<LinearGradient
-					colors={['rgba(0,0,0,0.6)', 'rgba(0,0,0,0)']}
+					colors={['rgba(0,0,0,0.8)', 'rgba(0,0,0,0.5)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']}
 					start={[0, 0]} end={[1, 0]}
 					style={styles.background}>
 					<Animated.View style={delayedAnimation.slideLeftStyle}>

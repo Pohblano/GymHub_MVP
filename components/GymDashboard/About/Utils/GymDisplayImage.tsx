@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { ImageBackground, StyleSheet } from 'react-native'
 // Styling
 import { text } from '@/styles/text.styles'
+import { useTranslation } from 'react-i18next'
 // Components
 
 
@@ -13,6 +14,7 @@ export default function GymDisplayImage({ image, caption }:{
 	image: string,
 	caption: string
 }) {
+	const {t} = useTranslation()
 	return (
 		<ImageBackground
 			style={{ height: 250, width: 'auto'}}
@@ -24,7 +26,9 @@ export default function GymDisplayImage({ image, caption }:{
 				start={[0, 1]} end={[0, 0]}
 				style={styles.background}
 			>
-				<BoldText className='w-5/6' style={[text.large, text.white]}>{caption}</BoldText>
+				<BoldText className='w-5/6' style={[text.large, text.white]}>
+				{t(caption)}{/* i18next-extract-disable-line */}
+				</BoldText>
 			</LinearGradient>
 		</ImageBackground>
 	)

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 // import {onAuthStateChanged, signOut} from 'firebase/auth'
 import { auth, db } from "@/firebase.config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from '@firebase/auth'
-import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc, getDocs } from 'firebase/firestore'
+import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc, getDocs, query, where} from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import { router } from "expo-router";
 import { getBlobFromUri } from "@/utils/linking";
@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [isAuthenticated, setIsAuthenticated] = useState(undefined)
 	const [completedSetup, setCompletedSetup] = useState(undefined)
-	const {t} = useTranslation()
+	const { t } = useTranslation()
 	/// add condition to check if user completed setup if not then reroute them to finish setup page.
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
@@ -48,21 +48,27 @@ export const AuthContextProvider = ({ children }) => {
 	const update = async (uid, props, setErrors, setSubmitting) => {
 		try {
 			const docData = {
-				name: props?.name,
-				profile_img: props?.profile_img,
-				location: props?.location
+				username: props.username,
+				username_lower: props.username_lower,
+				profile_img: props.profile_img,
+				location: props.location
 			}
-			const userRef = doc(db, 'Users', uid)
-			await updateDoc(userRef, docData)
-				.then(doc => {
-					setUser({
-						...user,
-						name: props?.name,
-						profile_img: props?.profile_img,
-						location: props?.location
+			const collRef = collection(db, 'Users')
+			const q = query(collRef, where('username_lower', '==', props.username_lower))
+			const querySnapshot = await getDocs(q)
+			if (querySnapshot.empty) {
+				const userRef = doc(db, 'Users', uid)
+				await updateDoc(userRef, docData)
+					.then(doc => {
+						setUser({
+							...user,
+							...docData
+						})
+						router.replace('CompletedScreen')
 					})
-					router.replace('CompletedScreen')
-				})
+			}else{
+				setErrors({ username: "That username is already taken" });
+			}
 
 		} catch (error) {
 			console.log(error)

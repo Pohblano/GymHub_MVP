@@ -103,6 +103,7 @@ export function GymAmenities({ list }: {
 		icon: string
 	}[]
 }) {
+	const {t} = useTranslation()
 	return (
 		<>
 			<SemiBoldText style={[text.lighter_grey, text.regular, { marginBottom: 20}]}>{t('AMENITIES')}</SemiBoldText>

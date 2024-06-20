@@ -1,4 +1,5 @@
 {
+  "": "",
   "\nFollow the link to reset your password.": "\nFollow the link to reset your password.",
   "A display name is required": "A display name is required",
   "AVAILABLE": "AVAILABLE",
@@ -30,6 +31,7 @@
   "Language": "Language",
   "Languages": "Languages",
   "Log In": "Log In",
+  "Meet\n": "Meet\n",
   "Memberships": "Memberships",
   "Not a valid email": "Not a valid email",
   "Online Gym Community": "Online Gym Community",
@@ -61,9 +63,14 @@
   "That email is already in use": "That email is already in use",
   "That email is invalid": "That email is invalid",
   "The gym": "The gym",
+  "This is": "This is",
+  "Trainer": "Trainer",
+  "Trainer Spotlight:": "Trainer Spotlight:",
   "Trainers": "Trainers",
   "Unable to find the location": "Unable to find the location",
   "Welcome\nBack!": "Welcome\nBack!",
   "Welcome\nBack! ": "Welcome\nBack! ",
+  "Welcome\nto the Team!": "Welcome\nto the Team!",
+  "of": "of",
   "recover_email": "recover_email"
 }

@@ -25,6 +25,7 @@ export default function About({ trainer }: {
 	const delayedAnimation = useFadeInStyles(50, 50, 600, 200)
 	const delayeddAnimation = useFadeInStyles(50, 50, 600, 400)
 	const {t} = useTranslation()
+	const trainerT= useTranslation('Trainer').t
 	const renderTruncatedFooter = (handlePress: () => any) => {
 		return (
 			<Text
@@ -91,7 +92,9 @@ export default function About({ trainer }: {
 							<Entypo name="dot-single" size={24} color="black" />
 						</View>
 						<View style={{ width: '100%' }}>
-							<Text style={[text.black, text.sub_heading]}>{x}</Text>
+							<Text style={[text.black, text.sub_heading]}>
+								{t(x)}{/* i18next-extract-disable-line */}
+								</Text>
 							<RegularText style={[text.light_grey, text.regular, {}]}>{''}</RegularText>
 						</View>
 					</View>
@@ -108,7 +111,9 @@ export default function About({ trainer }: {
 						<FontAwesome name="calendar-o" size={24} color="black" />
 					</View>
 					<View style={{ width: '100%' }}>
-						<Text className='mb-2' style={[text.black, text.sub_heading]}>{trainer.schedule_overview?.days}</Text>
+						<Text className='mb-2' style={[text.black, text.sub_heading]}>
+							{trainer.schedule_overview?.days}
+						</Text>
 						<RegularText style={[text.light_grey, text.regular, {}]}>{''}</RegularText>
 					</View>
 				</View>

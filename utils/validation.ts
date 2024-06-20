@@ -18,7 +18,11 @@ export const RecoverPasswordSchema = Yup.object().shape({
 })
 
 export const SetupProfileSchema = Yup.object().shape({
-  name: Yup.string().required('A display name is required'),
+  name: Yup.string().required('A name is required'),
+  username: Yup.string().matches(/^[a-zA-Z0-9._]+$/, 'Username can only contain letters, numbers, periods, and underscores.')
+  .min(4, 'Username must be at least 4 character long.')
+  .max(30, 'Username cannot be longer than 30 characters.')
+  .required('Username is required.'),
   location: Yup.string().optional(),
   profile_img: Yup.string().optional(),
 })

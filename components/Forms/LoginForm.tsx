@@ -85,11 +85,11 @@ export default function LoginForm() {
 						iconStyle={{}} />
 				</Animated.View>
 				{formik.touched.password && formik.errors.password ? (
-					/* i18next-extract-disable-line */<Animated.Text style={[text.error, animation.fadeInStyle]}>
+					<Animated.Text style={[text.error, animation.fadeInStyle]}>
 						{t(formik.errors.password)} {/* i18next-extract-disable-line */}
-						</Animated.Text>
+					</Animated.Text>
 				) : null}
-
+{/* 
 				<Animated.View style={delayedAnimation.fadeInStyle}>
 					<Seperator_Text style={{ marginVertical: 10 }}>{t('Or Log In With')}</Seperator_Text>
 				</Animated.View>
@@ -121,7 +121,7 @@ export default function LoginForm() {
 						textStyle={[text.black, text.regular_button]}
 						disabled={false}
 					/>
-				</Animated.View>
+				</Animated.View> */}
 			</View>
 
 			{/* Bottom Buttons */}

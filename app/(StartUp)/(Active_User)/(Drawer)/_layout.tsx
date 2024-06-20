@@ -1,14 +1,13 @@
 // Modules
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Drawer } from 'expo-router/drawer';
-import AntDesign from '@expo/vector-icons/AntDesign';
-
 // Components
 import MainDrawerContent from '@/components/GymDashboard/MainDrawerContent';
-import { EvilIcons, Octicons } from '@expo/vector-icons';
+import { Octicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 export default function Layout() {
-
+  const {t} = useTranslation()
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer
@@ -27,8 +26,8 @@ export default function Layout() {
         <Drawer.Screen
           name="GymDashboardScreen"
           options={{
-            drawerLabel: 'Home',
-            title: 'Home',
+            drawerLabel: t('Home'),
+            title: t('Home'),
             drawerIcon: ({size,color}) => (
               <Octicons name="home" size={24} color="black" />
             )

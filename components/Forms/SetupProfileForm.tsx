@@ -9,7 +9,7 @@ import { generateUsername } from '@/utils/generators';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
-import { StyleSheet } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
 import { text } from '@/styles/text.styles'
 import { container } from '@/styles/containers.styles'
 import { form } from '@/styles/form.styles'
@@ -53,6 +53,7 @@ export default function SetupProfileForm() {
 
 		if (!pickerResult.canceled) {
 			const uri = pickerResult.assets[0].uri
+
 			setImageUri(uri);
 		}
 	};
@@ -79,32 +80,36 @@ export default function SetupProfileForm() {
 		setLocation(false);
 	};
 
-
-	// IF no name randomly generate one and check if you need location
 	const formik = useFormik({
-		initialValues: { profile_img: '', name: '', location: '' },
+		initialValues: { profile_img: '', username: '', location: '', name: '' },
 		validationSchema: SetupProfileSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
+			let profile_img = ''
 			if (imageUri) {
-				const downloadURL = await upload_image(imageUri)
-				if (downloadURL) {
-					formik.values.profile_img = downloadURL
+				try {
+					const downloadURL = await upload_image(imageUri)
+					if (downloadURL) profile_img= downloadURL
+				} catch (err) {
+					console.log(err)
 				}
 			}
 			else {
 				const default_image = `https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/profile_images%2Fdefault-image.jpg?alt=media&token=67031391-86e9-4311-b9c1-77a49008c557`
-				formik.values.profile_img = default_image
+				profile_img = default_image
 			}
-			if (!formik.values.name) {
-				formik.values.name = generateUsername();
+			const newValues = {
+				profile_img: profile_img,
+				name: values.name,
+				username: values.username,
+				username_lower: values.username.toLowerCase(),
+				location: (values.location) ? values.location : ''
 			}
-			const response = await update(user.uid, values, setErrors, setSubmitting)
+			const response = await update(user.uid, newValues, setErrors, setSubmitting)
 		},
 	});
 
 	return (
 		<>
-
 			<Animated.View style={[{ flex: 2, gap: 15 }]}>
 
 				{/* START OF FORM */}
@@ -117,7 +122,7 @@ export default function SetupProfileForm() {
 
 				{formik.touched.profile_img && formik.errors.profile_img ? (
 					<Animated.Text style={[text.error, animation.fadeInStyle]}>
-						{t(formik.errors.profile_img)}{/* i18next-extract-disable-line */}
+						{formik.errors.profile_img}
 					</Animated.Text>
 				) : null}
 
@@ -128,8 +133,26 @@ export default function SetupProfileForm() {
 						containerStyle={{}}
 						inputStyle={[
 							container.input_text, text.black,
-							formik.touched.name && formik.errors.name ? form.error_input : null]}
+							formik.touched.username && formik.errors.username ? form.error_input : null]}
 						placeholder={t('Display Name')}
+						value={formik.values.username}
+						setValue={formik.handleChange('username')}
+						setBlur={formik.handleBlur('username')} />
+				</Animated.View>
+				{formik.touched.username && formik.errors.username ? (
+					<Animated.Text style={[text.error, animation.fadeInStyle]}>
+						{t(formik.errors.username)}{/* i18next-extract-disable-line */}
+					</Animated.Text>
+				) : null}
+
+				<Animated.View style={delayedAnimation.fadeInStyle}>
+					<DisplayNameInput
+						iconStyle={{}}
+						containerStyle={{}}
+						inputStyle={[
+							container.input_text, text.black,
+							formik.touched.name && formik.errors.name ? form.error_input : null]}
+						placeholder={t('Name')}
 						value={formik.values.name}
 						setValue={formik.handleChange('name')}
 						setBlur={formik.handleBlur('name')} />
@@ -154,33 +177,14 @@ export default function SetupProfileForm() {
 				</Animated.View>
 				{formik.touched.location && formik.errors.location ? (
 					<Animated.Text style={[text.error, animation.fadeInStyle]}>
-						{t(formik.errors.location)}{/* i18next-extract-disable-line */}
+						{formik.errors.location}
 					</Animated.Text>
 				) : null}
-
-				{/* <Picker
-					selectedValue={selectedGym}
-					onValueChange={(itemValue: React.SetStateAction<string>) => {
-						setSelectedGym(itemValue);
-						formik.setFieldValue('home_gym', itemValue);
-					}}
-					style={[container.input_text, text.black]}
-				>
-					<Picker.Item label="Select Home Gym" value="" />
-					<Picker.Item label="20-7 Gym" value="20/7" />
-					<Picker.Item label="Golds Gym" value="Golds" />
-				 {gyms.map((gym) => (
-						<Picker.Item key={gym.id} label={gym.name} value={gym.id} />
-					))} 
-				</Picker>
-				{formik.touched.home_gym && formik.errors.home_gym ? (
-					<Text style={text.error}>{formik.errors.home_gym}</Text>
-				) : null} */}
 
 			</Animated.View>
 
 			{/* Bottom Buttons */}
-			<Animated.View style={[container.bottom, { gap: 10 }, animation.slideUpStyle]}>
+			< Animated.View style={[container.bottom, { gap: 10 }, animation.slideUpStyle]} >
 				<CustomButton
 					loading={formik.isSubmitting}
 					onPress={formik.handleSubmit}
@@ -194,7 +198,7 @@ export default function SetupProfileForm() {
 					textStyle={[text.primary_button, text.white]}
 					disabled={formik.isSubmitting}
 				/>
-			</Animated.View>
+			</Animated.View >
 		</>
 	)
 }

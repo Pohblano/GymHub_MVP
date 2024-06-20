@@ -1,13 +1,12 @@
 // Modules
 import React, { useEffect, useRef, useState } from 'react';
-import { SafeAreaView, View, ScrollView, Pressable, Platform } from 'react-native'
+import { View, ScrollView, Pressable,} from 'react-native'
 import { StatusBar } from 'expo-status-bar';
-import { Feather, FontAwesome, FontAwesome5, Fontisto, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import PagerView from 'react-native-pager-view';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
-import * as Linking from "expo-linking"
 // * Routing
 import { Link, useLocalSearchParams, useRouter } from 'expo-router';
 // *Styling
@@ -52,7 +51,6 @@ export default function TrainerModal() {
     const trainer = trainers.find((trainer: TrainerType) => trainer.uid === uid)
     setTrainer(trainer)
   }, [])
-
 
   const handlePageChange = (index: number) => {
     setActiveItem(items[index]);
@@ -117,7 +115,7 @@ export default function TrainerModal() {
             textStyle={text.option_link}
             disabled={false} />
           <LinearGradient
-            colors={['rgba(0,0,0,0.5)', 'rgba(0,0,0,0)']}
+            colors={['rgba(0,0,0,.8)','rgba(0,0,0,0.5)','rgba(0,0,0,0.1)','rgba(0,0,0,0)','rgba(0,0,0,0)', 'rgba(0,0,0,0)']}
             start={[0, 1]} end={[0, 0]}
             style={[styles.background]}>
             <Animated.View className='mb-6' entering={FadeInUp.duration(800)}>

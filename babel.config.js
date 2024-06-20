@@ -23,4 +23,4 @@ module.exports = function (api) {
 };
 
 
-// i18next extract looks for all the {t("I'm a string")} and extracts them into the en/translate.json 
+// i18next extract looks for all the {t("I'm a string")} and extracts them into the en/translation.json 
