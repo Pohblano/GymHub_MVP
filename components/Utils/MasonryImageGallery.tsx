@@ -11,7 +11,7 @@ export default function MasonryImageGallery({ images, style }: {
 	style: any
 }) {
 	const { navigate } = useNavigation()
-	const sequentialSlideUpStyle = sequentialStyles(images, 50, 400, -300, 200)
+	const sequentialSlideUpStyle = sequentialStyles(images, 50, 200, 0, 0)
 
 	const renderItem = ({ item, i }: {
 		item: string,
@@ -32,7 +32,7 @@ export default function MasonryImageGallery({ images, style }: {
 
 		return (
 			<Animated.View style={[sequentialSlideUpStyle[i].slideInStyle]}>
-				<Pressable onPress={() => navigate('ImageViewerScreen', { i, images: images })}>
+				<Pressable onPress={() => navigate('ImageViewerScreen', { index: i, images: images })}>
 					<Image source={{ uri: item }} style={[{ height: dimensions.height }, styles.image]} transition={100} />
 				</Pressable>
 			</Animated.View>

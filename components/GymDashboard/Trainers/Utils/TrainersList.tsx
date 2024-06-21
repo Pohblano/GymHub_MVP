@@ -46,7 +46,7 @@ export default function TrainersList({ trainers }: {
 								source={{ uri: trainer.img }}
 								style={{ height: 200, width: 'auto', borderRadius: 10 }} />
 							<LinearGradient
-								colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0)']}
+								colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,.8)','rgba(0,0,0,0)','rgba(0,0,0,0)','rgba(0,0,0,0)']}
 								start={[0, 0]} end={[1, 0]}
 								style={styles.background}>
 

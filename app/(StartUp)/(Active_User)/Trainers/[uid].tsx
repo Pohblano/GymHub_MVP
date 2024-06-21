@@ -1,6 +1,6 @@
 // Modules
 import React, { useEffect, useRef, useState } from 'react';
-import { View, ScrollView, Pressable,} from 'react-native'
+import { View, ScrollView, Pressable, } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import { Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -28,6 +28,137 @@ import { openPhoneApp, openWhatsApp } from '@/utils/linking';
 import CustomButton from '@/components/Buttons/CustomButton';
 import { useTranslation } from 'react-i18next';
 
+const list = [{
+  appointments: [],
+  biography: "Responsable, honesto, educado, exigente, comprometido.",
+  contact_info: {
+    email: "marvazjul@gmail.com",
+    phone: ""
+  },
+  first_name: "Julian",
+  img: "",
+  img_list: [
+
+  ],
+  last_name: "Vazquez",
+  name: "Julian Vazquez",
+  schedule: {
+    friday: {
+      close: "13:00",
+      open: "07:00"
+    },
+    monday: {
+      close: "13:00",
+      open: "07:00"
+    },
+    saturday: {
+      close: "00:00",
+      open: "00:00"
+    },
+    sunday: {
+      close: "00:00",
+      open: "00:00"
+    },
+    thursday: {
+      close: "13:00",
+      open: "07:00"
+    },
+    tuesday: {
+      close: "13:00",
+      open: "07:00"
+    },
+    wednesday: {
+      close: "13:00",
+      open: "07:00"
+    }
+  },
+  schedule_overview: {
+    days: "Lunes - Viernes",
+    time: "7am - 1pm "
+  },
+  socials: {
+    facebook: "",
+    instagram: "",
+    tiktok: ""
+  },
+  specialty: ["Bodybuilding", "Weight-loss", "Strength"],
+  uid: ""
+},
+{
+  appointments: [],
+  biography: "Entrenador Personal Certificado en la Academia de Entrenadores Personales enfocado en llevar un proceso sano para llegar al físico que deseas",
+  contact_info: {
+    email: "erikzaragoza@hotmail.com",
+    phone: "+526633351367"
+  },
+  first_name: "Erik",
+  img: "https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2FErik%20Zaragoza%2FIMG_0238-2.jpg?alt=media&token=f7833771-6066-40ab-9429-9bb002991fb7",
+  img_list: [
+    "https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2FErik%20Zaragoza%2FIMG_0238-2.jpg?alt=media&token=f7833771-6066-40ab-9429-9bb002991fb7",
+    'https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2FErik%20Zaragoza%2FIMG_0239-2.jpg?alt=media&token=86e2b307-7565-4526-a114-6f8c6e529dfd',
+    'https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2FErik%20Zaragoza%2FIMG_0243-2.jpg?alt=media&token=cfa491c1-793b-43a4-9ed9-5c5bb523631c',
+    'https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2FErik%20Zaragoza%2FIMG_4941%20-%20Erik%20Zaragoza.jpeg?alt=media&token=37895c6e-2ae8-483d-94f6-1970e8e9c992',
+    'https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2FErik%20Zaragoza%2FIMG_4942%20-%20Erik%20Zaragoza.jpeg?alt=media&token=33be90ab-fbd3-4ecd-92c5-a1a1d8345d41',
+    'https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2FErik%20Zaragoza%2FIMG_4944%20-%20Erik%20Zaragoza.jpeg?alt=media&token=c9d5f061-7ce9-4390-993c-5134b9ae0cb4',
+    'https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2FErik%20Zaragoza%2FIMG_4944%20-%20Erik%20Zaragoza.jpeg?alt=media&token=c9d5f061-7ce9-4390-993c-5134b9ae0cb4',
+    'https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/Gym207%2FTrainers%2FErik%20Zaragoza%2F_MG_4989%20-%20Erik%20Zaragoza.jpeg?alt=media&token=266506fb-5195-4d17-8aaa-70723e7c6b34'
+  ],
+  last_name: "Garcia",
+  name: "Erik Garcia",
+  schedule: {
+    friday: {
+      close: "10:00",
+      open: "06:00",
+      close1: "16:00",
+      open1: "21:30",
+    },
+    monday: {
+      close: "10:00",
+      open: "06:00",
+      close1: "16:00",
+      open1: "21:30",
+    },
+    saturday: {
+      close: "00:00",
+      open: "00:00",
+    },
+    sunday: {
+      close: "00:00",
+      open: "00:00",
+    },
+    thursday: {
+      close: "10:00",
+      open: "06:00",
+      close1: "16:00",
+      open1: "21:30",
+    },
+    tuesday: {
+      close: "10:00",
+      open: "06:00",
+      close1: "16:00",
+      open1: "21:30",
+    },
+    wednesday: {
+      close: "10:00",
+      open: "06:00",
+      close1: "16:00",
+      open1: "21:30",
+    }
+  },
+  schedule_overview: {
+    days: "Lunes - Viernes",
+    time: "6am - 10am & 4pm - 9:30pm"
+  },
+  socials: {
+    facebook: "",
+    instagram: "https://www.instagram.com/erikeduardozg/",
+    tiktok: ""
+  },
+  specialty: ["Strength", "Sports"],
+  uid: ""
+}
+]
+
 interface ComponentMap {
   About: React.JSX.Element;
 }
@@ -37,12 +168,12 @@ export default function TrainerModal() {
   const router = useRouter();
   const items = ['About']
   const pagerViewRef = useRef<PagerView>(null);
-  const { trainers, gym } = useGym()
+  const { trainers, gym, createTrainers } = useGym()
   const { uid } = useLocalSearchParams()
   const [trainer, setTrainer] = useState<TrainerType>({})
   const [activeItem, setActiveItem] = useState(items[0])
   const { bottom, top, left } = useSafeAreaInsets();
-  const {t} = useTranslation()
+  const { t } = useTranslation()
 
   const animation = useFadeInStyles(50, -50, 800, 0)
   const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
@@ -70,14 +201,16 @@ export default function TrainerModal() {
     <View style={[container.wrapper, container.bg_white, { paddingBottom: bottom + 45, backgroundColor: 'white' }]}>
       <StatusBar style="light" />
 
-      <Animated.View className={'d-flex flex-row flex-1 self-end'} entering={FadeInRight.duration(800).delay(200)} style={[{ marginTop: top - 4 }, styles.contacts]}>
-        <Pressable style={[styles.phone, {backgroundColor:gym.theme.buttons}]} onPress={() => openPhoneApp(trainer.contact_info?.phone)}>
+      {(trainer.contact_info?.phone 
+        && <Animated.View className={'d-flex flex-row flex-1 self-end'} entering={FadeInRight.duration(800).delay(200)} style={[{ marginTop: top - 4 }, styles.contacts]}>
+        <Pressable style={[styles.phone, { backgroundColor: gym.theme.buttons }]} onPress={() => openPhoneApp(trainer.contact_info?.phone)}>
           <Feather name="phone" size={24} color="white" />
         </Pressable>
-        <Pressable style={[styles.whatsApp, {backgroundColor:gym.theme.buttons}]} onPress={() => openWhatsApp(trainer.contact_info?.phone)}>
+        <Pressable style={[styles.whatsApp, { backgroundColor: gym.theme.buttons }]} onPress={() => openWhatsApp(trainer.contact_info?.phone)}>
           <FontAwesome5 name="whatsapp" size={26} color="white" />
         </Pressable>
       </Animated.View>
+    )}
 
       {/* Display only if user hasn't already booked an appointment */}
       <Animated.View style={styles.bookButton} entering={FadeInDown.duration(800)}>
@@ -115,7 +248,7 @@ export default function TrainerModal() {
             textStyle={text.option_link}
             disabled={false} />
           <LinearGradient
-            colors={['rgba(0,0,0,.8)','rgba(0,0,0,0.5)','rgba(0,0,0,0.1)','rgba(0,0,0,0)','rgba(0,0,0,0)', 'rgba(0,0,0,0)']}
+            colors={['rgba(0,0,0,.8)', 'rgba(0,0,0,0.5)', 'rgba(0,0,0,0.1)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0)']}
             start={[0, 1]} end={[0, 0]}
             style={[styles.background]}>
             <Animated.View className='mb-6' entering={FadeInUp.duration(800)}>
@@ -197,3 +330,4 @@ const styles = StyleSheet.create({
     borderRadius: 60
   }
 })
+

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 export const container = StyleSheet.create({
 	// Color
 	bg_black: {
-		backgroundColor: '#454545',
+		backgroundColor: 'rgba(0, 0, 0, 0.842)',
 	},
 	bg_yellow: {
 		backgroundColor: '#e7be60',
@@ -34,16 +34,14 @@ export const container = StyleSheet.create({
 	bottom: {
 		flex: 1,
 		display: 'flex',
-		gap: 20,
+		gap: 10,
 		justifyContent: 'flex-end',
-		// marginBottom: 10
 	},
 	logo: {
 		flex:1,
 		alignSelf: 'center',
 		textAlign: 'center',
 		justifyContent: 'flex-end',
-		paddingBottom: 60,
 	},
 	back_button:{
 		flex:0,

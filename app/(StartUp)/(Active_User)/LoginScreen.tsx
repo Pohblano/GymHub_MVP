@@ -47,7 +47,7 @@ export default function LoginScreen() {
 					<LoginForm />
 
 					{/* Recover Password */}
-					<Animated.View style={animation.slideUpStyle}>
+					<Animated.View style={[animation.slideUpStyle, {marginTop: 8}]}>
 						<CustomLink
 							loading={false}
 							onPress={() => { router.push('RecoverPasswordModalScreen') }}

@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState, useMemo } from "react";
 // import {onAuthStateChanged, signOut} from 'firebase/auth'
 import { db } from "@/firebase.config";
 import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc, getDocs, query } from 'firebase/firestore'
-
 import { router } from "expo-router";
 
 export const GymContextProvider = ({ children }) => {
@@ -29,16 +28,12 @@ export const GymContextProvider = ({ children }) => {
 				setDataLoading(false);
 			}
 		})()
-
-
 	}, [])
 
 	const updateGym = async (uid, data) => {
 		try {
 			const gymRef = doc(db, 'Gyms', uid)
 			await updateDoc(gymRef, data)
-			console.log('UPDATED GYM DATA')
-
 		} catch (err) {
 			console.log(err)
 			setError(err.message);
@@ -82,9 +77,8 @@ export const GymContextProvider = ({ children }) => {
 			setStateData(dataList)
 		} catch (err) {
 			setError(err.message);
-			console.log(err.message)
-			console.log(`There was an error retrieving ${sub_collection}`)
-
+			console.log(err.message);
+			console.log(`There was an error retrieving ${sub_collection}`);
 		}
 	}
 

@@ -80,7 +80,8 @@
     "react-native-web-lottie": "^1.4.4",
     "react-native-webview": "13.8.6",
     "tailwindcss": "^3.4.3",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "expo-av": "~14.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -21,31 +21,18 @@ import AwesomeGallery, {
 import * as React from 'react';
 import { Image } from 'expo-image';
 import Animated, {
+	FadeIn,
 	FadeInDown,
 	FadeInUp,
 	FadeOutDown,
 	FadeOutUp,
+	LinearTransition,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useTranslation } from 'react-i18next';
 
-const renderItem = ({
-	item,
-	setImageDimensions,
-}: RenderItemInfo<{ uri: string }>) => {
-	return (
-		<Image
-			source={item.uri}
-			style={StyleSheet.absoluteFillObject}
-			contentFit="contain"
-			onLoad={(e) => {
-				const { width, height } = e.source;
-				setImageDimensions({ width, height });
-			}}
-		/>
-	);
-};
+
 
 export default function ImageViewerScreen() {
 	const { top, bottom } = useSafeAreaInsets();
@@ -54,7 +41,7 @@ export default function ImageViewerScreen() {
 	const { params } = useRoute();
 	const gallery = useRef<GalleryRef>(null);
 	const [mounted, setMounted] = useState(false);
-	const {t} = useTranslation()
+	const { t } = useTranslation()
 
 	useEffect(() => {
 		setMounted(true);
@@ -80,6 +67,21 @@ export default function ImageViewerScreen() {
 		StatusBar.setHidden(infoVisible, 'slide');
 		setInfoVisible(!infoVisible);
 	};
+	const renderItem = ({
+		item,
+		setImageDimensions,
+	}: RenderItemInfo<{ uri: string }>) => {
+		return (
+			<Image
+				source={item.uri}
+				style={StyleSheet.absoluteFillObject}
+				contentFit="contain"
+				onLoad={(e) => {
+					const { width, height } = e.source;
+					setImageDimensions({ width, height });
+				}}/>
+		);
+	};
 
 	return (
 		<View style={styles.container}>
@@ -101,20 +103,20 @@ export default function ImageViewerScreen() {
 				</Animated.View>
 			)}
 			<AwesomeGallery
-					ref={gallery}
-					data={params.images.map((uri) => ({ uri }))}
-					keyExtractor={(item) => item.uri}
-					renderItem={renderItem}
-					initialIndex={params.index}
-					numToRender={3}
-					doubleTapInterval={150}
-					onIndexChange={onIndexChange}
-					onTap={onTap}
-					onScaleEnd={(scale) => {
-						if (scale < 0.8) {
-							goBack();
-						}
-					}}/>
+				ref={gallery}
+				data={params.images.map((uri) => ({ uri }))}
+				keyExtractor={(item) => item.uri}
+				renderItem={renderItem}
+				initialIndex={params.index}
+				numToRender={3}
+				doubleTapInterval={150}
+				onIndexChange={onIndexChange}
+				onTap={onTap}
+				onScaleEnd={(scale) => {
+					if (scale < 0.8) {
+						goBack();
+					}
+				}} />
 			{infoVisible && (
 				<Animated.View
 					entering={mounted ? FadeInDown.duration(250) : undefined}

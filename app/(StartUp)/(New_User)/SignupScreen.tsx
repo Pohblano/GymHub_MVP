@@ -46,7 +46,7 @@ export default function SignupScreen() {
 				<SignupForm />
 
 				{/* Recover Password */}
-				<Animated.View style={animation.slideUpStyle}>
+				<Animated.View style={[animation.slideUpStyle, {marginTop: 8}]}>
 					<CustomLink
 						loading={false}
 						onPress={() => { router.push('../(Active_User)/LoginScreen'); }}
@@ -54,7 +54,7 @@ export default function SignupScreen() {
 						title={t("Sign In")}
 						iconLeft={t('Have an account? ')}
 						iconRight={''}
-						style={{ alignSelf: 'center', marginBottom: 0 }}
+						style={{ alignSelf: 'center' }}
 						textStyle={text.option_link}
 						disabled={false} iconRightStyle={undefined} />
 				</Animated.View>

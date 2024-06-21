@@ -20,6 +20,10 @@ export const text = StyleSheet.create({
 	lighter_grey:{
 		color: '#a0a0a0'
 	},
+	logo_shadow:{
+		textShadowColor: '#000000',
+		textShadowRadius: 12,
+	},
 	gym207:{
 		color:'#62D767'
 	},

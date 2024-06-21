@@ -93,7 +93,7 @@ export default function SettingsScreen() {
 								</View>
 								<Text className='flex-1' style={[text.sub_heading, text.black]}>{t('Language')}</Text>
 								<View className='d-flex flex-row' style={[]}>
-									<Text className=' self-center'>{ }</Text>
+									<Text className='self-center'>{ }</Text>
 									<Entypo name="chevron-right" size={24} color="#616161" />
 								</View>
 							</ButtonPressable>
@@ -122,7 +122,6 @@ export default function SettingsScreen() {
 									<Entypo name="chevron-right" size={24} color="#616161" />
 								</View>
 							</ButtonPressable>
-
 						</Animated.View> */}
 
 						<Animated.View style={styles.section} entering={FadeInDown.duration(600).delay(400)}>

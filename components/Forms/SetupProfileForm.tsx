@@ -32,8 +32,6 @@ export default function SetupProfileForm() {
 	const animation = useFadeInStyles(50, 50, 800, 0)
 	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
 	const delayeddAnimation = useFadeInStyles(50, 50, 800, 400)
-	const [gyms, setGyms] = useState([])
-	const [selectedGym, setSelectedGym] = useState('');
 	const { user, update, upload_image } = useAuth()
 	const { t } = useTranslation()
 

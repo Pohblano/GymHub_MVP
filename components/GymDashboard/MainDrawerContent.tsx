@@ -14,12 +14,10 @@ import { Octicons } from '@expo/vector-icons';
 import { router, useSegments } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
-
 export default function MainDrawerContent(props: any) {
 	const { logout, user } = useAuth();
 	const { bottom } = useSafeAreaInsets();
 	const {t}= useTranslation()
-	console.log(user.profile_img)
 	
 	return (
 		<View style={{ flex: 1 }}>
@@ -32,9 +30,6 @@ export default function MainDrawerContent(props: any) {
 						<BoldText className='' numberOfLines={1} style={[text.regular, text.light_grey, {maxWidth: 180}]}>{user.username}</BoldText>
 						<RegularText className='' numberOfLines={1} style={[ text.light_grey, {maxWidth: 180}]}>{user.email}</RegularText>
 					</View>
-					{/* <BoldText style={[text.black, text.large]}>
-						GYM/<SemiBoldText style={text.yellow}>HUB</SemiBoldText>
-					</BoldText> */}
 				</View>
 
 
@@ -50,8 +45,8 @@ export default function MainDrawerContent(props: any) {
 
 				<DrawerItem
 					label={t('Sign Out')}
-					// onPress={logout}
-					onPress={() => router.push('/')}
+					onPress={logout}
+					// onPress={() => router.push('/')}
 					icon={() => <Octicons name="sign-out" size={24} color="black" />}
 					labelStyle={{
 						marginLeft: -20,
@@ -59,19 +54,6 @@ export default function MainDrawerContent(props: any) {
 					}}/>
 			</DrawerContentScrollView>
 
-			{/* <CustomButton
-				loading={false}
-				onPress={() => logout()}
-				onLongPress={() => { }}
-				title="Sign Out"
-				iconLeft={''}
-				iconRight={''}
-				activeOpacity={0.8}
-				width={'70%'}
-				style={[container.bg_yellow, { alignSelf: 'center', height: 38}]}
-				textStyle={[text.white, text.primary_button,{fontSize: 14}]}
-				disabled={false}
-			/> */}
 			<BoldText style={[text.black, text.regular, { marginBottom: bottom - 10, alignSelf: 'center' }]}>
 				GYM/<SemiBoldText style={text.yellow}>HUB</SemiBoldText>
 			</BoldText>
