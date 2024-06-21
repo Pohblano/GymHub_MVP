@@ -55,7 +55,7 @@ export default function MainDrawerContent(props: any) {
 			</DrawerContentScrollView>
 
 			<BoldText style={[text.black, text.regular, { marginBottom: bottom - 10, alignSelf: 'center' }]}>
-				GYM/<SemiBoldText style={text.yellow}>HUB</SemiBoldText>
+				GYM/<BoldText style={text.yellow}>HUB</BoldText>
 			</BoldText>
 		</View>
 	);

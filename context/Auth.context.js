@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 // import {onAuthStateChanged, signOut} from 'firebase/auth'
 import { auth, db } from "@/firebase.config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from '@firebase/auth'
-import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc, getDocs, query, where} from 'firebase/firestore'
+import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc, getDocs, query, where } from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import { router } from "expo-router";
 import { getBlobFromUri } from "@/utils/linking";
@@ -47,28 +47,40 @@ export const AuthContextProvider = ({ children }) => {
 
 	const update = async (uid, props, setErrors, setSubmitting) => {
 		try {
-			const docData = {
-				username: props.username,
-				username_lower: props.username_lower,
-				profile_img: props.profile_img,
-				location: props.location
-			}
-			const collRef = collection(db, 'Users')
-			const q = query(collRef, where('username_lower', '==', props.username_lower))
-			const querySnapshot = await getDocs(q)
-			if (querySnapshot.empty) {
-				const userRef = doc(db, 'Users', uid)
-				await updateDoc(userRef, docData)
-					.then(doc => {
-						setUser({
-							...user,
-							...docData
+			const profile_img = await (async (uri) => {
+				if (uri) {
+					try {
+						const downloadURL = await upload_image(uri)
+						if (downloadURL) return downloadURL
+					} catch (err) {
+						console.log(err)
+					}
+				} else {
+					const default_image = `https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/profile_images%2Fdefault-image.jpg?alt=media&token=67031391-86e9-4311-b9c1-77a49008c557`
+					return default_image
+				}
+			})(props.profile_img)
+
+			if (profile_img) {
+				const docData = {
+					username: props.username,
+					username_lower: props.username_lower,
+					profile_img: profile_img,
+					location: props.location
+				}
+				const collRef = collection(db, 'Users')
+				const q = query(collRef, where('username_lower', '==', props.username_lower))
+				const querySnapshot = await getDocs(q)
+				if (querySnapshot.empty) {
+					const userRef = doc(db, 'Users', uid)
+					await updateDoc(userRef, docData)
+						.then(() => {
+							setUser({ ...user, ...docData })
+							router.replace('CompletedScreen')
 						})
-						router.replace('CompletedScreen')
-					})
-			}else{
-				setErrors({ username: "That username is already taken" });
-			}
+				} else setErrors({ username: "That username is already taken" });
+
+			} else console.log('Profile image url came up empty')
 
 		} catch (error) {
 			console.log(error)
@@ -136,33 +148,33 @@ export const AuthContextProvider = ({ children }) => {
 		}
 	}
 
+	// Upload image to Firebase Storage
 	const upload_image = async (uri) => {
 		try {
-			// Upload image to Firebase Storage
 			const storage = getStorage()
 			const imageBlob = await getBlobFromUri(uri)
 			const imageName = imageBlob['data']['name']
 			const storageRef = ref(storage, `profile_images/${user.uid}`);
 			const uploadTask = uploadBytesResumable(storageRef, imageBlob);
-			uploadTask.on('state_changed',
-				(snapshot) => {
-					const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-					console.log('Upload is ' + progress + '% done');
-					switch (snapshot.state) {
-						case 'paused':
-							console.log('Upload is paused');
-							break;
-						case 'running':
-							console.log('Upload is running');
-							break;
-					}
-				}, (error) => {
-					console.log(error)
-				}
-			);
-			const url = getDownloadURL(uploadTask.snapshot.ref)
-			return url
 
+			return new Promise((resolve, reject) => {
+				uploadTask.on('state_changed',
+					(snapshot) => {
+						const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+						console.log('Upload is ' + progress + '% done');
+					}, (error) => {
+						console.log(error);
+						reject(error);  // Reject the promise on error
+					}, () => {
+						// Handle successful uploads on complete
+						getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+							resolve(downloadURL);  // Resolve the promise with the download URL
+						}).catch((error) => {
+							reject(error);  // Reject the promise if getting the download URL fails
+						});
+					}
+				);
+			})
 		} catch (error) {
 			console.log(error)
 		}

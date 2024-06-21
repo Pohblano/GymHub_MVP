@@ -21,8 +21,7 @@ export default function Layout() {
             marginLeft: -20,
             fontSize: 16
           },
-        }}
-      >
+        }}>
         <Drawer.Screen
           name="GymDashboardScreen"
           options={{

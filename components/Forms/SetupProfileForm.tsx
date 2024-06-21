@@ -51,8 +51,8 @@ export default function SetupProfileForm() {
 
 		if (!pickerResult.canceled) {
 			const uri = pickerResult.assets[0].uri
-
 			setImageUri(uri);
+			formik.setFieldValue('profile_img', uri)
 		}
 	};
 
@@ -80,23 +80,10 @@ export default function SetupProfileForm() {
 
 	const formik = useFormik({
 		initialValues: { profile_img: '', username: '', location: '', name: '' },
-		validationSchema: SetupProfileSchema,
+		// validationSchema: SetupProfileSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
-			let profile_img = ''
-			if (imageUri) {
-				try {
-					const downloadURL = await upload_image(imageUri)
-					if (downloadURL) profile_img= downloadURL
-				} catch (err) {
-					console.log(err)
-				}
-			}
-			else {
-				const default_image = `https://firebasestorage.googleapis.com/v0/b/gym24-7.appspot.com/o/profile_images%2Fdefault-image.jpg?alt=media&token=67031391-86e9-4311-b9c1-77a49008c557`
-				profile_img = default_image
-			}
 			const newValues = {
-				profile_img: profile_img,
+				profile_img: values.profile_img,
 				name: values.name,
 				username: values.username,
 				username_lower: values.username.toLowerCase(),

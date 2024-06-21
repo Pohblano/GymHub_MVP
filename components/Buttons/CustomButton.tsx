@@ -28,7 +28,7 @@ const CustomButton = ({
     >
       <Text>{iconLeft}</Text> 
       {loading ? (
-        <ActivityIndicator color='#454545' />
+        <ActivityIndicator color='#8f8f8f' />
       ) : (
         <Text style={[textStyle]}>{title}</Text>
       )}
