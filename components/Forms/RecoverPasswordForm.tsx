@@ -43,7 +43,7 @@ export default function RecoverPasswordForm() {
 					<LottieView style={{ height: 200 }} source={email_sent} autoPlay loop />
 					<Animated.Text style={[text.black, { alignSelf: 'center' }, animation.fadeInStyle]}>
 						{t('An email has been sent to ')}
-						<BoldText>{t('recover_email',{recover_email: formik.values.email})} </BoldText>
+						<BoldText>{formik.values.email} </BoldText>
 						{/* <BoldText>{t(formik.values.email)}</BoldText>.  */}
 						{t('\nFollow the link to reset your password.')}</Animated.Text>
 				</Animated.View>

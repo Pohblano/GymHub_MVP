@@ -3,7 +3,7 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Entypo, FontAwesome,  Ionicons, Octicons } from '@expo/vector-icons'
+import { Entypo, FontAwesome, FontAwesome5, Ionicons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 // Styling
 import { container } from '@/styles/containers.styles'
@@ -101,9 +101,13 @@ export default function SettingsScreen() {
 						</Animated.View>
 
 
-						{/* <Animated.View style={[styles.section]} entering={FadeInDown.duration(600).delay(300)}>
+						<Animated.View style={[styles.section]} entering={FadeInDown.duration(600).delay(300)}>
 							<Text style={[styles.sectionHeader]}>{('Help')}</Text>
-							<ButtonPressable activeOpacity={0.5} style={[styles.item]}>
+							<ButtonPressable
+								activeOpacity={0.5}
+								style={[styles.item]}
+								onPress={() => router.push('/Settings/ReportBugScreen')}>
+
 								<View style={[styles.icon]}>
 									<FontAwesome5 name="flag" size={24} color="#616161" />
 								</View>
@@ -122,7 +126,7 @@ export default function SettingsScreen() {
 									<Entypo name="chevron-right" size={24} color="#616161" />
 								</View>
 							</ButtonPressable>
-						</Animated.View> */}
+						</Animated.View>
 
 						<Animated.View style={styles.section} entering={FadeInDown.duration(600).delay(400)}>
 							<Text style={[styles.sectionHeader]}>{t('Sign Out')}</Text>

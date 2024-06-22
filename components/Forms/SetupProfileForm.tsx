@@ -1,4 +1,4 @@
-// Node Modules
+// Modules
 import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { Picker } from '@react-native-picker/picker';
@@ -16,7 +16,7 @@ import { form } from '@/styles/form.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
 import CustomButton from '../Buttons/CustomButton';
-import ImagePreviewInput from './Utils/ImagePreviewInput'
+import UserImagePreviewInput from './Utils/UserImagePreviewInput'
 import DisplayNameInput from './Utils/DisplayNameInput';
 import GetLocationInput from './Utils/GetLocationInput';
 // Context
@@ -28,7 +28,7 @@ import { useTranslation } from 'react-i18next';
 export default function SetupProfileForm() {
 	const router = useRouter();
 	const [location, setLocation] = useState<Boolean>(false);
-	const [imageUri, setImageUri] = useState<String>('');
+	const [imageUri, setImageUri] = useState<string>('');
 	const animation = useFadeInStyles(50, 50, 800, 0)
 	const delayedAnimation = useFadeInStyles(50, 50, 800, 200)
 	const delayeddAnimation = useFadeInStyles(50, 50, 800, 400)
@@ -80,7 +80,7 @@ export default function SetupProfileForm() {
 
 	const formik = useFormik({
 		initialValues: { profile_img: '', username: '', location: '', name: '' },
-		// validationSchema: SetupProfileSchema,
+		validationSchema: SetupProfileSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
 			const newValues = {
 				profile_img: values.profile_img,
@@ -89,7 +89,7 @@ export default function SetupProfileForm() {
 				username_lower: values.username.toLowerCase(),
 				location: (values.location) ? values.location : ''
 			}
-			const response = await update(user.uid, newValues, setErrors, setSubmitting)
+			await update(user.uid, newValues, setErrors, setSubmitting)
 		},
 	});
 
@@ -99,10 +99,11 @@ export default function SetupProfileForm() {
 
 				{/* START OF FORM */}
 				<Animated.View style={animation.fadeInStyle}>
-					<ImagePreviewInput
-						style={[{ alignSelf: 'center' }]}
+					<UserImagePreviewInput
+						style={{ alignSelf: 'center' }}
 						imageUri={imageUri}
-						handleImagePreview={handleImagePreview} />
+						handleImagePreview={handleImagePreview} 
+						setImageUri={setImageUri}/>
 				</Animated.View>
 
 				{formik.touched.profile_img && formik.errors.profile_img ? (

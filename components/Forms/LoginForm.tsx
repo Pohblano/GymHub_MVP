@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, TextInput } from 'react-native'
 import { useFormik } from 'formik';
-import Animated from 'react-native-reanimated';
+import Animated, { FadeInRight } from 'react-native-reanimated';
 // * Routing
 import { useRouter } from 'expo-router';
 // *Styling
@@ -30,7 +30,7 @@ export default function LoginForm() {
 	const delayeddAnimation = useFadeInStyles(50, 50, 800, 400)
 	const [isPassVisible, setPassVisible] = useState(false)
 	const { login } = useAuth()
-	const {t} = useTranslation()
+	const { t } = useTranslation()
 	useEffect(() => {
 		let timer: string | number | NodeJS.Timeout | undefined;
 		if (isPassVisible) {
@@ -54,7 +54,7 @@ export default function LoginForm() {
 		<>
 			{/* START OF FORM */}
 			<View style={[container.form]}>
-				<Animated.View style={animation.fadeInStyle}>
+				<Animated.View className={'gap-1'} style={animation.fadeInStyle}>
 					<TextInput
 						style={[
 							container.input_text, text.black,
@@ -64,14 +64,16 @@ export default function LoginForm() {
 						value={formik.values.email}
 						onChangeText={formik.handleChange('email')}
 						onBlur={formik.handleBlur('email')} />
-				</Animated.View>
-				{formik.touched.email && formik.errors.email ? (
-					<Animated.Text style={[text.error, animation.fadeInStyle]}>
-						{t(formik.errors.email)}{/* i18next-extract-disable-line */}
-					</Animated.Text>
-				) : null}
 
-				<Animated.View style={delayedAnimation.fadeInStyle}>
+					{formik.touched.email && formik.errors.email ? (
+						<Animated.Text style={[text.error]} entering={FadeInRight.duration(500)}>
+							{t(formik.errors.email)}{/* i18next-extract-disable-line */}
+						</Animated.Text>
+					) : null}
+				</Animated.View>
+
+
+				<Animated.View className='gap-1' style={delayedAnimation.fadeInStyle}>
 					<PasswordInput
 						value={formik.values.password}
 						setValue={formik.handleChange('password')}
@@ -83,13 +85,15 @@ export default function LoginForm() {
 							container.input_text, text.black,
 							formik.touched.password && formik.errors.password ? form.error_input : null]}
 						iconStyle={{}} />
+
+					{formik.touched.password && formik.errors.password ? (
+						<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
+							{t(formik.errors.password)} {/* i18next-extract-disable-line */}
+						</Animated.Text>
+					) : null}
 				</Animated.View>
-				{formik.touched.password && formik.errors.password ? (
-					<Animated.Text style={[text.error, animation.fadeInStyle]}>
-						{t(formik.errors.password)} {/* i18next-extract-disable-line */}
-					</Animated.Text>
-				) : null}
-{/* 
+
+				{/* 
 				<Animated.View style={delayedAnimation.fadeInStyle}>
 					<Seperator_Text style={{ marginVertical: 10 }}>{t('Or Log In With')}</Seperator_Text>
 				</Animated.View>

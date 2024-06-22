@@ -213,7 +213,7 @@ export default function TrainerModal() {
     )}
 
       {/* Display only if user hasn't already booked an appointment */}
-      <Animated.View style={styles.bookButton} entering={FadeInDown.duration(800)}>
+      {/* <Animated.View style={styles.bookButton} entering={FadeInDown.duration(800)}>
         <CustomButton
           onPress={() => router.push('Trainers/BookingScreen')}
           onLongPress={undefined}
@@ -226,7 +226,7 @@ export default function TrainerModal() {
           activeOpacity={0.8}
           loading={undefined}
           width={undefined} />
-      </Animated.View>
+      </Animated.View> */}
 
       <ScrollView showsVerticalScrollIndicator={false} >
         <Animated.View style={[animation.slideUpStyle]}>

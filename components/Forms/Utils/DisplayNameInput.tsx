@@ -1,6 +1,6 @@
 // Modules
 import React from "react";
-import { TextInput} from "react-native";
+import { TextInput, ViewStyle} from "react-native";
 // Styles
 import { container } from "@/styles/containers.styles";
 import { form } from "@/styles/form.styles";
@@ -9,8 +9,25 @@ import { text } from "@/styles/text.styles";
 import { View } from "@/components/Themed";
 import { IconUser } from "@/constants/Icons";
 
+export interface TextInputProps {
+    value: string;
+    setValue: any;
+    setBlur: any;
+    placeholder: string;
+    containerStyle?: ViewStyle | {};
+    inputStyle?: ViewStyle | {};
+    iconStyle?: ViewStyle | {};
+}
 
-export default function DisplayNameInput({ value, setValue, setBlur, placeholder, containerStyle, inputStyle, iconStyle }) {
+export default function DisplayNameInput({ 
+    value, 
+    setValue, 
+    setBlur, 
+    placeholder, 
+    containerStyle, 
+    inputStyle, 
+    iconStyle 
+}: TextInputProps) {
 	return (
 
 		<View style={[containerStyle, container.flex_x, text.light_grey]}>
@@ -19,7 +36,7 @@ export default function DisplayNameInput({ value, setValue, setBlur, placeholder
 			{/* </Pressable> */}
 			<TextInput
 				style={[inputStyle, { paddingLeft: 48 }]}
-				placeholderTextColor={'#BDBDBD'}
+				placeholderTextColor={'#818181'}
 				placeholder={placeholder}
 				value={value}
 				onChangeText={setValue}

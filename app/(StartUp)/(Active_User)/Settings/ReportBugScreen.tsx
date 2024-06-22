@@ -12,13 +12,15 @@ import { text } from '@/styles/text.styles'
 import { BoldText } from '@/components/Text/StyledText'
 import { HorizontalPaddedView } from '@/components/Views/PaddedView'
 import CustomLink from '@/components/Buttons/CustomLink'
-import Languages from '@/components/Settings/Utils/LanguagePicker'
+import ReportBugForm from '@/components/Forms/ReportBugForm'
 
-export default function LanguageScreen() {
+
+export default function ReportBugScreen() {
 	const { t } = useTranslation();
 	return (
 		<SafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
+
 				<Animated.View style={{ marginTop: 10 }} className='d-flex flex-row'>
 					<CustomLink
 						onPress={() => { router.back() }}
@@ -27,17 +29,17 @@ export default function LanguageScreen() {
 						iconLeft={null}
 						iconRight={<FontAwesome name="chevron-left" style={[text.black, text.smedium]} />}
 						iconRightStyle={{}}
-						style={{ display: 'flex', alignSelf: 'start', marginTop: 4,  marginRight: 10}}
+						style={{ display: 'flex', alignSelf: 'start', marginTop: 4, marginRight: 10, justifySelf: 'start' }}
 						textStyle={{}}
 						disabled={false}
 						loading={false} />
-					<View className='d-flex self-center gap-1'>
-						<BoldText className="" style={[text.small, { alignContent: 'center' }]}>{t('Languages')}</BoldText>
-						<Text style={[text.regular, text.grey, { fontWeight: 400 }]}>{t('Choose you preferred language.')}</Text>
+					<View className='d-flex gap-1'>
+						<BoldText className="" style={[text.small]}>{t('Report Bug')}</BoldText>
+						<Text style={[text.regular, text.grey, { fontWeight: 400 }]}>{t('Inform us of any issues you may be having with the app.')}</Text>
 					</View>
 				</Animated.View>
 
-				<Languages style={{marginTop: 40}}/>
+				<ReportBugForm />
 
 			</HorizontalPaddedView>
 		</SafeAreaView>

@@ -1,6 +1,6 @@
 // Modules
 import React, { useEffect, useState, useRef } from 'react'
-import { SafeAreaView, Text, StyleSheet } from 'react-native'
+import { Text, } from 'react-native'
 import PagerView from 'react-native-pager-view';
 // * Routing
 import { useRouter } from 'expo-router'
@@ -30,9 +30,8 @@ type ActiveComponent = keyof ComponentMap;
 export default function GymDashboardScreen() {
 	const router = useRouter();
 	const items = ['Home', 'Trainers', 'About', 'Socials',];
-	const [activeItem, setActiveItem] = useState(items[1]);
+	const [activeItem, setActiveItem] = useState(items[0]);
 	const [loading, setLoading] = useState(true);
-	// const { logout, user } = useAuth();
 	const { gym } = useGym();
 
 	const pagerViewRef = useRef<PagerView>(null);
@@ -40,7 +39,7 @@ export default function GymDashboardScreen() {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setLoading(false)
-		}, 2000)
+		}, 4000)
 		return () => clearTimeout(timer);
 	}, []);
 
@@ -84,17 +83,3 @@ export default function GymDashboardScreen() {
 		</>
 	)
 }
-
-// const styles = StyleSheet.create({
-// 	background: {
-// 		position: 'absolute',
-// 		left: 0,
-// 		right: 0,
-// 		top: 0,
-// 		height: '100%',
-// 		display: 'flex',
-// 		justifyContent: 'space-between',
-// 		padding: 30,
-// 		borderRadius: 10
-// 	},
-// })

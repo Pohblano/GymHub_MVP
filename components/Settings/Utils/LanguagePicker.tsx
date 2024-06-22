@@ -22,7 +22,7 @@ export default function Languages(props: any) {
     const [active, setActive] = useState<string | null>()
     const { supportedLngs } = i18n.services.resourceStore.data
     const { t } = useTranslation()
-
+    console.log(supportedLngs)
     useEffect(() => {
         const storedLanguage = SecureStore.getItem('user-language');
         setActive(storedLanguage)
@@ -35,9 +35,17 @@ export default function Languages(props: any) {
 
     return (
         <View style={[styles.container, props.style]}>
-            <Animated.FlatList style={[]} scrollEnabled={false} data={supportedLngs} renderItem={({ item, index }) => (
+            <Animated.FlatList style={[]} scrollEnabled={false} data={supportedLngs} renderItem={({ item, index }:{
+                item:{
+                    code: string,
+                    isoCode: string,
+                    locale: string,
+                    details: string
+                },
+                index: number
+            }) => (
 
-                <Animated.View entering={FadeInDown.duration(800).delay(0 + index*100)}>
+                <Animated.View>
                     <ButtonPressable
                         activeOpacity={0.5}
                         style={[styles.item, (active === item.code) ? styles.active : null]}

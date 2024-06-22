@@ -4,7 +4,6 @@ import { useFonts } from 'expo-font';
 import { Stack, Slot, useSegments, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect, useState } from 'react';
-
 import 'react-native-reanimated';
 import '../global.css'
 import i18n from '@/utils/i118n';
@@ -84,8 +83,10 @@ function Layout() {
   }, [isAuthenticated])
 
   return (
-    <Stack screenOptions={{ animation: 'simple_push' }}>
+    <Stack screenOptions={{ animation: 'ios' }}>
+
       <Stack.Screen name='(StartUp)' options={{ title: 'New User Process', headerShown: false }} />
+
     </Stack>
   )
 }

@@ -11,6 +11,9 @@ export const container = StyleSheet.create({
 	bg_white:{
 		backgroundColor: '#FFFFFF',
 	},
+	bg_grey:{
+		backgroundColor: '#F5F4F7'
+	},
 	// Containers
 	wrapper: {
 		flex: 1,
@@ -30,6 +33,10 @@ export const container = StyleSheet.create({
 		flex:1,
 		justifyContent: 'flex-end',
 		marginBottom: 100
+	},
+	settings_header:{
+		display: 'flex',
+		marginTop: 30
 	},
 	bottom: {
 		flex: 1,

@@ -31,7 +31,7 @@ export default function TrainersList({ trainers }: {
 			<SemiBoldText style={[text.sub_heading, delayeddAnimation.fadeInStyle]}>{t('Trainers')}</SemiBoldText>
 
 			{trainers.map((trainer, index) => (
-				<Animated.View key={index} style={[sequentialSlideUpStyle[index].slideInStyle]}>
+				<Animated.View key={index}>
 					<Link
 						asChild
 						key={trainer.uid}
@@ -50,9 +50,9 @@ export default function TrainersList({ trainers }: {
 								start={[0, 0]} end={[1, 0]}
 								style={styles.background}>
 
-								<BoldText className='w-5/6' style={[text.medium, text.white, sequentialSlideUpStyle[index].childSlideInXStyle]}>{trainer.name?.split(' ').join('\n')}</BoldText>
+								<BoldText className='w-5/6' style={[text.medium, text.white]}>{trainer.name?.split(' ').join('\n')}</BoldText>
 
-								<Animated.View style={sequentialSlideUpStyle[index].childSlideInXStyle}>
+								<Animated.View>
 									<LightText className='mb-1' style={[text.white, { width: '75%' }]}>{trainer.specialty?.join(', ')}</LightText>
 									<CustomLink
 										onPress={() => { }}

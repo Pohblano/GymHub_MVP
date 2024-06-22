@@ -27,6 +27,9 @@ export const SetupProfileSchema = Yup.object().shape({
   profile_img: Yup.string().optional(),
 })
 
+export const ReportBugSchema = Yup.object().shape({
+  description: Yup.string().required('Filling out this form will help us improve our app.'),
+})
 // export const categorySchema = Yup.object().shape({
 //   name: Yup.string().required('类别名称不能为空'),
 //   slug: Yup.string().required('路径名不能为空'),

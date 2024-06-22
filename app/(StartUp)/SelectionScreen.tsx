@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { SafeAreaView, View, StyleSheet, Dimensions } from 'react-native'
 import { useTranslation } from "react-i18next";
 import { FontAwesome } from '@expo/vector-icons';
-import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { FadeIn, SlideInRight, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { Video } from 'expo-av';
 // * Routing
 import { useFocusEffect, useRouter } from 'expo-router';
@@ -26,16 +26,20 @@ export default function SelectionScreen() {
 
 	return (
 		<>
-			<Video
-				source={selection} // Replace with your video URL
-				rate={1.0}
-				volume={1.0}
-				isMuted={false}
-				resizeMode='cover'
-				shouldPlay
-				isLooping
-				style={styles.video}/>
-			<CustomSafeAreaView style={[container.wrapper]}>
+
+			<CustomSafeAreaView style={[container.wrapper, { backgroundColor: 'black' }]}>
+				<Animated.View entering={FadeIn.duration(400)} style={{ backgroundColor: 'black' }}>
+					<Video
+						source={selection} // Replace with your video URL
+						rate={1.0}
+						volume={1.0}
+						isMuted={false}
+						resizeMode='cover'
+						shouldPlay
+						isLooping
+						style={styles.video} />
+				</Animated.View>
+				
 				<HorizontalPaddedView>
 					<Animated.View style={animation.fadeInStyle}>
 						<CustomLink
@@ -103,12 +107,4 @@ const styles = StyleSheet.create({
 		top: 0,
 		left: 0,
 	},
-	logo_bg: {
-		textShadowColor: '#000000',
-		textShadowRadius: 15,
-		// textShadowOffset: {
-		// 	width: 10,
-		// 	height: 20
-		// },
-	}
 })	

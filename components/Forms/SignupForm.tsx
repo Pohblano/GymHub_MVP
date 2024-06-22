@@ -36,7 +36,6 @@ export default function SignupForm() {
 	const { t } = useTranslation();
 	const { gym } = useGym()
 
-
 	useEffect(() => {
 		let timer: string | number | NodeJS.Timeout | undefined;
 		if (isConfirmPassVisible) {
@@ -52,7 +51,6 @@ export default function SignupForm() {
 		return () => clearTimeout(timer);
 	}, [isConfirmPassVisible, isPassVisible]);
 
-
 	const formik = useFormik({
 		initialValues: { email: '', password: '', confirmPassword: '' },
 		validationSchema: SignupSchema,
@@ -65,7 +63,7 @@ export default function SignupForm() {
 		<>
 			{/* START OF FORM */}
 			<View style={[container.form]}>
-				<Animated.View style={animation.fadeInStyle}>
+				<Animated.View className={'gap-1'} style={animation.fadeInStyle}>
 					<TextInput
 						style={[
 							container.input_text, text.black,
@@ -75,13 +73,16 @@ export default function SignupForm() {
 						value={formik.values.email}
 						onChangeText={formik.handleChange('email')}
 						onBlur={formik.handleBlur('email')} />
+
+					{formik.touched.email && formik.errors.email ? (
+						<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
+							{t(formik.errors.email)}{/* i18next-extract-disable-line */}
+						</Animated.Text>
+					) : null}
 				</Animated.View>
-				{formik.touched.email && formik.errors.email ? (
-					<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
-						{t(formik.errors.email)}{/* i18next-extract-disable-line */}
-					</Animated.Text>
-				) : null}
-				<Animated.View style={delayedAnimation.fadeInStyle}>
+
+
+				<Animated.View className={'gap-1'} style={delayedAnimation.fadeInStyle}>
 					<PasswordInput
 						value={formik.values.password}
 						setValue={formik.handleChange('password')}
@@ -93,14 +94,16 @@ export default function SignupForm() {
 							container.input_text, text.black,
 							formik.touched.password && formik.errors.password ? form.error_input : null]}
 						iconStyle={{}} />
-				</Animated.View>
-				{formik.touched.password && formik.errors.password ? (
-					<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
-						{t(formik.errors.password)}{/* i18next-extract-disable-line */}
-					</Animated.Text>
-				) : null}
 
-				<Animated.View style={delayeddAnimation.fadeInStyle}>
+					{formik.touched.password && formik.errors.password ? (
+						<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
+							{t(formik.errors.password)}{/* i18next-extract-disable-line */}
+						</Animated.Text>
+					) : null}
+				</Animated.View>
+
+
+				<Animated.View className={'gap-1'} style={delayeddAnimation.fadeInStyle}>
 					<PasswordInput
 						value={formik.values.confirmPassword}
 						setValue={formik.handleChange('confirmPassword')}
@@ -112,12 +115,14 @@ export default function SignupForm() {
 							container.input_text, text.black,
 							formik.touched.confirmPassword && formik.errors.confirmPassword ? form.error_input : null]}
 						iconStyle={{}} />
+
+					{formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+						<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
+							{t(formik.errors.confirmPassword)} {/* i18next-extract-disable-line */}
+						</Animated.Text>
+					) : null}
 				</Animated.View>
-				{formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-					<Animated.Text entering={FadeInRight.duration(500)} style={[text.error]}>
-						{t(formik.errors.confirmPassword)} {/* i18next-extract-disable-line */}
-					</Animated.Text>
-				) : null}
+
 
 
 				{/* <Animated.View style={delayedAnimation.fadeInStyle}>

@@ -11,7 +11,6 @@ import { StyleSheet } from 'react-native'
 import { text } from '../../styles/text.styles'
 import { container } from '../../styles/containers.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle';
-
 import intro from '@/assets/videos/intro.mp4'
 // Components
 import CustomButton from '../../components/Buttons/CustomButton'
@@ -45,7 +44,7 @@ export default function StartUpScreen() {
 						shouldPlay
 						isLooping
 						style={styles.video}/>
-						
+
 					<CustomSafeAreaView style={[ container.wrapper]}>
 						<HorizontalPaddedView>
 

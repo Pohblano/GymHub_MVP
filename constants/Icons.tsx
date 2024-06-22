@@ -580,10 +580,10 @@ function IconShowPassword({ iconStyle, containerStyle, height, width, ...props }
     </View>
   )
 }
-function IconCameraPlus({ iconStyle, containerStyle, height, width, ...props }) {
+function IconCameraPlus({ iconStyle, containerStyle, height= 24, width = 24, color = 'white', ...props }) {
   return (
     <View style={containerStyle}>
-      <Svg fill='transparent' style={iconStyle} height={height} width={width} viewBox="0 0 24 24"><G stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><Path d="m21 11v7c0 1.1046-.8954 2-2 2h-14c-1.10457 0-2-.8954-2-2v-9c0-1.10457.89543-2 2-2h1.5c.62951 0 1.22229-.29639 1.6-.8l1.05-1.4c.37771-.50361.9705-.8 1.6-.8h2.5" /><Path d="m18.5 4v2.5m0 2.5v-2.5m0 0h-2.5m2.5 0h2.5" /><Circle cx="12" cy="12" r="4" /></G></Svg>
+      <Svg fill='transparent' style={iconStyle} height={height} width={width} viewBox="0 0 24 24"><G stroke={color} strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><Path d="m21 11v7c0 1.1046-.8954 2-2 2h-14c-1.10457 0-2-.8954-2-2v-9c0-1.10457.89543-2 2-2h1.5c.62951 0 1.22229-.29639 1.6-.8l1.05-1.4c.37771-.50361.9705-.8 1.6-.8h2.5" /><Path d="m18.5 4v2.5m0 2.5v-2.5m0 0h-2.5m2.5 0h2.5" /><Circle cx="12" cy="12" r="4" /></G></Svg>
     </View>
   )
 }

@@ -13,10 +13,9 @@ export const AuthContextProvider = ({ children }) => {
 	const [isAuthenticated, setIsAuthenticated] = useState(undefined)
 	const [completedSetup, setCompletedSetup] = useState(undefined)
 	const { t } = useTranslation()
-	/// add condition to check if user completed setup if not then reroute them to finish setup page.
+
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
-			console.log('got user:', user)
 			if (user) {
 				setIsAuthenticated(true);
 				setUser(user);
@@ -50,7 +49,7 @@ export const AuthContextProvider = ({ children }) => {
 			const profile_img = await (async (uri) => {
 				if (uri) {
 					try {
-						const downloadURL = await upload_image(uri)
+						const downloadURL = await upload_image(uri, `profile_images/${user.uid}`)
 						if (downloadURL) return downloadURL
 					} catch (err) {
 						console.log(err)
@@ -149,12 +148,11 @@ export const AuthContextProvider = ({ children }) => {
 	}
 
 	// Upload image to Firebase Storage
-	const upload_image = async (uri) => {
+	const upload_image = async (uri, path) => {
 		try {
 			const storage = getStorage()
 			const imageBlob = await getBlobFromUri(uri)
-			const imageName = imageBlob['data']['name']
-			const storageRef = ref(storage, `profile_images/${user.uid}`);
+			const storageRef = ref(storage, path);
 			const uploadTask = uploadBytesResumable(storageRef, imageBlob);
 
 			return new Promise((resolve, reject) => {
@@ -189,7 +187,6 @@ export const AuthContextProvider = ({ children }) => {
 			console.log(error)
 			let msg = error.message
 			if (msg.includes('(auth/invalid-email)')) {
-				console.log(msg)
 				msg = t('That email is invalid')
 			}
 			setErrors({ email: msg });
@@ -198,8 +195,42 @@ export const AuthContextProvider = ({ children }) => {
 		}
 	}
 
+	const register_bug = async (bug_report, setErrors, setSubmitting, setSent) => {
+		try{
+			const file_name = bug_report.img.split('/ImagePicker/')[1]
+			const img = await (async (uri) => {
+				if (uri) {
+					try {
+						const downloadURL = await upload_image(uri, `bugs/${file_name}`)
+						if (downloadURL) return downloadURL
+					} catch (err) {
+						console.log(err)
+					}
+				} else return ''
+			})(bug_report.img)
+
+			if(img){
+				const data = {
+					img, 
+					description: bug_report.description, 
+					user_uid: user.uid, 
+					timestamp: Timestamp.fromDate(new Date())
+				}
+				const collRef = collection(db, 'Bugs')
+				addDoc(collRef, data)
+			}
+		}catch(error){
+			let msg = error.message
+			setErrors({ description: msg });
+		}finally{
+			setSubmitting(false)
+			setSent(true)
+		}
+	}
+
+
 	return (
-		<AuthContext.Provider value={{ user, isAuthenticated, login, logout, register, update, reset_password, upload_image }}>
+		<AuthContext.Provider value={{ user, isAuthenticated, login, logout, register, update, reset_password, upload_image, register_bug }}>
 			{children}
 		</AuthContext.Provider>
 	)
