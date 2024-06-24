@@ -108,8 +108,9 @@ export const AuthContextProvider = ({ children }) => {
 
 	const logout = async () => {
 		try {
+			router.replace('../../StartScreen')
 			await signOut(auth)
-			router.replace('/')
+			
 		} catch (e) {
 			console.log('There was an error while logging user out')
 		}
@@ -118,8 +119,8 @@ export const AuthContextProvider = ({ children }) => {
 	const register = async (email, password, setErrors, setSubmitting) => {
 		try {
 			const response = await createUserWithEmailAndPassword(auth, email, password)
-
 			if (response.user) {
+				router.replace('SetupProfileScreen')
 				const newUser = {
 					uid: response?.user?.uid,
 					email,
@@ -128,9 +129,7 @@ export const AuthContextProvider = ({ children }) => {
 				}
 
 				await setDoc(doc(db, 'Users', response?.user?.uid), newUser)
-					.then(doc => {
-						router.replace('SetupProfileScreen')
-					}).catch(error => {
+					.catch(error => {
 						console.log('Error adding document: ')
 						console.log(error)
 					})

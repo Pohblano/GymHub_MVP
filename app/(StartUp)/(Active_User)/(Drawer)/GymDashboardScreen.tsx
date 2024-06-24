@@ -1,5 +1,5 @@
 // Modules
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { Text, } from 'react-native'
 import PagerView from 'react-native-pager-view';
 // * Routing
@@ -8,14 +8,12 @@ import { useRouter } from 'expo-router'
 import { container } from '@/styles/containers.styles'
 // Components
 import { CustomSafeAreaView, HorizontalPaddedView } from '@/components/Views/PaddedView'
-import PageLoading from '@/components/Loading/PageLoading'
 import MainGymHeader from '@/components/GymDashboard/MainGymHeader'
 import Home from '@/components/GymDashboard/Home/Home'
 import About from '@/components/GymDashboard/About/About'
 import Trainers from '@/components/GymDashboard/Trainers/Trainers'
 import Socials from '@/components/GymDashboard/Socials/Socials'
 // Context
-import { useAuth } from '@/context/Auth.context'
 import { useGym } from '@/context/Gym.context'
 
 interface ComponentMap {
@@ -28,20 +26,10 @@ interface ComponentMap {
 type ActiveComponent = keyof ComponentMap;
 
 export default function GymDashboardScreen() {
-	const router = useRouter();
 	const items = ['Home', 'Trainers', 'About', 'Socials',];
 	const [activeItem, setActiveItem] = useState(items[0]);
-	const [loading, setLoading] = useState(true);
 	const { gym } = useGym();
-
 	const pagerViewRef = useRef<PagerView>(null);
-
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setLoading(false)
-		}, 4000)
-		return () => clearTimeout(timer);
-	}, []);
 
 	// const handlePageChange = (index: number) => {
 	// 	setActiveItem(items[index]);
@@ -62,24 +50,21 @@ export default function GymDashboardScreen() {
 	}
 
 	return (
-		<>
-			{loading ?
-				<PageLoading />
-				:
-				<CustomSafeAreaView style={[container.wrapper, container.bg_white]}>
-					<HorizontalPaddedView>
 
-						<MainGymHeader
-							activeItem={activeItem}
-							items={items}
-							setActiveItem={handleNavigationChange}
-							gym_title={gym.name}
-							schedule={gym.schedule} />
+		<CustomSafeAreaView style={[container.wrapper, container.bg_white]}>
+			<HorizontalPaddedView>
 
-						{dashboardMapping[activeItem as ActiveComponent]}
+				<MainGymHeader
+					activeItem={activeItem}
+					items={items}
+					setActiveItem={handleNavigationChange}
+					gym_title={gym.name}
+					schedule={gym.schedule} />
 
-					</HorizontalPaddedView>
-				</CustomSafeAreaView>}
-		</>
+				{dashboardMapping[activeItem as ActiveComponent]}
+
+			</HorizontalPaddedView>
+		</CustomSafeAreaView>
+
 	)
 }

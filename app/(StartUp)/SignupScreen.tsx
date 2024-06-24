@@ -11,10 +11,10 @@ import { text } from '@/styles/text.styles';
 import { container } from '@/styles/containers.styles';
 import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
-import { HorizontalPaddedView } from '../../../components/Views/PaddedView'
-import { BoldText } from '../../../components/Text/StyledText';
-import CustomLink from '../../../components/Buttons/CustomLink';
-import SignupForm from '../../../components/Forms/SignupForm';
+import { HorizontalPaddedView } from '@/components/Views/PaddedView'
+import { BoldText } from '@/components/Text/StyledText';
+import CustomLink from '@/components/Buttons/CustomLink';
+import SignupForm from '@/components/Forms/SignupForm';
 
 export default function SignupScreen() {
 	const router = useRouter();
@@ -49,7 +49,7 @@ export default function SignupScreen() {
 				<Animated.View style={[animation.slideUpStyle, {marginTop: 8}]}>
 					<CustomLink
 						loading={false}
-						onPress={() => { router.push('../(Active_User)/LoginScreen'); }}
+						onPress={() => { router.push('LoginScreen'); }}
 						onLongPress={() => { }}
 						title={t("Sign In")}
 						iconLeft={t('Have an account? ')}

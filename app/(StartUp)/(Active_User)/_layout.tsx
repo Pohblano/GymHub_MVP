@@ -1,23 +1,25 @@
 import React from 'react';
 import { Stack } from 'expo-router';
+import { useAuth } from '@/context/Auth.context';
 
 export const unstable_settings = {
-  initialRouteName: "LoginScreen",
+  initialRouteName: "(Drawer)",
 };
 
 export default function ActiveUserLayout() {
+  const { user, isAuthenticated } = useAuth();
+  // set condition to render routes if user is authenticated
   return (
-    <Stack screenOptions={{ animation: 'simple_push', }}>
-      <Stack.Screen name='LoginScreen' options={{ title: 'Log In', headerShown: false }} />
-      <Stack.Screen name='RecoverPasswordModalScreen' options={{ title: 'Recover Password', headerShown: false, presentation: 'modal' }} />
+    <Stack screenOptions={{ animation: 'ios', }}>
+     
       <Stack.Screen name='(Drawer)' options={{ title: 'Drawer', headerShown: false }} />
       <Stack.Screen name="ImageViewerScreen" options={{presentation:'containedModal', headerShown: false}}/>
       
-      {/* Trainers */}
+  
       <Stack.Screen name="Trainers/BookingScreen" options={{presentation:'containedModal', headerShown: false}}/>
       <Stack.Screen name='Trainers/[uid]' options={{ title: 'Trainer Profile', headerShown: false, presentation:'fullScreenModal'}} />
 
-      {/* Settings */}
+      
       <Stack.Screen name='Settings/index' options={{title: 'Settings', headerShown: false}}/>
       <Stack.Screen name='Settings/LanguageScreen' options={{title: 'Language', headerShown: false}} />
       <Stack.Screen name='Settings/ReportBugScreen' options={{title: 'Report Bug', headerShown: false}} />

@@ -1,22 +1,21 @@
 // Modules
-import React, { useEffect } from 'react';
-import { SafeAreaView, View, StyleSheet, Dimensions } from 'react-native'
+import React from 'react';
+import { StyleSheet, Dimensions } from 'react-native'
 import { useTranslation } from "react-i18next";
 import { FontAwesome } from '@expo/vector-icons';
-import Animated, { FadeIn, SlideInRight, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { Video } from 'expo-av';
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { ResizeMode, Video } from 'expo-av';
 // * Routing
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 // *Styling
-import { text } from '../../styles/text.styles'
-import { container } from '../../styles/containers.styles'
+import { text } from '@/styles/text.styles'
+import { container } from '@/styles/containers.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle';
-import selection from '@/assets/videos/selection.mp4'
+// import selection from '@/assets/videos/selection.mp4'
 // Components
-import CustomButton from '../../components/Buttons/CustomButton'
-import { CustomSafeAreaView, HorizontalPaddedView } from '../../components/Views/PaddedView'
-import { BoldText, SemiBoldText } from '../../components/Text/StyledText';
-import { IconPressable } from '../../components/Buttons/CustomPressable';
+import CustomButton from '@/components/Buttons/CustomButton'
+import { CustomSafeAreaView, HorizontalPaddedView } from '@/components/Views/PaddedView'
+import { BoldText } from '@/components/Text/StyledText';
 import CustomLink from '@/components/Buttons/CustomLink';
 
 export default function SelectionScreen() {
@@ -30,11 +29,11 @@ export default function SelectionScreen() {
 			<CustomSafeAreaView style={[container.wrapper, { backgroundColor: 'black' }]}>
 				<Animated.View entering={FadeIn.duration(400)} style={{ backgroundColor: 'black' }}>
 					<Video
-						source={selection} // Replace with your video URL
+						source={require('@/assets/videos/selection.mp4')} // Replace with your video URL
 						rate={1.0}
 						volume={1.0}
 						isMuted={false}
-						resizeMode='cover'
+						resizeMode={ResizeMode.COVER}
 						shouldPlay
 						isLooping
 						style={styles.video} />
@@ -66,7 +65,7 @@ export default function SelectionScreen() {
 					<Animated.View style={[container.bottom, animation.slideUpStyle]}>
 						<CustomButton
 							loading={false}
-							onPress={() => { router.push('(Active_User)/LoginScreen') }}
+							onPress={() => { router.push('LoginScreen') }}
 							onLongPress={() => { }}
 							title={t('Log In')}
 							iconLeft={''}
@@ -79,7 +78,7 @@ export default function SelectionScreen() {
 						/>
 						<CustomButton
 							loading={false}
-							onPress={() => { router.push('(New_User)/SignupScreen') }}
+							onPress={() => { router.push('SignupScreen') }}
 							onLongPress={() => { }}
 							title={t("Sign Up")}
 							iconLeft={''}

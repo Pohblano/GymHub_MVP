@@ -21,7 +21,6 @@ SplashScreen.preventAutoHideAsync()
   .then((result) => console.log(`SplashScreen.preventAutoHideAsync() succeeded: ${result}`))
   .catch(console.warn);
 
-
 // Pretty much handles when and how app splash screen renders
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -39,8 +38,6 @@ export default function RootLayout() {
   useEffect(() => {
     if (error) throw error;
   }, [error]);
-
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (loaded) SplashScreen.hideAsync();
@@ -62,32 +59,10 @@ function MainLayout() {
 }
 
 function Layout() {
-  const { isAuthenticated } = useAuth()
-  const segments = useSegments()
-  const router = useRouter()
-
-  useEffect(() => {
-    const inApp = segments[2] == 'GymDashboardScreen'
-    if (typeof isAuthenticated == 'undefined') return
-    console.log(segments)
-
-    if (isAuthenticated && !inApp) {
-      console.log('USER LOGGED IN AND NOT IN APP', segments)
-      // Redirect to Dashboard
-      router.replace('/(Active_User)/(Drawer)/GymDashboardScreen')
-    } else if (!isAuthenticated) {
-      console.log('NO USER IS LOGGED IN', segments)
-      // Redirect to starting page
-      router.replace('/')
-    }
-  }, [isAuthenticated])
-
-  return (
-    <Stack screenOptions={{ animation: 'ios' }}>
-
-      <Stack.Screen name='(StartUp)' options={{ title: 'New User Process', headerShown: false }} />
-
-    </Stack>
+  return ( 
+    <Slot screenOptions={{animation: 'ios'}} />
   )
 }
+ 
+
 

@@ -11,8 +11,8 @@ import { container } from '@/styles/containers.styles';
 import checkmark from '@/assets/lottie/checkmark.json'
 import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
-import { CustomSafeAreaView, HorizontalPaddedView } from '../../../components/Views/PaddedView'
-import { BoldText } from '../../../components/Text/StyledText';
+import { CustomSafeAreaView, HorizontalPaddedView } from '@/components/Views/PaddedView'
+import { BoldText } from '@/components/Text/StyledText';
 import CustomButton from '@/components/Buttons/CustomButton';
 import Animated from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
