@@ -17,12 +17,12 @@ export const useFadeInStyles = (initialTranslateX = 50, initialTranslateY = 50, 
       scale.value = withDelay(delay, withTiming(1, { duration }))
 
 
-      return () => {
-        translateY.value = withTiming(initialTranslateY, { duration: duration / 2 });
-        translateX.value = withTiming(initialTranslateX, { duration: duration / 2 });
-        opacity.value = withTiming(0, { duration: duration / 2 });
-        scale.value = withTiming(1.5, { duration: duration / 2 });
-      };
+      // return () => {
+      //   translateY.value = withTiming(initialTranslateY, { duration: duration / 2 });
+      //   translateX.value = withTiming(initialTranslateX, { duration: duration / 2 });
+      //   opacity.value = withTiming(0, { duration: duration / 2 });
+      //   scale.value = withTiming(1.5, { duration: duration / 2 });
+      // };
     }, [initialTranslateY, initialTranslateX, duration])
   );
 

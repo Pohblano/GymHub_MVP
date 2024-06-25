@@ -19,7 +19,7 @@ export default function LanguageScreen() {
 	return (
 		<SafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
-				<Animated.View style={{ marginTop: 10 }} className='d-flex flex-row'>
+				<View style={{ marginTop: 10 }} className='d-flex flex-row'>
 					<CustomLink
 						onPress={() => { router.back() }}
 						onLongPress={() => { }}
@@ -35,7 +35,7 @@ export default function LanguageScreen() {
 						<BoldText className="" style={[text.small, { alignContent: 'center' }]}>{t('Languages')}</BoldText>
 						<Text style={[text.regular, text.grey, { fontWeight: 400 }]}>{t('Choose you preferred language.')}</Text>
 					</View>
-				</Animated.View>
+				</View>
 
 				<Languages style={{marginTop: 40}}/>
 

@@ -11,34 +11,37 @@ import { useRouter } from 'expo-router';
 import { text } from '@/styles/text.styles'
 import { container } from '@/styles/containers.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle';
-// import selection from '@/assets/videos/selection.mp4'
 // Components
 import CustomButton from '@/components/Buttons/CustomButton'
 import { CustomSafeAreaView, HorizontalPaddedView } from '@/components/Views/PaddedView'
 import { BoldText } from '@/components/Text/StyledText';
 import CustomLink from '@/components/Buttons/CustomLink';
+// Hooks
+import { loadVideo } from '@/hooks/loadVideo';
 
 export default function SelectionScreen() {
 	const router = useRouter();
 	const animation = useFadeInStyles(50, 50, 800, 0)
-	const { t, i18n } = useTranslation();
-
+	const { t } = useTranslation();
+	const { isVideoReady } = loadVideo(require('@/assets/videos/selection.mp4'))
 	return (
 		<>
 
 			<CustomSafeAreaView style={[container.wrapper, { backgroundColor: 'black' }]}>
-				<Animated.View entering={FadeIn.duration(400)} style={{ backgroundColor: 'black' }}>
-					<Video
-						source={require('@/assets/videos/selection.mp4')} // Replace with your video URL
-						rate={1.0}
-						volume={1.0}
-						isMuted={false}
-						resizeMode={ResizeMode.COVER}
-						shouldPlay
-						isLooping
-						style={styles.video} />
-				</Animated.View>
-				
+				{isVideoReady && (
+					<Animated.View entering={FadeIn.duration(400)} style={{ backgroundColor: 'black' }}>
+						<Video
+							source={require('@/assets/videos/selection.mp4')} // Replace with your video URL
+							rate={1.0}
+							volume={1.0}
+							isMuted={false}
+							resizeMode={ResizeMode.COVER}
+							shouldPlay
+							isLooping
+							style={styles.video} />
+					</Animated.View>
+				)}
+
 				<HorizontalPaddedView>
 					<Animated.View style={animation.fadeInStyle}>
 						<CustomLink

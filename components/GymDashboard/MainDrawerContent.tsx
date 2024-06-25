@@ -46,7 +46,6 @@ export default function MainDrawerContent(props: any) {
 				<DrawerItem
 					label={t('Sign Out')}
 					onPress={logout}
-					// onPress={() => router.push('/')}
 					icon={() => <Octicons name="sign-out" size={24} color="black" />}
 					labelStyle={{
 						marginLeft: -20,

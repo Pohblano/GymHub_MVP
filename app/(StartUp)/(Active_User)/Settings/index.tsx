@@ -3,7 +3,7 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Entypo, FontAwesome, FontAwesome5, Ionicons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons'
+import { Entypo, Feather, FontAwesome, FontAwesome5, Ionicons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 // Styling
 import { container } from '@/styles/containers.styles'
@@ -18,6 +18,7 @@ import { useAuth } from '@/context/Auth.context'
 import { Image } from 'expo-image'
 
 import { useTranslation } from 'react-i18next'
+import CustomButton from '@/components/Buttons/CustomButton'
 
 export default function SettingsScreen() {
 	const router = useRouter()
@@ -47,11 +48,11 @@ export default function SettingsScreen() {
 
 				<View style={{}}>
 					<View className='d-flex gap-4' style={{ marginVertical: 30 }}>
-						<Animated.View entering={FadeInRight.duration(600).delay(100)} className='d-flex flex-row' style={{ alignItems: 'center' }}>
+						<Animated.View entering={FadeInRight.duration(600).delay(100)} className='d-flex flex-row ' style={{ alignItems: 'center' }}>
 							<Image source={user.profile_img} style={[styles.avatar]} />
-							<View className='d-flex gap-1'>
-								<BoldText style={[text.small, text.light_grey]}>{user.username}</BoldText>
-								<RegularText style={[text.light_grey]}>{user.email}</RegularText>
+							<View className='d-flex justify-between gap-1'>
+								<BoldText style={[text.small, text.black]}>{user.username}</BoldText>
+								<RegularText style={[text.light_grey, text.regular]}>{user.email}</RegularText>
 							</View>
 						</Animated.View>
 						{/* <Animated.View entering={FadeInDown.duration(600).delay(100)}>
@@ -117,11 +118,11 @@ export default function SettingsScreen() {
 								</View>
 							</ButtonPressable>
 
-							<ButtonPressable activeOpacity={0.5} style={[styles.item]}>
+							<ButtonPressable activeOpacity={0.5} style={[styles.item]} onPress={() => router.push('/Settings/ContactScreen')}>
 								<View style={[styles.icon]}>
 									<MaterialCommunityIcons name="email-outline" size={28} color="#616161" />
 								</View>
-								<Text className='flex-1' style={[text.sub_heading, text.black]}>{t('Contact Us')}</Text>
+								<Text className='flex-1' style={[text.sub_heading, text.black]}>{t('Contact')}</Text>
 								<View style={[]}>
 									<Entypo name="chevron-right" size={24} color="#616161" />
 								</View>
@@ -140,6 +141,9 @@ export default function SettingsScreen() {
 								</View>
 							</ButtonPressable>
 						</Animated.View>
+						<Text style={[text.regular, text.grey, { fontWeight: 200, alignSelf: 'center', marginTop: '50%'}]}>
+							Version 1.0.0
+						</Text>
 					</View>
 
 				</View>
@@ -183,7 +187,6 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		borderWidth: 2,
 		borderColor: '#e7be60',
-		marginBottom: 5,
 		marginRight: 15
 	},
 	button: {

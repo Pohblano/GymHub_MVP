@@ -21,7 +21,7 @@ export default function ReportBugScreen() {
 		<SafeAreaView style={[container.wrapper, container.bg_white]}>
 			<HorizontalPaddedView>
 
-				<Animated.View style={{ marginTop: 10 }} className='d-flex flex-row'>
+				<View style={{ marginTop: 10 }} className='d-flex flex-row'>
 					<CustomLink
 						onPress={() => { router.back() }}
 						onLongPress={() => { }}
@@ -33,11 +33,11 @@ export default function ReportBugScreen() {
 						textStyle={{}}
 						disabled={false}
 						loading={false} />
-					<View className='d-flex gap-1'>
+					<View className='d-flex gap-1 w-full'>
 						<BoldText className="" style={[text.small]}>{t('Report Bug')}</BoldText>
-						<Text style={[text.regular, text.grey, { fontWeight: 400 }]}>{t('Inform us of any issues you may be having with the app.')}</Text>
+						<Text style={[text.regular, text.grey, { fontWeight: 400, width: '90%' }]}>{t('Inform us of any issues you may be having with the app.')}</Text>
 					</View>
-				</Animated.View>
+				</View>
 
 				<ReportBugForm />
 

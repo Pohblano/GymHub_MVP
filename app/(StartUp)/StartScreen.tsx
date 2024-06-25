@@ -8,38 +8,36 @@ import { ResizeMode, Video } from 'expo-av';
 import { useRouter } from 'expo-router';
 // *Styling
 import { StyleSheet } from 'react-native'
-import { text } from '../../styles/text.styles'
-import { container } from '../../styles/containers.styles'
+import { text } from '@/styles/text.styles'
+import { container } from '@/styles/containers.styles'
 import { useFadeInStyles } from '@/hooks/animationStyle';
 // Components
-import CustomButton from '../../components/Buttons/CustomButton'
-import { CustomSafeAreaView, HorizontalPaddedView } from '../../components/Views/PaddedView'
-import { BoldText, MediumText, SemiBoldText } from '../../components/Text/StyledText';
+import CustomButton from '@/components/Buttons/CustomButton'
+import { CustomSafeAreaView, HorizontalPaddedView } from '@/components/Views/PaddedView'
+import { BoldText, MediumText, SemiBoldText } from '@/components/Text/StyledText';
+// Hooks
+import { loadVideo } from '@/hooks/loadVideo';
 
 export default function StartUpScreen() {
 	const { t } = useTranslation();
 	const router = useRouter()
 	const [loading, setLoading] = useState(true)
 	const animation = useFadeInStyles(50, 50, 800, 0)
-
-	useEffect(() => {
-		setLoading(false)
-	}, []);
+	const { isVideoReady } = loadVideo(require('@/assets/videos/intro.mp4'))
 
 	return (
 		<>
 
-			<Animated.View entering={FadeIn.duration(400)} style={{ backgroundColor: 'black' }}>
+			{isVideoReady && (<Animated.View  style={{ backgroundColor: 'black' }}>
 				<Video
-					source={require('../../assets/videos/intro.mp4')} // Replace with your video URL
+					source={require('@/assets/videos/intro.mp4')} // Replace with your video URL
 					rate={1.0}
-					volume={1.0}
-					isMuted={false}
 					resizeMode={ResizeMode.COVER}
 					shouldPlay
 					isLooping
-					style={styles.video} />
-			</Animated.View>
+					style={styles.video}
+				/>
+			</Animated.View>)}
 
 			<CustomSafeAreaView style={[container.wrapper]}>
 				<HorizontalPaddedView>

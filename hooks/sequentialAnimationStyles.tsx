@@ -67,9 +67,9 @@ export const sequentialStyles = (array: any, initialTranslateY = 50, duration = 
 		React.useCallback(() => {
 			startSequentialAnimation();
 
-			return () => {
-				elements.forEach((el: { resetAnimation: () => any; }) => el.resetAnimation());
-			};
+			// return () => {
+			// 	elements.forEach((el: { resetAnimation: () => any; }) => el.resetAnimation());
+			// };
 		}, [elements])
 	);
 

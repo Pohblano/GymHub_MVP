@@ -7,23 +7,19 @@ export const unstable_settings = {
 };
 
 export default function ActiveUserLayout() {
-  const { user, isAuthenticated } = useAuth();
-  // set condition to render routes if user is authenticated
   return (
     <Stack screenOptions={{ animation: 'ios', }}>
      
       <Stack.Screen name='(Drawer)' options={{ title: 'Drawer', headerShown: false }} />
       <Stack.Screen name="ImageViewerScreen" options={{presentation:'containedModal', headerShown: false}}/>
       
-  
       <Stack.Screen name="Trainers/BookingScreen" options={{presentation:'containedModal', headerShown: false}}/>
       <Stack.Screen name='Trainers/[uid]' options={{ title: 'Trainer Profile', headerShown: false, presentation:'fullScreenModal'}} />
-
       
       <Stack.Screen name='Settings/index' options={{title: 'Settings', headerShown: false}}/>
       <Stack.Screen name='Settings/LanguageScreen' options={{title: 'Language', headerShown: false}} />
       <Stack.Screen name='Settings/ReportBugScreen' options={{title: 'Report Bug', headerShown: false}} />
-      <Stack.Screen name='Settings/ContactScreen' options={{title: 'Contact Us', headerShown: false}} />
+      <Stack.Screen name='Settings/ContactScreen' options={{title: 'Contact', headerShown: false}} />
     </Stack>
   );
 }

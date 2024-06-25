@@ -1,6 +1,6 @@
 // Modules
 import React, { useState, useEffect } from 'react';
-import { Pressable, StyleSheet, Keyboard, View, Text} from 'react-native'
+import { Pressable, StyleSheet, Keyboard } from 'react-native'
 import { useFormik } from 'formik';
 import * as ImagePicker from 'expo-image-picker';
 import Animated, { FadeIn, FadeInDown, FadeInRight, FadeInUp, FadeOutDown, FadeOutUp } from 'react-native-reanimated';
@@ -21,36 +21,18 @@ import { BoldText } from '../Text/StyledText';
 // Context
 import { useAuth } from '@/context/Auth.context';
 // Schema
-import { ReportBugSchema } from '@/utils/validation';
 
-export default function ReportBugForm() {
+
+export default function ContactUsForm() {
 	const router = useRouter();
 	const [imageUri, setImageUri] = useState<string>('');
 	const [sent, setSent] = useState(false)
 	const { user, register_bug } = useAuth()
 	const { t } = useTranslation()
 
-	const handleImagePreview = async () => {
-		let result = await ImagePicker.requestMediaLibraryPermissionsAsync();
-		if (!result.granted) {
-			alert(`${t("Permission to access gallery is required!")}`);
-			return;
-		}
-
-		let pickerResult = await ImagePicker.launchImageLibraryAsync({
-			mediaTypes: ImagePicker.MediaTypeOptions.Images,
-			quality: 1,
-		});
-
-		if (!pickerResult.canceled) {
-			const uri = pickerResult.assets[0].uri
-			setImageUri(uri);
-			formik.setFieldValue('img', uri)
-		}
-	};
 
 	const formik = useFormik({
-		initialValues: { img: '', description: '' },
+		initialValues: {  description: '' },
 		// validationSchema: ReportBugSchema,
 		onSubmit: async (values, { setSubmitting, setErrors }) => {
 			await register_bug(values, setErrors, setSubmitting, setSent)
@@ -62,9 +44,9 @@ export default function ReportBugForm() {
 			{(sent) ?
 				<Animated.View entering={FadeInUp.duration(800)} style={[{ flex: 1, display: 'flex', marginTop: '40%'}]}>
 					<LottieView style={{ height: 200, marginBottom: 20}} source={computer_guy} autoPlay loop />
-					<Text style={[text.black, text.regular, { alignSelf: 'center', width: '85%'}]}>
+					<Animated.Text style={[text.black, text.regular, { alignSelf: 'center', width: '85%'}]}>
 						{t('Thank you for reporting the issue. We will review it as soon as possible.\n\nYour feedback is greatly appreciated and will help make the app better.')}
-					</Text>
+					</Animated.Text>
 				</Animated.View>
 				:
 				<>
@@ -72,7 +54,7 @@ export default function ReportBugForm() {
 
 						<Animated.View className={'gap-1'} exiting={FadeOutDown}>
 							<BoldText style={[text.black, text.sub_heading, { marginBottom: 6 }]}>
-								{t('Description')}
+								{t('Description')} {/* i18next-extract-disable-line */}
 							</BoldText>
 
 							<MultilineTextInput
@@ -93,23 +75,10 @@ export default function ReportBugForm() {
 							) : null}
 						</Animated.View>
 
-						<Animated.View className={'gap-1'}>
-							<ImagePreviewInput
-								handleImagePreview={handleImagePreview}
-								style={{}}
-								imageUri={imageUri}
-								setImageUri={setImageUri} />
-
-							{formik.touched.img && formik.errors.img ? (
-								<Animated.Text style={[text.error]} entering={FadeInRight.duration(500)}>
-									{formik.errors.img}
-								</Animated.Text>
-							) : null}
-						</Animated.View>
 
 					</Pressable>
 
-					<View style={[{ justifyContent: 'flex-end' }]}>
+					<Animated.View style={[{ justifyContent: 'flex-end' }]}>
 						<CustomButton
 							loading={formik.isSubmitting}
 							onPress={formik.handleSubmit}
@@ -122,7 +91,7 @@ export default function ReportBugForm() {
 							style={container.bg_yellow}
 							textStyle={[text.primary_button, text.white]}
 							disabled={formik.isSubmitting} />
-					</View>
+					</Animated.View>
 				</>
 			}
 		</>

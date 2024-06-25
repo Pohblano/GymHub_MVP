@@ -22,7 +22,6 @@ export default function Languages(props: any) {
     const [active, setActive] = useState<string | null>()
     const { supportedLngs } = i18n.services.resourceStore.data
     const { t } = useTranslation()
-    console.log(supportedLngs)
     useEffect(() => {
         const storedLanguage = SecureStore.getItem('user-language');
         setActive(storedLanguage)

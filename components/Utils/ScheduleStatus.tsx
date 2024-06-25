@@ -73,7 +73,7 @@ export default function ScheduleStatus({ business, schedule, subtitle }: {
                 </View>
                 :
                 <>
-                    <Popable content={open ? `${business} ${t('is currently open')}` : `${business} ${t('is currently closed')}`}>
+                    <Popable style={{}} content={open ? `${business} ${t('is currently open')}` : `${business} ${t('is currently closed')}`}>
                         <Animated.View className='ml-2' style={[styles.circle, animatedStyle,{ backgroundColor: open ? '#22D767' : '#d76262' }]} />
                     </Popable>
                 </>
