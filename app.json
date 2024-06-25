@@ -89,6 +89,9 @@
     "locales": {
       "en": ".locales/en/translation.json",
       "es": ".locales/es/translation.json"
+    },
+    "packagerOpts": {
+      "assetExts": ["md"]
     }
   }
 }

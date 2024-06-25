@@ -25,6 +25,9 @@ export default function StartupLayout() {
 			{/* Links to Active user Layout */}
 			<Stack.Screen name='(Active_User)' options={{ title: 'Active User Routes', headerShown: false }} />
 
+			<Stack.Screen name='(Legal)/Terms_Conditions' options={{ title: 'Terms & Conditions', headerShown: false }} />
+			<Stack.Screen name='(Legal)/Privacy_Policy' options={{ title: 'Privacy Policy', headerShown: false }} />
+
 		</Stack>
 	);
 }

@@ -1,11 +1,11 @@
 // Node Modules
 import React, { useState } from 'react';
-import { SafeAreaView, View, StyleSheet } from 'react-native'
+import { SafeAreaView, View, StyleSheet, Text } from 'react-native'
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 // * Routing
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 // *Styling
 import { text } from '@/styles/text.styles';
 import { container } from '@/styles/containers.styles';
@@ -44,6 +44,8 @@ export default function SignupScreen() {
 				
 				{/* Form */}
 				<SignupForm />
+
+				
 
 				{/* Recover Password */}
 				<Animated.View style={[animation.slideUpStyle, {marginTop: 8}]}>

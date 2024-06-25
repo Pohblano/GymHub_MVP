@@ -57,7 +57,7 @@ export default function SettingsScreen() {
 						</Animated.View>
 						{/* <Animated.View entering={FadeInDown.duration(600).delay(100)}>
 							<CustomButton
-								onPress={() => { }}
+								onPress={() => { router.push('/Settings/EditProfileScreen') }}
 								onLongPress={undefined}
 								title={t('Edit Profile')}
 								iconLeft={undefined}

@@ -20,6 +20,7 @@ export default function ActiveUserLayout() {
       <Stack.Screen name='Settings/LanguageScreen' options={{title: 'Language', headerShown: false}} />
       <Stack.Screen name='Settings/ReportBugScreen' options={{title: 'Report Bug', headerShown: false}} />
       <Stack.Screen name='Settings/ContactScreen' options={{title: 'Contact', headerShown: false}} />
+      <Stack.Screen name='Settings/EditProfileScreen' options={{title: 'About', headerShown: false}} />
     </Stack>
   );
 }

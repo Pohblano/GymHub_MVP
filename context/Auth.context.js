@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 // import {onAuthStateChanged, signOut} from 'firebase/auth'
 import { auth, db } from "@/firebase.config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from '@firebase/auth'
-import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc, getDocs, query, where } from 'firebase/firestore'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, deleteUser, reauthenticateWithCredential } from '@firebase/auth'
+import { doc, addDoc, collection, getDoc, setDoc, Timestamp, updateDoc, getDocs, query, where} from 'firebase/firestore'
 import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import { router } from "expo-router";
 import { getBlobFromUri } from "@/utils/linking";
@@ -19,7 +19,7 @@ export const AuthContextProvider = ({ children }) => {
 			if (user) {
 				setIsAuthenticated(true);
 				setUser(user);
-				updateUserData(user.uid)
+				update_user_data(user.uid)
 
 			} else {
 				setIsAuthenticated(false);
@@ -30,7 +30,7 @@ export const AuthContextProvider = ({ children }) => {
 	}, [])
 
 	// Updates auth context
-	const updateUserData = async (uid) => {
+	const update_user_data = async (uid) => {
 		const docRef = doc(db, 'Users', uid)
 		const docSnap = await getDoc(docRef)
 
@@ -115,6 +115,30 @@ export const AuthContextProvider = ({ children }) => {
 			console.log('There was an error while logging user out')
 		}
 	}
+
+	const deleteUserProfile = async (credentials) => {
+		try{
+			// const user = auth.currentUser
+			// await reauthenticateWithCredential(user, credentials)
+
+			// await deleteUser(user).then(() => {
+			// 	router.replace('/')
+			// })
+			// .then(() => {
+			// 	console.log('User deleted successfully')
+            //     router.replace('/')
+            //     await signOut(auth)
+            //     setUser(null)
+            //     setIsAuthenticated(false)
+            //     setCompletedSetup(false)
+            //     await deleteDoc(doc(db, 'Users', uid))
+             
+			// })
+		}catch (e) {
+			console.log(e)
+			console.log('There was an error while deleting user profile')
+		}
+	  };
 
 	const register = async (email, password, setErrors, setSubmitting) => {
 		try {
@@ -228,8 +252,10 @@ export const AuthContextProvider = ({ children }) => {
 	}
 
 
+
+
 	return (
-		<AuthContext.Provider value={{ user, isAuthenticated, login, logout, register, update, reset_password, upload_image, register_bug }}>
+		<AuthContext.Provider value={{ user, isAuthenticated, login, logout, register, update, reset_password, upload_image, register_bug, deleteUserProfile }}>
 			{children}
 		</AuthContext.Provider>
 	)

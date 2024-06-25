@@ -1,11 +1,11 @@
 // Node Modules
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Pressable } from 'react-native'
+import { View, TextInput, Text } from 'react-native'
 import { useFormik } from 'formik';
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 // * Routing
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 // *Styling
 import { StyleSheet } from 'react-native'
 import { text } from '@/styles/text.styles'
@@ -157,10 +157,21 @@ export default function SignupForm() {
 						disabled={false}
 					/>
 				</Animated.View> */}
+
+				{/* Terms & COnditions / Privacy Policy */}
+				<Animated.View style={[delayeddAnimation.fadeInStyle, { marginTop: 8 }]}>
+					<Text className=' text-center' style={[text.grey, { fontWeight: 300 }]}>
+						<Trans i18nKey="registration.agreement" components={{
+							terms: <Link style={text.yellow} href='(Legal)/Terms_Conditions' />,
+							privacy: <Link style={text.yellow} push href='(Legal)/Privacy_Policy' />
+						}} />
+
+					</Text>
+				</Animated.View>
 			</View>
 
 			{/* Bottom Buttons */}
-			<Animated.View style={[container.bottom, { gap: 10 }, animation.slideUpStyle]}>
+			<Animated.View style={[container.bottom, { gap: 10 },]}>
 				<CustomButton
 					loading={formik.isSubmitting}
 					onPress={formik.handleSubmit}
